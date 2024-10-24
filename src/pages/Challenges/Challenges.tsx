@@ -44,7 +44,8 @@ const Challenges: React.FC = () => {
         </div>
 
         <Pagination
-          totalPages={12}
+          className="pagination"
+          totalPages={10}
           currentPage={currentPage}
           onPageChange={handleChangePage}
         />
