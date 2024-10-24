@@ -46,6 +46,9 @@ const paths = {
       root: '/challenger',
       profile: '/profile',
     },
+    CHALLENGE: {
+      getAll: '/challenges',
+    },
   },
 
   LOCAL_STORAGE: {
@@ -61,6 +64,10 @@ const paths = {
   LANGUAGE: {
     english: 'en',
     vietnamese: 'vi',
+  },
+
+  QUERY_KEY: {
+    challenges: 'challenges',
   },
 };
 
