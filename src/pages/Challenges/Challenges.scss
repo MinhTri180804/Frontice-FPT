@@ -15,4 +15,8 @@
       grid-column: span 3;
     }
   }
+
+  & > .pagination {
+    margin-top: 32px;
+  }
 }
