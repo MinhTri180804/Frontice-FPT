@@ -11,7 +11,7 @@
   }
   & > .challenges-list {
     @include grid(12, none, 24px);
-    & > .challenge__component-container {
+    & > div {
       grid-column: span 3;
     }
   }

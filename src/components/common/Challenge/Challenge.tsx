@@ -13,7 +13,7 @@ interface IChallengeProps {
   technicalList: string[];
   score: string | number;
   level: string;
-  difficulty: string;
+  difficulty: string | number;
   description: string;
   tags: {
     value: 'premium' | 'free' | 'free++' | 'new';

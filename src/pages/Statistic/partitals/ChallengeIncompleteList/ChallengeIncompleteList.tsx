@@ -1,9 +1,9 @@
-import './challengeIncompleteList.scss';
 import { FC } from 'react';
-import ChallengeIncomplete from '../ChallengeIncomplete/ChallengeIncomplete';
 import 'swiper/scss';
 import 'swiper/scss/grid';
 import 'swiper/scss/pagination';
+import ChallengeIncomplete from '../ChallengeIncomplete/ChallengeIncomplete';
+import './challengeIncompleteList.scss';
 
 const ChallengeIncompleteList: FC = () => {
   return (
