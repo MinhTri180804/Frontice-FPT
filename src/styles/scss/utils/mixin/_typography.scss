@@ -1,0 +1,160 @@
+// Typography font BeVietNamPro mixin define
+
+// Custom
+@mixin typography_BVNPro-custom(
+  $fontWeight: 400,
+  $fontSize: 18px,
+  $lineHeight: auto
+) {
+  font-family: 'BeVietNamPro';
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+}
+
+// -- for desktop screen
+@mixin typography_BVNPro-desktop-h1() {
+  @include typography_BVNPro-custom(700, 48px, 125%);
+}
+
+@mixin typography_BVNPro-desktop-h2() {
+  @include typography_BVNPro-custom(700, 40px, 135%);
+}
+
+@mixin typography_BVNPro-desktop-h3() {
+  @include typography_BVNPro-custom(700, 32px, 135%);
+}
+
+@mixin typography_BVNPro-desktop-h4() {
+  @include typography_BVNPro-custom(700, 24px, 140%);
+}
+
+@mixin typography_BVNPro-desktop-h5() {
+  @include typography_BVNPro-custom(700, 18px, 130%);
+}
+
+@mixin typography_BVNPro-desktop-body-1() {
+  @include typography_BVNPro-custom(400, 18px, 160%);
+}
+
+@mixin typography_BVNPro-desktop-body-2() {
+  @include typography_BVNPro-custom(400, 16px, 150%);
+}
+
+@mixin typography_BVNPro-desktop-body-3() {
+  @include typography_BVNPro-custom(400, 14px, 120%);
+}
+
+@mixin typography_BVNPro-desktop-body-4() {
+  @include typography_BVNPro-custom(400, 12px, auto);
+}
+
+// -- for tablet screen
+@mixin typography_BVNPro-tablet-h1() {
+  @include typography_BVNPro-custom(700, 40px, 130%);
+}
+
+@mixin typography_BVNPro-tablet-h2() {
+  @include typography_BVNPro-custom(700, 32px, 135%);
+}
+
+@mixin typography_BVNPro-tablet-h3() {
+  @include typography_BVNPro-custom(700, 28px, 135%);
+}
+
+@mixin typography_BVNPro-tablet-h4() {
+  @include typography_BVNPro-custom(700, 22px, 140%);
+}
+
+@mixin typography_BVNPro-tablet-h5() {
+  @include typography_BVNPro-custom(700, 16px, 135%);
+}
+
+@mixin typography_BVNPro-tablet-body-1() {
+  @include typography_BVNPro-custom(400, 16px, 160%);
+}
+
+@mixin typography_BVNPro-tablet-body-2() {
+  @include typography_BVNPro-custom(400, 14px, 150%);
+}
+
+@mixin typography_BVNPro-tablet-body-3() {
+  @include typography_BVNPro-custom(400, 12px, 140%);
+}
+
+// -- for mobile screen
+@mixin typography_BVNPro-mobile-h1() {
+  @include typography_BVNPro-custom(700, 32px, 130%);
+}
+
+@mixin typography_BVNPro-mobile-h2() {
+  @include typography_BVNPro-custom(700, 28px, 135%);
+}
+
+@mixin typography_BVNPro-mobile-h3() {
+  @include typography_BVNPro-custom(700, 24px, 135%);
+}
+
+@mixin typography_BVNPro-mobile-h4() {
+  @include typography_BVNPro-custom(700, 20px, 140%);
+}
+
+@mixin typography_BVNPro-mobile-h5() {
+  @include typography_BVNPro-custom(700, 16px, 135%);
+}
+
+@mixin typography_BVNPro-mobile-body-1() {
+  @include typography_BVNPro-custom(400, 16px, 160%);
+}
+
+@mixin typography_BVNPro-mobile-body-2() {
+  @include typography_BVNPro-custom(400, 14px, 150%);
+}
+
+@mixin typography_BVNPro-mobile-body-3() {
+  @include typography_BVNPro-custom(400, 12px, 140%);
+}
+
+// Typography of Button and Link define
+
+// -- of button size large
+@mixin typography_button_large() {
+  @include typography_BVNPro-custom(400, 20px, 24%);
+}
+
+// -- of button size normal
+@mixin typography_button_normal() {
+  @include typography_BVNPro-custom(400, 20px, 24%);
+}
+
+// -- of button size medium
+@mixin typography_button_medium() {
+  @include typography_BVNPro-custom(400, 16px, 20%);
+}
+
+// -- of button size small
+@mixin typography_button_small() {
+  @include typography_BVNPro-custom(400, 14px, 16%);
+}
+
+// -- of button size extra small
+@mixin typography_button_extraSmall() {
+  @include typography_BVNPro-custom(400, 14px, 16%);
+}
+
+// Typography of fields
+@mixin typography_field_title() {
+  @include typography_BVNPro-custom(400, 18px, 160%);
+}
+
+@mixin typography_field_placeholder() {
+  @include typography_BVNPro-custom(400, 16px, auto);
+}
+
+@mixin typography_field_value() {
+  @include typography_BVNPro-custom(400, 16px, auto);
+}
+
+@mixin typography_field_description() {
+  @include typography_BVNPro-custom(300, 12px, auto);
+}

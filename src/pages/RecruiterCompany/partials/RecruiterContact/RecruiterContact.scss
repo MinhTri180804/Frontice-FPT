@@ -1,0 +1,10 @@
+@use '../../../../styles/scss/utils' as *;
+@use '../../../../styles/scss/flex-grid' as *;
+
+.recruiter-contact-container {
+  width: 100%;
+
+  & > .recruiter-contact-list {
+    @include flex-column(24px, none, flex-start);
+  }
+}

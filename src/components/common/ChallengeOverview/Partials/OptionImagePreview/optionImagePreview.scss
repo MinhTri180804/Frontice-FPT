@@ -1,0 +1,22 @@
+@use '../../../../../styles/scss/utils' as *;
+.option__image-preview-component {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid $saturatedSky-main;
+  background-color: $BG-white;
+  color: $saturatedSky-main;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition:
+    color $background_transition_time_duration ease-in-out,
+    background-color $background_transition_time_duration ease-in-out;
+
+  &.active {
+    background-color: $saturatedSky-main;
+    color: $white;
+  }
+
+  & > span.value {
+    @include typography_BVNPro-desktop-body-3();
+  }
+}

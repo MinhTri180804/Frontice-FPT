@@ -1,0 +1,138 @@
+{
+  "Layout": {
+    "Header": {
+      "SearchBar": {},
+      "UserProfile": {
+        "avatar": "avatar",
+        "userName": "username"
+      }
+    },
+    "Sidebar": {},
+    "Main": {},
+    "ToastMessage": {}
+  },
+  "ToastMessage": {
+    "Login": {
+      "error": "Login failed",
+      "pending": "Login in progress",
+      "success": "Log in successfully"
+    },
+    "Auth": {
+      "Register": {
+        "error": "Registration failed",
+        "pending": "Registration in progress",
+        "success": "Registered successfully"
+      },
+      "FrogotPassword": {
+        "error": "Gmail is incorrect"
+      },
+      "ForgotPassword": {
+        "pending": "Posted the test",
+        "success": "Checked gmail successfully"
+      },
+      "OTP": {
+        "error": "OTP authentication failed",
+        "pending": "Performing OTP authentication",
+        "success": "OTP authentication successful"
+      },
+      "ResetPassword": {
+        "error": "Renew password failed",
+        "pending": "Password change in progress",
+        "success": "Renew password successfully"
+      },
+      "Login": {
+        "success": "Log in successfully",
+        "error": "Login failed",
+        "pending": "Login in progress"
+      },
+      "Logout": {
+        "Success": "Successfully logged out of account",
+        "Error": "Logout of account failed",
+        "Pending": "Logging out of account in progress"
+      }
+    },
+    "Challenger": {
+      "profile": {
+        "error": "Account information authentication failed"
+      }
+    }
+  },
+  "ToastMEssage": {
+    "Auth": {
+      "ResetPassword": {
+        "pending": "Password renewal in progress"
+      }
+    }
+  },
+  "testing": "min value {{min}}",
+  "Validation": {
+    "Field": {
+      "Password": {
+        "MaxLength": "Passwords have a maximum length of {{length}}",
+        "MinLength": "Password length is at least {{length}}",
+        "Confirm": "Confirmation password does not match",
+        "Require": "Password cannot be left blank"
+      },
+      "PasswordConfirm": {
+        "Match": "Confirmation password does not match"
+      },
+      "ConfirmPassword": {
+        "Require": "Confirmation password cannot be blank",
+        "MaxLength": "The maximum length of the authentication password is {{length}}",
+        "MinLength": "Confirmation password has a minimum length of {{length}}"
+      },
+      "FirstName": {
+        "Require": "First name cannot be left blank"
+      },
+      "LastName": {
+        "Require": "Last name cannot be left blank"
+      },
+      "Email": {
+        "Require": "Email cannot be left blank",
+        "Pattern": "Email is not in correct format"
+      },
+      "Nickname": {
+        "Require": "Nickname cannot be left blank"
+      },
+      "Phone": {
+        "Require": "Phone number cannot be left blank",
+        "Pattern": "Invalid phone number"
+      }
+    }
+  },
+  "Field": {
+    "NewPassword": "New password",
+    "ConfirmPassword": "Confirm password",
+    "Email": "E-mail",
+    "FirstName": "First name",
+    "LastName": "Last name",
+    "Password": "Password",
+    "Nickname": "",
+    "Phone": "Phone number"
+  },
+  "Button": {
+    "ResetPassword": "Change password",
+    "ForgotPassword": "Forgot password",
+    "Login": "Log in",
+    "Register": "Register",
+    "VerifyOtp": "Verify OTP code",
+    "Authentication": {
+      "BackPrevious": "Go back"
+    }
+  },
+  "Checkbox": {
+    "RememberAccount": "Remember account"
+  },
+  "Language": {
+    "Vietnamese": "Vietnamese",
+    "English": "English",
+    "Country": "Vietnam"
+  },
+  "ChangeLanguage": {
+    "success": "Changed language {{language}} successfully"
+  },
+  "Setting": "Setting",
+  "Profile": "Personal page",
+  "Logout": "Sign out",
+  "Point": "Score"
+}

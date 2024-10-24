@@ -1,0 +1,5 @@
+@use '../../../styles/scss/flex-grid' as *;
+
+.icon-wrapper {
+  @include flex-row(12px, flex-start, center);
+}

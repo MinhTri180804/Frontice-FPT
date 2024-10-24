@@ -1,0 +1,233 @@
+{
+  "technical": [
+    {
+      "id": "technical-1",
+      "name": "html"
+    },
+    {
+      "id": "technical-2",
+      "name": "css"
+    },
+    {
+      "id": "technical-3",
+      "name": "javascript"
+    }
+  ],
+
+  "challengeCategory": [
+    {
+      "id": "challenge-category-1",
+      "name": "Challenge of challenger"
+    },
+    {
+      "id": "challenge-category-2",
+      "name": "Challenge of recruiter"
+    }
+  ],
+  "level": [
+    
+  ],
+
+  "challenge": [
+    {
+      "id": "challenge-1",
+      "title": "Bento grid",
+      "category": {
+        "id": "challenge-category-1",
+        "name": "Challenge of challenger"
+      },
+      "technical": [
+        {
+          "id": "technical-1",
+          "name": "html"
+        },
+        {
+          "id": "technical-2",
+          "name": "css"
+        },
+        {
+          "id": "technical-3",
+          "name": "javascript"
+        }
+      ],
+      "challengePoint": {
+        "level": "diamond",
+        "difficulty": "High",
+        "point": 123
+      },
+      "openDate": "1729075811",
+      "closeDate": null,
+      "typeChallenge": "FREE",
+      "description": "This challenge is perfect for testing your CSS Grid and responsive skills with this bento grid layout.",
+      "status": "approved",
+      "price": null,
+      "brief": "<p>Your challenge is to build this bento grid and make it as close to the design as possible.</p> <p>You can use any tools you like to help you complete the challenge. So, if you have something you'd like to practice, feel free to give it a go.</p> . <p>Your users should be able to:</p> <ul><li>View the optimal layout for the interface depending on their device's screen size</li></ul> <p>Download the project and go through the README.md file. This will provide further details about the project and help you set it up.</p>",
+      "assets": "",
+      "message": "<ol><li>Most font sizes in this design change from mobile to desktop. Take this opportunity to practice scaling text sizes as the screen size increases.</li> <li>Train your eye for detail by making your solution look similar to the design.</li></ol>",
+      "isHidden": false,
+      "preview": [
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/tvfhkjoksej6aohdaaci.jpg",
+          "label": "Desktop design"
+        },
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/x718ixny5ceiu4v2pexo.jpg",
+          "label": "mobile design"
+        }
+      ],
+      "isDeleted": 0
+    },
+    {
+      "id": "challenge-2",
+      "title": "Personal finance app",
+      "category": {
+        "id": "challenge-category-1",
+        "name": "Challenge of challenger"
+      },
+      "technical": [
+        {
+          "id": "technical-1",
+          "name": "html"
+        },
+        {
+          "id": "technical-2",
+          "name": "css"
+        },
+        {
+          "id": "technical-3",
+          "name": "javascript"
+        }
+      ],
+      "challengePoint": {
+        "level": "Gold",
+        "difficulty": "Medium",
+        "point": 100
+      },
+      "openDate": "1729075811",
+      "closeDate": null,
+      "typeChallenge": "PREMIUM",
+      "description": "This app contains 5 pages (Overview, Transactions, Budgets, Pots, and Recurring Bills) and includes a lot of tricky elements. You can also build it as a full-stack app!.",
+      "status": "approved",
+      "price": null,
+      "brief": "<p>Your challenge is to build this bento grid and make it as close to the design as possible.</p> <p>You can use any tools you like to help you complete the challenge. So, if you have something you'd like to practice, feel free to give it a go.</p> . <p>Your users should be able to:</p> <ul><li>View the optimal layout for the interface depending on their device's screen size</li></ul> <p>Download the project and go through the README.md file. This will provide further details about the project and help you set it up.</p>",
+      "assets": "",
+      "message": "<ol><li>Most font sizes in this design change from mobile to desktop. Take this opportunity to practice scaling text sizes as the screen size increases.</li> <li>Train your eye for detail by making your solution look similar to the design.</li></ol>",
+      "isHidden": false,
+      "preview": [
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/dwt5ev1gzfkpc9opax77.jpg",
+          "label": "Desktop design"
+        },
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/o00qedob6k9r7sxlcej5.jpg",
+          "label": "Tablet design"
+        },
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/x8mzoree078rg3nrn58x.jpg",
+          "label": "mobile design"
+        }
+      ],
+      "isDeleted": 0
+    },
+    {
+      "id": "challenge-3",
+      "title": "Product list with cart",
+      "category": {
+        "id": "challenge-category-1",
+        "name": "Challenge of challenger"
+      },
+      "technical": [
+        {
+          "id": "technical-1",
+          "name": "html"
+        },
+        {
+          "id": "technical-2",
+          "name": "css"
+        },
+        {
+          "id": "technical-3",
+          "name": "javascript"
+        }
+      ],
+      "challengePoint": {
+        "level": "Silver",
+        "difficulty": "Easy",
+        "point": 80
+      },
+      "openDate": "1729075811",
+      "closeDate": null,
+      "typeChallenge": "FREE",
+      "description": "Practice updating the UI in multiple places based on user actions. The starter download also includes a JSON file to help you practice populating the DOM dynamically.",
+      "status": "approved",
+      "price": null,
+      "brief": "<p>Your challenge is to build this bento grid and make it as close to the design as possible.</p> <p>You can use any tools you like to help you complete the challenge. So, if you have something you'd like to practice, feel free to give it a go.</p> . <p>Your users should be able to:</p> <ul><li>View the optimal layout for the interface depending on their device's screen size</li></ul> <p>Download the project and go through the README.md file. This will provide further details about the project and help you set it up.</p>",
+      "assets": "",
+      "message": "<ol><li>Most font sizes in this design change from mobile to desktop. Take this opportunity to practice scaling text sizes as the screen size increases.</li> <li>Train your eye for detail by making your solution look similar to the design.</li></ol>",
+      "isHidden": false,
+      "preview": [
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/hnwdoqpec5hxujjl1nj7.jpg",
+          "label": "Desktop design"
+        },
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/nsb8txghrdgwf32gduye.jpg",
+          "label": "Confirmation modal"
+        },
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/xunq9pwk56a5f2kmnujj.jpg",
+          "label": "mobile design"
+        }
+      ],
+      "isDeleted": 0
+    },
+    {
+      "id": "challenge-4",
+      "title": "Mortgage repayment calculator",
+      "category": {
+        "id": "challenge-category-1",
+        "name": "Challenge of challenger"
+      },
+      "technical": [
+        {
+          "id": "technical-1",
+          "name": "html"
+        },
+        {
+          "id": "technical-2",
+          "name": "css"
+        },
+        {
+          "id": "technical-3",
+          "name": "javascript"
+        }
+      ],
+      "challengePoint": {
+        "level": "diamond",
+        "difficulty": "High",
+        "point": 123
+      },
+      "openDate": "1729075811",
+      "closeDate": null,
+      "typeChallenge": "FREE",
+      "description": "This mortgage calculator is an excellent project for practicing working with forms, client-side validation, and updating the DOM. Remember to focus on accessibility, too!",
+      "status": "approved",
+      "price": null,
+      "brief": "<p>Your challenge is to build this bento grid and make it as close to the design as possible.</p> <p>You can use any tools you like to help you complete the challenge. So, if you have something you'd like to practice, feel free to give it a go.</p> . <p>Your users should be able to:</p> <ul><li>View the optimal layout for the interface depending on their device's screen size</li></ul> <p>Download the project and go through the README.md file. This will provide further details about the project and help you set it up.</p>",
+      "assets": "",
+      "message": "<ol><li>Most font sizes in this design change from mobile to desktop. Take this opportunity to practice scaling text sizes as the screen size increases.</li> <li>Train your eye for detail by making your solution look similar to the design.</li></ol>",
+      "isHidden": false,
+      "preview": [
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/jxgbqnn2ft6dmecbsvtf.jpg",
+          "label": "Desktop design"
+        },
+        {
+          "imageUrl": "https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/ep8l77qejuek0qsmrwsn.jpg",
+          "label": "mobile design"
+        }
+      ],
+      "isDeleted": 0
+    }
+  ]
+}

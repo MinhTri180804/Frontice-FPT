@@ -1,0 +1,164 @@
+@use '../../../styles/scss/utils/variables' as *;
+@use '../../../styles/scss/flex-grid' as *;
+.button-container {
+  width: 100%;
+  cursor: pointer;
+  transition: background-color $background_transition_time_duration ease-in-out;
+  @include flex-row(8px, center, center);
+  border-radius: 8px;
+  &:disabled {
+    cursor: not-allowed;
+  }
+  & > .label {
+    flex-grow: 1;
+    max-width: fit-content;
+    white-space: nowrap;
+  }
+
+  & > .icon {
+    flex-shrink: 0;
+  }
+
+  &.large {
+    padding: 20px 32px;
+    font-size: 20px;
+
+    & > .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.normal {
+    padding: 16px 32px;
+
+    font-size: 20px;
+    & > .icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &.medium {
+    padding: 14px 32px;
+
+    color: $white;
+    font-size: 16px;
+
+    & > .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.small {
+    padding: 12px 24px;
+    color: $white;
+    font-size: 14px;
+    & > .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.extra-small {
+    padding: 8px 24px;
+    color: $white;
+    font-size: 14px;
+
+    & > .icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.large,
+  &.normal,
+  &.medium,
+  &.small,
+  &.extra-small {
+    .icon {
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &.primary {
+    background-color: $BTN-primary-default-bg;
+    border: 1px solid $BTN-primary-default-stroke;
+    color: $BTN-primary-default-text;
+    &:hover {
+      background-color: $BTN-primary-hover-bg;
+      border-color: $BTN-primary-hover-stroke;
+      color: $BTN-primary-hover-text;
+    }
+    &:focus {
+      background-color: $BTN-primary-focus-bg;
+      border-color: $BTN-primary-focus-stroke;
+      color: $BTN-primary-focus-text;
+    }
+    &:active {
+      background-color: $BTN-primary-click-bg;
+      border-color: $BTN-primary-click-stroke;
+      color: $BTN-primary-click-text;
+    }
+    &:disabled {
+      background-color: $BTN-primary-disabled-bg;
+      border-color: $BTN-primary-disabled-stroke;
+      color: $BTN-primary-disabled-text;
+    }
+  }
+  &.secondary {
+    background-color: $BTN-secondary-default-bg;
+    border: 1px solid $BTN-secondary-default-stroke;
+    color: $BTN-secondary-default-text;
+
+    &:hover {
+      background-color: $BTN-secondary-hover-bg;
+      border-color: $BTN-secondary-hover-stroke;
+      color: $BTN-secondary-hover-text;
+    }
+    &:focus {
+      background-color: $BTN-secondary-focus-bg;
+      border-color: $BTN-secondary-focus-stroke;
+      color: $BTN-secondary-focus-text;
+    }
+    &:active {
+      background-color: $BTN-secondary-click-bg;
+      border-color: $BTN-secondary-click-stroke;
+      color: $BTN-secondary-click-text;
+    }
+    &:disabled {
+      background-color: $BTN-secondary-disabled-bg;
+      border-color: $BTN-secondary-disabled-stroke;
+      color: $BTN-secondary-disabled-text;
+    }
+  }
+  &.tertiary {
+    background-color: $BTN-tertiary-default-bg;
+    border: 1px solid $BTN-tertiary-default-stroke;
+    color: $BTN-tertiary-default-text;
+    &:hover {
+      background-color: $BTN-tertiary-hover-bg;
+      border-color: $BTN-tertiary-hover-stroke;
+      color: $BTN-tertiary-hover-text;
+    }
+    &:focus {
+      background-color: $BTN-tertiary-focus-bg;
+      border-color: $BTN-tertiary-focus-stroke;
+      color: $BTN-tertiary-focus-text;
+    }
+    &:active {
+      background-color: $BTN-tertiary-click-bg;
+      border-color: $BTN-tertiary-click-stroke;
+      color: $BTN-tertiary-click-text;
+    }
+    &:disabled {
+      background-color: $BTN-tertiary-disabled-bg;
+      border-color: $BTN-tertiary-disabled-stroke;
+      color: $BTN-tertiary-disabled-text;
+    }
+  }
+}

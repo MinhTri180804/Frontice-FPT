@@ -1,0 +1,15 @@
+@use '../../../../styles/scss/utils' as *;
+@use '../../../../styles/scss/flex-grid' as *;
+
+.recruiter-description-container {
+  width: 100%;
+
+  .recruiter-description-paragraph {
+    @include flex-column(8px);
+
+    & > p {
+      color: $satinDeepBlack-main;
+      @include typography_BVNPro-desktop-body-2();
+    }
+  }
+}

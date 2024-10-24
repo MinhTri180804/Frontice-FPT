@@ -1,0 +1,53 @@
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
+
+.section__component {
+  width: 100%;
+  margin: 62px 0px;
+  @include flex-column(32px, flex-start, stretch);
+
+  &.icon-reverse {
+    & > .heading {
+      & > .title {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+  &.title-left {
+    & > .heading {
+      justify-content: flex-start;
+    }
+  }
+
+  &.title-center {
+    & > .heading {
+      justify-content: center;
+    }
+  }
+
+  &.title-right {
+    & > .heading {
+      justify-content: flex-end;
+    }
+  }
+
+  & > .heading {
+    width: fit-content;
+    @include flex-row(12px, flex-start, center);
+    width: 100%;
+    & > .title {
+      width: fit-content;
+      @include flex-row(12px, flex-start, center);
+      & > .value {
+        @include typography_BVNPro-desktop-h4();
+        color: $benthicBlack-main;
+        text-transform: capitalize;
+      }
+
+      & > .icon {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

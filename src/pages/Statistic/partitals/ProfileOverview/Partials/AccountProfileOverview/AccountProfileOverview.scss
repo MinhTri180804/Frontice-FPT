@@ -1,0 +1,35 @@
+@use '../../../../../../styles/scss/flex-grid' as *;
+@use '../../../../../../styles/scss/utils' as *;
+
+.account__profile-overview--component {
+  @include flex-row(16px, flex-start, center);
+
+  & > .avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 100%;
+    overflow: hidden;
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  & > .about {
+    @include flex-column(4px, flex-start, stretch);
+
+    & > .name {
+      @include typography_BVNPro-desktop-body-2();
+      color: $satinDeepBlack-main;
+    }
+
+    & > .email {
+      @include typography_BVNPro-desktop-body-3();
+      color: $satinDeepBlack-tints-300;
+      max-width: 100%;
+      text-overflow: ellipsis;
+    }
+  }
+}

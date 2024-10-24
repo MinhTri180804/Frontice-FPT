@@ -1,0 +1,29 @@
+@use '../../../../../../styles/scss/utils' as *;
+@use '../../../../../../styles/scss/flex-grid' as *;
+
+.recruiter__contact-item {
+  @include flex-column(4px, none, flex-start);
+  align-self: stretch;
+
+  & > .contact-label {
+    span {
+      color: $satinDeepBlack-tints-500;
+      @include typography_BVNPro-desktop-body-2();
+    }
+  }
+
+  & > .contact-value {
+    & > a {
+      text-decoration: none;
+      color: $satinDeepBlack-main;
+      @include typography_BVNPro-desktop-body-1();
+      transition: color 0.3s ease;
+      width: 100%;
+      word-wrap: break-word;
+
+      &:hover {
+        color: #5250f7;
+      }
+    }
+  }
+}

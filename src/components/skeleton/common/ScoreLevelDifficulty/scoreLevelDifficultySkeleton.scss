@@ -1,0 +1,13 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.score-levelDifficulty__skeleton {
+  @include flex-row(0, space-between, center);
+
+  & > .score {
+    @include skeleton(50px, 24px, 0);
+  }
+  & > .level-difficulty {
+    @include skeleton(80px, 24px, 0);
+  }
+}

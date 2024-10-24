@@ -1,0 +1,45 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../../styles/scss/utils/variables/colors' as *;
+.container-company-follow {
+  border: solid 1px $satinDeepBlack-tints-200;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px;
+  text-align: center;
+
+  & > .company-follow {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    & > .image-name-company {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      & > .image {
+        width: 162px;
+        height: 162px;
+        overflow: hidden;
+        box-shadow: 0px 4px 4px -1px rgba(0, 0, 0, 0.12);
+        border-radius: 27px;
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          overflow: hidden;
+          border-radius: 27px;
+        }
+      }
+    }
+    & > .company-quantity {
+      padding: 8px 12px;
+      @include typography_BVNPro-desktop-body-2;
+      color: $saturatedSky-main;
+      border: solid 1px $saturatedSky-main;
+      border-radius: 12px;
+    }
+  }
+}

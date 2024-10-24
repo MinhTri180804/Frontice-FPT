@@ -1,0 +1,54 @@
+@use '../../../../../../../../../styles/scss//utils' as *;
+@use '../../../../../../../../../styles/scss/_flex-grid.scss' as *;
+
+.dropdown-container {
+  @include flex-column(0, flex-start);
+  z-index: 100;
+  min-width: 240px;
+  height: fit-content;
+  padding: 12px;
+  position: absolute;
+  top: 130%;
+  right: 0;
+  border-radius: 4px;
+  background: $BG-white;
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.12);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity $shadow_transition_time_duration ease,
+    transform $shadow_transition_time_duration ease,
+    visibility 0.3s ease;
+  &.open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  .dropdown-item {
+    @include flex-row(12px, flex-start, center);
+    padding: 14px 24px;
+    cursor: pointer;
+    align-self: stretch;
+    transition: background-color $background_transition_time_duration ease;
+    width: 100%;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    & > a {
+      @include typography_BVNPro-desktop-body-2;
+      color: $TEXT-black;
+      user-select: none;
+      width: 100%;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background-color: #f5f5f5;
+      border-radius: 4px;
+    }
+  }
+}

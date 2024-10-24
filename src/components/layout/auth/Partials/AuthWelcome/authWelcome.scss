@@ -1,0 +1,77 @@
+@use '../../../../../styles/scss/flex-grid' as *;
+@use '../../../../../styles/scss/utils' as *;
+
+.auth__welcome-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #5250f7 0%, #1e1e1e 100%);
+  @include flex-row(none, center, flex-end);
+  position: relative;
+
+  & > .content {
+    margin-bottom: 62px;
+    @include flex-column(32px, center, center);
+
+    & > .heading {
+      @include flex-column(16px, center, center);
+
+      & > .logo {
+        width: 152px;
+        height: auto;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      & > .content {
+        @include flex-column(12px, center, center);
+
+        & > .title {
+          @include typography_BVNPro-desktop-h3();
+          color: $white;
+          text-transform: capitalize;
+        }
+
+        & > .message {
+          max-width: 320px;
+          @include typography_BVNPro-desktop-body-1();
+          color: $white;
+          text-align: center;
+
+          &::first-letter {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+
+    & > .steps {
+      @include flex-column(14px);
+      width: 100%;
+    }
+  }
+
+  & > .actions {
+    width: fit-content;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    @include flex-row(12px, flex-start, stretch);
+
+    & > .back__previous-page {
+      & > button.btn__previous-page--custom {
+        background-color: $BG-white;
+        color: $saturatedSky-main;
+        border-radius: 12px;
+
+        &:hover {
+          background-color: #ffffffc2;
+        }
+      }
+    }
+  }
+}

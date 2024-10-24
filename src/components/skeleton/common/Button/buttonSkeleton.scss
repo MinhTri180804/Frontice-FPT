@@ -1,0 +1,5 @@
+@use '../../../../styles/scss/utils' as *;
+
+div.button__skeleton {
+  @include skeleton(100%, 37px, 8px);
+}

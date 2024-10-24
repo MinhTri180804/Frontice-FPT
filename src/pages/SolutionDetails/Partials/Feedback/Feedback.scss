@@ -1,0 +1,41 @@
+@use '../../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../../styles/scss/utils/variables/colors' as *;
+.container-feedback {
+  margin-top: 32px;
+  & > .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    & > .action {
+      display: flex;
+      gap: 24px;
+      & > .mentor {
+        padding: 8px 24px;
+        border: solid 1px $satinDeepBlack-tints-300;
+        border-radius: 12px;
+        color: $satinDeepBlack-tints-300;
+      }
+      & > .other {
+        padding: 8px 24px;
+        color: white;
+        background-color: $saturatedSky-main;
+        border-radius: 12px;
+      }
+    }
+  }
+  & > .list-feedback {
+    width: 100%;
+
+    & > .input-feedback {
+      margin-bottom: 32px;
+      & > div {
+        margin-bottom: 8px;
+      }
+      & > textarea {
+        width: 100%;
+        height: 123px;
+        border-radius: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@use '../../../../../styles/scss/flex-grid' as *;
+@use '../../../../../styles/scss/utils' as *;
+
+.option__select-item-component {
+  padding: 8px 12px;
+  background-color: $BG-white;
+  border-radius: 4px;
+  transition: background-color $background_transition_time_duration linear;
+  @include flex-row(8px, flex-start, center);
+  cursor: pointer;
+  transition: background-color $background_transition_time_duration linear;
+  &.active {
+    background-color: $saturatedSky-tints-200;
+  }
+  &:hover {
+    background-color: $saturatedSky-tints-200;
+  }
+
+  &.selected {
+    background-color: $saturatedSky-tints-200;
+  }
+
+  & > .icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    & > .icon-option {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  & > .label {
+    flex-grow: 1;
+    @include typography_BVNPro-desktop-body-2();
+    color: $satinDeepBlack-main;
+  }
+}

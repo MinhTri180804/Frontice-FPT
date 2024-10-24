@@ -1,0 +1,100 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils/variables/colors' as *;
+@use '../../../../styles/scss/utils/mixin/typography' as *;
+.container-banner-avatar {
+  border: 1px solid $benthicBlack-tints-200;
+  border-radius: 4px;
+  padding: 24px;
+  & > .title-component {
+    @include typography_BVNPro-desktop-h4;
+    margin-bottom: 32px;
+  }
+  & > .title-banner {
+    @include typography_BVNPro-desktop-h5;
+    margin-bottom: 12px;
+  }
+  & > .container-banner {
+    & > .image {
+      margin-bottom: 12px;
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    & > .action {
+      width: fit-content;
+      margin-bottom: 24px;
+      & > input[type='file'] {
+        display: none;
+      }
+      & > label {
+        padding: 16px 32px;
+        border: 1px solid black;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        &:hover {
+          cursor: pointer;
+        }
+        & > svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+  & > .title-avatar {
+    @include typography_BVNPro-desktop-h5;
+    margin-bottom: 12px;
+  }
+  & > .container-avatar {
+    @include grid(12, none, 24px, none, none);
+    & > .image-action {
+      grid-column: span 4;
+      & > .image {
+        padding: 6px;
+        margin-bottom: 12px;
+        border: 2px solid #0084ff;
+        border-radius: 14px;
+        height: 250px;
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+      }
+      & > .action {
+        input[type='file'] {
+          display: none;
+        }
+        & > label {
+          padding: 16px 32px;
+          border: 1px solid black;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          &:hover {
+            cursor: pointer;
+          }
+          & > svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+    & > .container-input {
+      grid-column: span 8;
+      & > .input-child {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  }
+}

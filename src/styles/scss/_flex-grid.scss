@@ -1,0 +1,102 @@
+// Flexible Flex Mixin
+@mixin flex(
+  $direction: row,
+  $justify-content: center,
+  $align-items: center,
+  $wrap: nowrap,
+  $gap: 0
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-wrap: $wrap;
+  @if $gap != 0 {
+    gap: $gap;
+  }
+}
+
+// Grid Mixin
+@mixin grid(
+  $columns: 1,
+  $rows: none,
+  $gap: 0,
+  $justify-content: none,
+  $align-items: none
+) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  @if $rows != none {
+    grid-template-rows: repeat($rows, auto);
+  }
+  @if $gap != 0 {
+    gap: $gap;
+  }
+
+  @if $justify-content != none {
+    justify-content: $justify-content;
+  }
+
+  @if $align-items != none {
+    align-items: $align-items;
+  }
+}
+
+// Responsive Grid Mixin
+@mixin responsive-grid(
+  $min-column-width: 250px,
+  $gap: 16px,
+  $justify-content: start
+) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-column-width, 1fr));
+  gap: $gap;
+  justify-content: $justify-content;
+}
+
+// Flexbox Centering Mixin
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Grid Centering Mixin
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
+// Flex Column Mixin
+@mixin flex-column($gap: 0, $justify-content: none, $align-item: none) {
+  display: flex;
+  flex-direction: column;
+  @if $gap != 0 {
+    gap: $gap;
+  }
+
+  @if $justify-content != none {
+    justify-content: $justify-content;
+  }
+
+  @if $align-item != none {
+    align-items: $align-item;
+  }
+}
+
+// Flex Row Mixin
+@mixin flex-row($gap: 0, $justify-content: none, $align-item: none) {
+  display: flex;
+  flex-direction: row;
+  @if $gap != 0 {
+    gap: $gap;
+  }
+
+  @if $justify-content != none {
+    justify-content: $justify-content;
+  }
+
+  @if $align-item != none {
+    align-items: $align-item;
+  }
+}

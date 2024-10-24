@@ -1,0 +1,24 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.section__statistic-component {
+  width: 100%;
+  padding: 24px;
+  border: 1px solid $benthicBlack-tints-200;
+  background-color: $BG-white;
+  border-radius: 12px;
+  @include flex-column(24px, start, stretch);
+
+  & > .heading {
+    @include flex-row(none, space-between, center);
+    // width: 100%;
+    & > .title {
+      @include flex-row(12px, flex-start, center);
+
+      & > .value {
+        @include typography_BVNPro-desktop-h4();
+        color: $benthicBlack-main;
+      }
+    }
+  }
+}

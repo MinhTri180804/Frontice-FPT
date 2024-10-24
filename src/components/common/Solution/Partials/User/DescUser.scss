@@ -1,0 +1,31 @@
+@use '../../../../../styles/scss/utils/variables/colors' as *;
+.desc-user {
+  display: flex;
+  border-top: 1px solid $FIELD-stroke;
+  border-bottom: 1px solid $FIELD-stroke;
+  align-items: center !important;
+  padding: 12px 0px;
+  margin-bottom: 12px;
+  gap: 12px;
+  & > .avatar-user {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  & > .name-rank-id {
+    & > .name-rank {
+      display: flex;
+      gap: 12px;
+      & > .rank-user {
+        color: $sunsetGlow-main;
+      }
+    }
+  }
+}

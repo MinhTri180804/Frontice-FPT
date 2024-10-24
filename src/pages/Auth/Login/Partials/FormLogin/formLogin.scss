@@ -1,0 +1,19 @@
+@use '../../../../../styles/scss/utils' as *;
+@use '../../../../../styles/scss/flex-grid' as *;
+
+form.login__form {
+  @include flex-column(16px, flex-start, start);
+  width: 100%;
+
+  & > .options {
+    @include flex-row(0, space-between, center);
+    width: 100%;
+    text-transform: capitalize;
+    text-decoration: underline;
+
+    & > .forgot-password {
+      @include typography_BVNPro-desktop-body-2();
+      color: $TEXT-black;
+    }
+  }
+}

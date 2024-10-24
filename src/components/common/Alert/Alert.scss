@@ -1,0 +1,97 @@
+@use '../../../styles/scss/utils/variables/'as *;
+
+@mixin custom-toast($bg-color, $stroke-color, $bg-light-color) {
+  border: 1px solid $stroke-color !important;
+
+  &.solid {
+    background: $bg-color !important;
+  }
+
+  &.light {
+    background: $bg-light-color !important;
+  }
+}
+
+.custom-success-toast {
+  @include custom-toast($NOTIFICATION-success-bg, $NOTIFICATION-success-stroke, $NOTIFICATION-success-bg-white);
+}
+
+.custom-error-toast {
+  @include custom-toast($NOTIFICATION-error-bg, $NOTIFICATION-error-stroke, $NOTIFICATION-error-bg-white);
+}
+
+.custom-info-toast {
+  @include custom-toast($NOTIFICATION-information-bg, $NOTIFICATION-information-stroke, $NOTIFICATION-information-bg-white);
+}
+
+.custom-warn-toast {
+  @include custom-toast($NOTIFICATION-warning-bg, $NOTIFICATION-warning-stroke, $NOTIFICATION-warning-bg-white);
+}
+
+.alert-container {
+  display              : grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows   : auto auto;
+  grid-gap             : 12px;
+  align-items          : center;
+
+  .alert-icon {
+    grid-column  : 1;
+    padding      : 0 2px;
+    border-radius: 5px;
+
+    svg {
+      height: 12px;
+      width : 12px;
+    }
+
+    &.success {
+      background: $NOTIFICATION-success-bg !important;
+    }
+
+    &.error {
+      background: $NOTIFICATION-error-bg !important;
+    }
+
+    &.info {
+      background: $NOTIFICATION-information-bg !important;
+    }
+
+    &.warn {
+      background: $NOTIFICATION-warning-bg !important;
+    }
+  }
+
+  h2 {
+    font-size  : 18px;
+    grid-column: 2;
+    grid-row   : 1;
+  }
+
+  p {
+    font-size  : 14px;
+    grid-column: 2;
+    grid-row   : 2;
+  }
+
+  .action-btn {
+    padding         : 4px 8px;
+    background-color: transparent;
+    border          : 1px solid currentColor;
+    border-radius   : 4px;
+    cursor          : pointer;
+    grid-column     : 3;
+    grid-row        : 1 / span 2;
+    font-size       : 14px;
+    color           : inherit;
+  }
+
+  &.solid {
+
+    h2,
+    p,
+    .action-btn {
+      color: $white;
+    }
+  }
+}

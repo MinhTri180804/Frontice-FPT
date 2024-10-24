@@ -1,0 +1,290 @@
+// Palette Color define
+
+// -- Saturated Sky
+$saturatedSky-main: #5250f7;
+$saturatedSky-tints-100: #ffffff;
+$saturatedSky-tints-200: #dcdcfd;
+$saturatedSky-tints-300: #bab9fc;
+$saturatedSky-tints-400: #9796fa;
+$saturatedSky-tints-500: #7573f9;
+
+$saturatedSky-shades-100: #4240c6;
+$saturatedSky-shades-200: #313094;
+$saturatedSky-shades-300: #212063;
+$saturatedSky-shades-400: #101031;
+$saturatedSky-shades-500: #000000;
+
+// -- Satin Deep Black
+$satinDeepBlack-main: #1b1d21;
+$satinDeepBlack-tints-100: #ffffff;
+$satinDeepBlack-tints-200: #d1d2d3;
+$satinDeepBlack-tints-300: #a4a5a6;
+$satinDeepBlack-tints-400: #76777a;
+$satinDeepBlack-tints-500: #494a4d;
+
+$satinDeepBlack-shades-100: #16171a;
+$satinDeepBlack-shades-200: #101114;
+$satinDeepBlack-shades-300: #0b0c0d;
+$satinDeepBlack-shades-400: #050607;
+$satinDeepBlack-shades-500: #000000;
+
+// -- Benthic Black
+$benthicBlack-main: #000013;
+$benthicBlack-tints-100: #ffffff;
+$benthicBlack-tints-200: #ccccd0;
+$benthicBlack-tints-300: #9999a1;
+$benthicBlack-tints-400: #666671;
+$benthicBlack-tints-500: #333342;
+// don't have shades because i'm don't define in figma,i will define later
+
+// -- Cloud Break
+$cloudBreak-main: #f2f2ff;
+$cloudBreak-tints-100: #ffffff;
+$cloudBreak-tints-200: #fcfcff;
+$cloudBreak-tints-300: #f7f7ff;
+$cloudBreak-tints-400: #f7f7ff;
+$cloudBreak-tints-500: #f5f5ff;
+
+$cloudBreak-shades-100: #000000;
+$cloudBreak-shades-200: #303033;
+$cloudBreak-shades-300: #616166;
+$cloudBreak-shades-400: #919199;
+$cloudBreak-shades-500: #c2c2cc;
+
+// -- Gray Light
+$grayLight-main: #f6f8f9;
+
+// -- Day Glow Orange
+$dayGlowOrange-main: #ea5b33;
+$dayGlowOrange-tints-100: #ffffff;
+$dayGlowOrange-tints-200: #fbded6;
+$dayGlowOrange-tints-300: #f7bdad;
+$dayGlowOrange-tints-400: #f29d85;
+$dayGlowOrange-tints-500: #ee7c5c;
+
+$dayGlowOrange-shades-100: #000000;
+$dayGlowOrange-shades-200: #2f120a;
+$dayGlowOrange-shades-300: #5e2414;
+$dayGlowOrange-shades-400: #8c371f;
+$dayGlowOrange-shades-500: #bb4929;
+
+// -- Times Square Screens
+$timesSquareScreens-main: #1cbd74;
+$timesSquareScreens-tints-100: #ffffff;
+$timesSquareScreens-tints-200: #d2f2e3;
+$timesSquareScreens-tints-300: #a4e5c7;
+$timesSquareScreens-tints-400: #77d7ac;
+$timesSquareScreens-tints-500: #49ca90;
+
+$timesSquareScreens-shades-100: #000000;
+$timesSquareScreens-shades-200: #062617;
+$timesSquareScreens-shades-300: #0b4c2e;
+$timesSquareScreens-shades-400: #117146;
+$timesSquareScreens-shades-500: #16975d;
+
+// -- Clear Blue
+$clearBlue-main: #297fff;
+$clearBlue-tints-100: #ffffff;
+$clearBlue-tints-200: #d4e5ff;
+$clearBlue-tints-300: #a9ccff;
+$clearBlue-tints-400: #7fb2ff;
+$clearBlue-tints-500: #5499ff;
+
+$clearBlue-shades-100: #000000;
+$clearBlue-shades-200: #081933;
+$clearBlue-shades-300: #103366;
+$clearBlue-shades-400: #194c99;
+$clearBlue-shades-500: #2166cc;
+
+// -- Salmon Orange
+$salmonOrange-main: #ff8f6c;
+$salmonOrange-tints-100: #ffffff;
+$salmonOrange-tints-200: #ffe9e2;
+$salmonOrange-tints-300: #ffd2c4;
+$salmonOrange-tints-400: #ffbca7;
+$salmonOrange-tints-500: #ffa589;
+
+$salmonOrange-shades-100: #000000;
+$salmonOrange-shades-200: #331d16;
+$salmonOrange-shades-300: #66392b;
+$salmonOrange-shades-400: #995641;
+$salmonOrange-shades-500: #cc7256;
+
+// -- White
+$white: #ffffff;
+
+// -- Sunset Glow
+$sunsetGlow-main: #ffb82e;
+$sunsetGlow-tints-100: #ffffff;
+$sunsetGlow-tints-200: #fff1d5;
+$sunsetGlow-tints-300: #ffe3ab;
+$sunsetGlow-tints-400: #ffd482;
+$sunsetGlow-tints-500: #ffc658;
+
+$sunsetGlow-shades-100: #000000;
+$sunsetGlow-shades-200: #332509;
+$sunsetGlow-shades-300: #664a12;
+$sunsetGlow-shades-400: #996e1c;
+$sunsetGlow-shades-500: #cc9325;
+
+// Background Color define
+$BG-white: #ffffff;
+
+// Text Color define
+$TEXT-black: #1b1d21;
+$TEXT-gray: #76777a;
+$TEXT-lightGrey: #a4a5a6;
+$TEXT-disabled: #d1d2d3;
+$TEXT-validation: #ffb82e;
+$TEXT-error: #ea5b33;
+$TEXT-success: #1cbd74;
+$TEXT-warning: #ff8f6c;
+$TEXT-saturatedSky: $saturatedSky-main;
+
+// Button Color define
+
+// -- primary - default
+$BTN-primary-default-bg: #5250f7;
+$BTN-primary-default-text: #ffffff;
+$BTN-primary-default-stroke: #5250f7;
+
+// -- primary - hover
+$BTN-primary-hover-bg: #7573f9;
+$BTN-primary-hover-text: #ffffff;
+$BTN-primary-hover-stroke: #7573f9;
+
+// -- primary - focus
+$BTN-primary-focus-bg: #5250f7;
+$BTN-primary-focus-text: #ffffff;
+$BTN-primary-focus-stroke: #313094;
+
+// -- primary - active
+$BTN-primary-active-bg: #5250f7;
+$BTN-primary-active-text: #ffffff;
+$BTN-primary-active-stroke: #5250f7;
+
+// -- primary - click
+$BTN-primary-click-bg: #313094;
+$BTN-primary-click-text: #ffffff;
+$BTN-primary-click-stroke: #313094;
+
+// -- primary - disabled
+$BTN-primary-disabled-bg: #dcdcfd;
+$BTN-primary-disabled-text: #bab9fc;
+$BTN-primary-disabled-stroke: #dcdcfd;
+
+// --------------------------
+
+// -- secondary - default
+$BTN-secondary-default-bg: transparent;
+$BTN-secondary-default-text: #5250f7;
+$BTN-secondary-default-stroke: #5250f7;
+
+// -- secondary - hover
+$BTN-secondary-hover-bg: rgba(220, 220, 253, 0.5);
+$BTN-secondary-hover-text: #5250f7;
+$BTN-secondary-hover-stroke: #5250f7;
+
+// -- secondary - focus
+$BTN-secondary-focus-bg: rgba(220, 220, 253, 0.5);
+$BTN-secondary-focus-text: #5250f7;
+$BTN-secondary-focus-stroke: #212063;
+
+// -- secondary - active
+$BTN-secondary-active-bg: transparent;
+$BTN-secondary-active-text: #5250f7;
+$BTN-secondary-active-stroke: #5250f7;
+
+// -- secondary - click
+$BTN-secondary-click-bg: transparent;
+$BTN-secondary-click-text: #313094;
+$BTN-secondary-click-stroke: #313094;
+
+// -- secondary - disabled
+$BTN-secondary-disabled-bg: transparent;
+$BTN-secondary-disabled-text: #bab9fc;
+$BTN-secondary-disabled-stroke: #dcdcfd;
+
+// ---------------------------
+
+// -- Tertiary - default
+$BTN-tertiary-default-bg: transparent;
+$BTN-tertiary-default-text: #5250f7;
+$BTN-tertiary-default-stroke: transparent;
+
+// -- Tertiary - hover
+$BTN-tertiary-hover-bg: transparent;
+$BTN-tertiary-hover-text: #9796fa;
+$BTN-tertiary-hover-stroke: transparent;
+
+// -- Tertiary - focus
+$BTN-tertiary-focus-bg: transparent;
+$BTN-tertiary-focus-text: #5250f7;
+$BTN-tertiary-focus-stroke: #313094;
+
+// -- Tertiary - active
+$BTN-tertiary-active-bg: transparent;
+$BTN-tertiary-active-text: #5250f7;
+$BTN-tertiary-active-stroke: transparent;
+
+// -- Tertiary - click
+$BTN-tertiary-click-bg: transparent;
+$BTN-tertiary-click-text: #313094;
+$BTN-tertiary-click-stroke: #313094;
+
+// -- Tertiary - disabled
+$BTN-tertiary-disabled-bg: transparent;
+$BTN-tertiary-disabled-text: #313094;
+$BTN-tertiary-disabled-stroke: transparent;
+
+// Fields Color define
+
+$FIELD-form: #f7f7fd;
+$FIELD-title: #1b1d21;
+$FIELD-text: #494a4d;
+$FIELD-description: #a4a5a6;
+$FIELD-stroke-hover: #7573f9;
+$FIELD-stroke-focused: #5250f7;
+$FIELD-text-disabled: #dcdcfd;
+$FIELD-stroke-validation: #ffd482;
+$FIELD-bg-validation: #fffbf4;
+$FIELD-stroke-loading: #a9ccff;
+$FIELD-bg-error: #a9ccff;
+$FIELD-stroke-error: #ea5b33;
+$FIELD-stroke: #a4a5a6;
+$FIELD-placeholder: #a4a5a6;
+$FILED-stroke-success: #16975d;
+
+// Notification Color define
+
+// -- Information
+$NOTIFICATION-information-bg-white: #f5f9ff;
+$NOTIFICATION-information-bg: linear-gradient(
+  94deg,
+  #2d82b2 -6.52%,
+  #329abb 108.61%
+);
+$NOTIFICATION-information-stroke: #7bcfed;
+
+// -- Error
+$NOTIFICATION-error-bg-white: #fff5f3;
+$NOTIFICATION-error-bg: linear-gradient(95deg, #f6743e -6.96%, #d42525 108.25%);
+$NOTIFICATION-error-stroke: #f0863a;
+
+// -- Success
+$NOTIFICATION-success-bg-white: #f6fff9;
+$NOTIFICATION-success-bg: linear-gradient(
+  95deg,
+  #32bb71 15.3%,
+  #2a9d8f 113.45%
+);
+$NOTIFICATION-success-stroke: #43d590;
+
+// -- Warning
+$NOTIFICATION-warning-bg-white: #fff8ec;
+$NOTIFICATION-warning-bg: linear-gradient(
+  93deg,
+  #f8b806 -30.52%,
+  #ff8c04 123.88%
+);
+$NOTIFICATION-warning-stroke: #ffdf8d;

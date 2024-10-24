@@ -1,0 +1,46 @@
+@use '../../styles/scss/utils' as *;
+@use '../../styles/scss/flex-grid' as *;
+
+.recruiter-company-container {
+  @include flex-column(32px, none, flex-start);
+  padding: 12px 40px;
+  flex: 1 0 0;
+  align-self: stretch;
+
+  & > .recruiter-company-title {
+    @include typography_BVNPro-desktop-h3();
+    color: $benthicBlack-main;
+  }
+
+  & > .recruiter-company-content {
+    width: 100%;
+    @include grid(12, none, 24px);
+
+    & > .column {
+      @include flex-column(32px, flex-start, start);
+      &.left-column {
+        grid-column: span 8;
+      }
+
+      &.right-column {
+        grid-column: span 4;
+
+        & > .section__recruiter-contact {
+          position: sticky;
+          top: 0;
+        }
+      }
+    }
+  }
+
+  & > .challenge__list {
+    .challenge__list-content {
+      @include grid(12, none, 24px, flex-start, stretch);
+
+      & > div {
+        width: 100%;
+        grid-column: span 3;
+      }
+    }
+  }
+}

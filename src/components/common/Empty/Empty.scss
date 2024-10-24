@@ -1,0 +1,19 @@
+@use '../../../styles/scss/utils/variables/colors' as *;
+@use '../../../styles/scss/utils/mixin/typography' as *;
+.empty-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > .empty-image {
+    width: 534px;
+    height: 398px;
+    & > img {
+      width: 100%;
+    }
+  }
+  & > .empty-text {
+    @include typography_BVNPro-desktop-h4;
+    color: $satinDeepBlack-tints-400;
+  }
+}

@@ -1,0 +1,132 @@
+@use '../../../styles/scss/utils/variables/' as *;
+@use '../../../styles/scss/utils/mixin/typography' as *;
+
+.input__component {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  &.success {
+    & > .input__component-container {
+      border-color: $FILED-stroke-success;
+
+      & > .icon {
+        & > svg {
+          fill: $FILED-stroke-success;
+        }
+      }
+    }
+  }
+
+  &.error {
+    & > .input__component-container {
+      border-color: $FIELD-stroke-error;
+
+      & > .icon {
+        & > svg {
+          fill: $FIELD-stroke-error;
+        }
+      }
+    }
+  }
+
+  &.loading {
+    & > .input__component-container {
+      border-color: $FIELD-stroke-loading;
+
+      & > .icon {
+        & > svg {
+          fill: $FIELD-stroke-loading;
+        }
+      }
+    }
+  }
+
+  & > label {
+    @include typography_field_title();
+    color: $FIELD-title;
+    text-transform: capitalize;
+  }
+
+  & > .input__component-container {
+    cursor: text;
+    position: relative;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid grey;
+    background-color: #fff;
+    transition:
+      border-color $input_transition_time_duration ease-in-out,
+      outline-color $input_transition_time_duration ease-in-out;
+    box-sizing: border-box;
+    &:hover {
+      border-color: $FIELD-stroke-hover;
+
+      & > .icon {
+        & > svg {
+          fill: $FIELD-stroke-hover;
+        }
+      }
+    }
+
+    &:focus-within {
+      border-color: $FIELD-stroke-focused !important;
+
+      & > .icon {
+        & > svg {
+          fill: $FIELD-stroke-focused;
+        }
+      }
+    }
+
+    &:has(.icon) {
+      width: calc(100% - 24px);
+    }
+
+    & > input {
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      @include typography_field_value();
+
+      &::placeholder {
+        @include typography_field_placeholder();
+        color: $FIELD-placeholder;
+        text-transform: capitalize;
+      }
+    }
+
+    & > .icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 16px;
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  & > .message {
+    @include typography_field_description();
+    width: fit-content;
+    height: fit-content;
+    color: $FIELD-description;
+    transition: color $input_transition_time_duration ease-in-out;
+
+    &.error {
+      color: $FIELD-stroke-error;
+    }
+
+    &.success {
+      color: $FILED-stroke-success;
+    }
+
+    &.loading {
+      color: $FIELD-stroke-loading;
+    }
+  }
+}

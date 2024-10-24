@@ -1,0 +1,47 @@
+@use '../../styles/scss/flex-grid' as *;
+@use '../../styles/scss/utils' as *;
+
+.home__page-container {
+  & > h1.title__page {
+    @include typography_BVNPro-desktop-h3();
+    color: $benthicBlack-main;
+    margin-bottom: 62px;
+  }
+
+  & > .content {
+    & > .heros {
+      @include grid(12, 4, 24px, start, stretch);
+
+      & > .hero__premium {
+        grid-column: span 6;
+        grid-row: span 4;
+        width: 100%;
+        height: 100%;
+      }
+
+      & > .hero__solution,
+      & > .hero__challenge {
+        grid-column: span 6;
+        grid-row: span 2;
+        width: 100%;
+      }
+    }
+
+    & > section.challenge__recruiter,
+    & > section.challenge__system {
+      margin: 64px 0px;
+      & > .content {
+        @include grid(12, none, 24px, start, start);
+
+        & > div {
+          grid-column: span 3;
+        }
+
+        & > .button__view-more {
+          grid-column: span 3;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

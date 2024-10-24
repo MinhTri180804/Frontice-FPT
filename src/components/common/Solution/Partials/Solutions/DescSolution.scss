@@ -1,0 +1,19 @@
+@use '../../../../../styles/scss/utils/mixin/typography' as *;
+.desc-title-solution {
+  & > div {
+    margin-bottom: 12px;
+  }
+  & > div {
+    margin-bottom: 12px;
+  }
+  & > .title-solution {
+    @include typography_BVNPro-desktop-body-2;
+  }
+  & > .desc-solution {
+    @include typography_BVNPro-custom(300, 14px, 120%);
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

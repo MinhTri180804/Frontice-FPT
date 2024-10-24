@@ -1,0 +1,16 @@
+@use '../../styles/scss/utils/mixin/typography' as *;
+@use '../../styles/scss/utils/variables/colors' as *;
+
+.container-solution-details-page {
+  // max-width: 1024px;
+
+  & > .title {
+    & > h1 {
+      @include typography_BVNPro-desktop-h3;
+      margin-bottom: 62px;
+    }
+  }
+  & > .overview-challenge {
+    overflow: hidden;
+  }
+}

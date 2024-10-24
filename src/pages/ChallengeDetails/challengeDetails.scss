@@ -1,0 +1,58 @@
+@use '../../styles/scss/flex-grid' as *;
+@use '../../styles/scss/utils' as *;
+
+.challenge__details-page {
+  @include flex-column(32px, flex-start, start);
+
+  & > .title {
+    @include typography_BVNPro-desktop-h3();
+    color: $benthicBlack-main;
+  }
+
+  & > .content {
+    @include flex-column(64px, flex-start, start);
+
+    margin-bottom: 32px;
+
+    & > .tab__content-wrapper {
+      & > ul.tab__list {
+        margin-bottom: 64px;
+        @include flex-row(0, flex-start, start);
+        & > li {
+          padding-left: 20px;
+          padding-right: 20px;
+          padding-bottom: 8px;
+          border-bottom: 2px solid $satinDeepBlack-tints-300;
+          color: $satinDeepBlack-tints-300;
+          transition:
+            border-color $background_transition_time_duration ease-in-out,
+            color $background_transition_time_duration ease-in-out;
+          @include typography_field_title();
+          cursor: pointer;
+
+          &.active {
+            color: $saturatedSky-main;
+            border-color: $saturatedSky-main;
+          }
+
+          &:not(.active):hover {
+            color: $saturatedSky-tints-400;
+            border-color: $saturatedSky-tints-400;
+          }
+        }
+      }
+    }
+
+    & > .faq__challenge-section {
+      & > .content {
+        width: 100%;
+        @include flex-row(none, center, center);
+
+        & > .list {
+          width: 600px;
+          @include flex-column(24px, flex-start, start);
+        }
+      }
+    }
+  }
+}

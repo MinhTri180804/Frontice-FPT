@@ -1,0 +1,28 @@
+@use '../../../../styles/scss/utils' as *;
+@use '../../../../styles/scss/flex-grid' as *;
+
+.section__about-component {
+  width: 100%;
+  padding: 24px;
+  background-color: $BG-white;
+  border-radius: 4px;
+  box-shadow: 1px 4px 24.5px 0px rgba(0, 0, 0, 0.08);
+  @include flex-column(24px, flex-start, start);
+
+  &.border-bottom-heading {
+    & > .title {
+      border-bottom: 1px solid $satinDeepBlack-tints-200;
+    }
+  }
+
+  & > .title {
+    width: 100%;
+    @include typography_BVNPro-desktop-h4();
+    color: $background_transition_time_duration;
+    padding-bottom: 12px;
+  }
+
+  & > .content {
+    width: 100%;
+  }
+}

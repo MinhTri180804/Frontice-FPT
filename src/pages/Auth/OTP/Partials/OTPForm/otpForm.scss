@@ -1,0 +1,16 @@
+@use '../../../../../styles/scss/flex-grid' as *;
+
+form.otp__form {
+  @include flex-column(16px, flex-start, start);
+  width: 100%;
+
+  & > .otp__list-component {
+    @include flex-row(8px, flex-start, center);
+    width: 100%;
+
+    & > input {
+      flex: 1;
+      width: 100%;
+    }
+  }
+}

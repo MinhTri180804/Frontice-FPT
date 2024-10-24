@@ -1,0 +1,50 @@
+@use '../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../styles/scss/utils/variables/colors' as *;
+.container-table-of-content {
+  top: 0;
+  position: sticky;
+
+  & > .title-table-of-contents {
+    @include typography_BVNPro-desktop-h5;
+    color: $satinDeepBlack-main;
+    margin-bottom: 8px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    & > .section {
+      margin-bottom: 10px;
+      a.section-title {
+        @include typography_BVNPro-desktop-body-1;
+        color: $satinDeepBlack-tints-400;
+        text-decoration: none;
+        &:hover {
+          color: $saturatedSky-main;
+        }
+      }
+      .sub-section {
+        padding: 8px 12px;
+        border-left: 1px solid $satinDeepBlack-tints-300;
+        a {
+          text-decoration: none;
+          @include typography_BVNPro-desktop-body-2;
+          color: $satinDeepBlack-tints-300;
+          padding-left: 12px;
+          &:hover {
+            color: $saturatedSky-main;
+          }
+        }
+        &.active {
+          border-left: 3px solid $saturatedSky-main;
+          color: $saturatedSky-main;
+          background: rgba(220, 220, 253, 0.49);
+        }
+      }
+      a.active {
+        color: $saturatedSky-main;
+      }
+    }
+  }
+}

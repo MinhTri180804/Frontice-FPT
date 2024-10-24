@@ -1,0 +1,29 @@
+@use '../../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../../styles/scss/utils/variables/colors' as *;
+.container-contact-social {
+  border: 1px solid $benthicBlack-tints-200;
+  border-radius: 4px;
+  padding: 24px;
+
+  & > .title-component {
+    @include typography_BVNPro-desktop-h4;
+    margin-bottom: 32px;
+  }
+  & > .container-input {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    & > .codepen,
+    .gitlab,
+    .linkedin,
+    .stack-overflow {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-style: italic;
+        color: $satinDeepBlack-tints-300;
+        margin-top: 8px;
+      }
+    }
+  }
+}

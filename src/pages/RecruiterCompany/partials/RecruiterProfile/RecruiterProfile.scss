@@ -1,0 +1,54 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.recruiter-profile-container {
+  @include flex-row(24px, none, flex-start);
+  padding: 24px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: linear-gradient(87deg, #212063 24.96%, #4341c9 90.36%);
+
+  .left-content {
+    width: 170px;
+    height: 170px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .right-content {
+    @include flex-column(24px, none, flex-start);
+    flex: 1 0 0;
+
+    .recruiter-profile-info {
+      @include flex-column(12px, none, flex-start);
+      align-self: stretch;
+      color: $white;
+
+      .recruiter-name {
+        @include typography_BVNPro-desktop-h3();
+      }
+
+      .recruiter-detail {
+        @include flex-row(24px, none, center);
+
+        .recruiter-address,
+        .recruiter-challenge-numbers {
+          @include flex-row(8px, none, center);
+
+          span {
+            @include typography_BVNPro-desktop-body-3();
+          }
+        }
+      }
+    }
+
+    .recruiter-btn-container {
+      @include flex-row(12px, none, center);
+
+      & > .custom-color {
+        border-color: $white;
+        color: $white;
+      }
+    }
+  }
+}

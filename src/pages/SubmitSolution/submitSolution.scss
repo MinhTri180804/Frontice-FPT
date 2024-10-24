@@ -1,0 +1,27 @@
+@use '../../styles/scss/flex-grid' as *;
+@use '../../styles/scss/utils' as *;
+
+.submit__solution-page {
+  @include flex-column(32px, flex-start, start);
+  & > .heading {
+    @include typography_BVNPro-desktop-h3();
+    color: $benthicBlack-main;
+  }
+
+  & > .content {
+    width: 100%;
+    @include flex-column(62px, flex-start, start);
+
+    & > .form__submit-solution {
+      width: 100%;
+      @include flex-column(32px, flex-start, start);
+      & > .title {
+        text-transform: uppercase;
+        width: 100%;
+        @include typography_BVNPro-desktop-h4();
+        color: $benthicBlack-main;
+        text-align: center;
+      }
+    }
+  }
+}

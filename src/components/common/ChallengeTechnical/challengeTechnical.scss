@@ -1,0 +1,9 @@
+@use '../../../styles/scss/utils' as *;
+
+.challenge__technical-component {
+  & > .value {
+    @include typography_BVNPro-desktop-body-3();
+    color: $saturatedSky-main;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,30 @@
+.auth__layout-container {
+  position: relative;
+  padding: 12px;
+  max-width: 100dvw;
+  width: 100dvw;
+  max-height: 100dvh;
+  height: 100dvh;
+
+  & > .option__language {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  & > .wrap {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    width: 100%;
+    height: 100%;
+
+    & > .auth__welcome-section {
+      grid-column: span 7;
+    }
+
+    & > .auth__form-section {
+      grid-column: span 5;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@use '../../../../styles/scss/utils' as *;
+@use '../../../../styles/scss/flex-grid' as *;
+
+.step__process-component {
+  width: 100%;
+  padding: 16px;
+  @include flex-row(12px, flex-start, center);
+  background-color: $benthicBlack-tints-200;
+  border-radius: 8px;
+  transition:
+    box-shadow $shadow_transition_time_duration ease-in-out,
+    background-color $background_transition_time_duration ease-in-out;
+
+  &.active {
+    background-color: $BG-white;
+    box-shadow: 0px 5px 11px 0px #4280ef;
+    & > .step-number {
+      background-color: $benthicBlack-main;
+    }
+  }
+
+  & > .step-number {
+    width: 24px;
+    height: 24px;
+    @include flex-row(0, center, center);
+    color: $white;
+    @include typography_BVNPro-desktop-body-2();
+    background-color: $satinDeepBlack-tints-300;
+    border-radius: 100%;
+  }
+
+  & > .step-content {
+    text-transform: capitalize;
+    @include typography_BVNPro-desktop-body-2();
+    color: $benthicBlack-main;
+  }
+}

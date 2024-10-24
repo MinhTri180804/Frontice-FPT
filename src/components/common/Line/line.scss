@@ -1,0 +1,6 @@
+@use '../../../styles/scss/utils/variables/colors' as *;
+.line-container {
+  width: 100%;
+  height: 1px;
+  background-color: $satinDeepBlack-tints-400;
+}

@@ -1,0 +1,11 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.challenge__incomplete-list--component {
+  width: 100%;
+  @include grid(12, none, 24px, start, stretch);
+
+  & > .challenge__incomplete {
+    grid-column: span 6;
+  }
+}

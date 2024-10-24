@@ -1,0 +1,25 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.profile_overview-component {
+  @include grid(12, none, 20px, start, center);
+
+  & > .account__profile-overview {
+    grid-column: span 3;
+  }
+
+  & > .about__list {
+    grid-column: span 5;
+    @include flex-row(32px, flex-start, center);
+    height: 100%;
+  }
+
+  & > .actions {
+    grid-column: span 4;
+    @include flex-row(20px, flex-end, center);
+
+    & > button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "Layout": {
+    "Header": {
+      "SearchBar": {},
+      "UserProfile": {
+        "avatar": "ảnh đại diện",
+        "userName": "họ tên"
+      }
+    },
+    "Sidebar": {},
+    "Main": {}
+  },
+  "ToastMessage": {
+    "Auth": {
+      "Login": {
+        "error": "Đăng nhập không thành công",
+        "pending": "Đang thực hiện đăng nhập",
+        "success": "Đăng nhập thành công"
+      },
+      "Register": {
+        "error": "Đăng kí thất bại",
+        "pending": "Đang thực hiện đăng kí",
+        "success": "Đăng kí thành công"
+      },
+      "ForgotPassword": {
+        "error": "Gmail không chính xác",
+        "pending": "Đăng thực hiện kiểm tra",
+        "success": "Kiểm tra gmail thành công"
+      },
+      "OTP": {
+        "error": "Xác thực OTP thất bại",
+        "pending": "Đang thực hiện xác thực OTP",
+        "success": "Xác thực OTP thành công"
+      },
+      "ResetPassword": {
+        "error": "Đổi mới mật khẩu thất bại",
+        "success": "Đổi mới mật khẩu thành công",
+        "pending": "Đang thực hiện thay đổi mật khẩu"
+      },
+      "Logout": {
+        "Success": "Đăng xuất tài khoản thành công",
+        "Error": "Đăng xuất tài khoản thất bại",
+        "Pending": "Đang thực hiện đăng xuất tài khoản"
+      }
+    },
+    "Challenger": {
+      "profile": {
+        "error": "Xác thực thông tin tài khoản không thành công"
+      }
+    }
+  },
+  "Validation": {
+    "Field": {
+      "Password": {
+        "MinLength": "Mật khẩu có độ dài tối thiểu {{length}}",
+        "MaxLength": "Mật khẩu có độ dài tối đa {{length}}",
+        "Require": "Mật khẩu không được bỏ trống"
+      },
+      "ConfirmPassword": {
+        "Require": "Mật khẩu xác nhận không được để trống",
+        "MinLength": "Mật khẩu xác nhận có độ dài tối thiểu là {{length}}",
+        "MaxLength": "Mật khẩu xác thực có độ dài tối đa là {{length}}"
+      },
+      "PasswordConfirm": {
+        "Match": "Mật khẩu xác nhận không trùng khớp"
+      },
+      "FirstName": {
+        "Require": "Tên không được để trống"
+      },
+      "LastName": {
+        "Require": "Họ không được bỏ trống"
+      },
+      "Email": {
+        "Require": "Email không được bỏ trống",
+        "Pattern": "Email không đúng định dạng"
+      },
+      "Otp": {
+        "Require": "Mã OTP không được bỏ trống"
+      },
+      "Nickname": {
+        "Require": "Biệt danh không được bỏ trống"
+      },
+      "Phone": {
+        "Require": "Số điện thoại không được để trống",
+        "Pattern": "Số điện thoại không hợp lệ"
+      }
+    }
+  },
+  "Field": {
+    "NewPassword": "Mật khẩu mới",
+    "ConfirmPassword": "Xác nhận mật khẩu",
+    "Email": "Email",
+    "FirstName": "Tên",
+    "LastName": "Họ",
+    "Password": "Mật khẩu",
+    "Nickname": "Biệt Danh",
+    "Phone": "Số điện thoại"
+  },
+  "Button": {
+    "ResetPassword": "Đổi mật khẩu",
+    "ForgotPassword": "Quên mật khẩu",
+    "Login": "Đăng nhập",
+    "Register": "Đăng kí",
+    "VerifyOtp": "Xác thực mã OTP",
+    "Authentication": {
+      "BackPrevious": "Quay về"
+    }
+  },
+  "Checkbox": {
+    "RememberAccount": "Ghi nhớ tài khoản"
+  },
+  "Upload file": "Tải lên tập tin",
+  "Enter your portfolio": "Nhập portfolio của bạn",
+  "Settings Profile": "Cài đặt Hồ sơ",
+  "Banner": "Ảnh Bìa",
+  "Avatar": "Ảnh Đại Diện",
+  "Enter your link Github account": "Nhập vào đường dẫn Github của bạn",
+  "Enter your link Google account": "Nhập vào đường dẫn Google của bạn",
+  "Enter your link Portfolio account": "nhập vào đường dẫn portfolio của bạn",
+  "Personal Information": "Thông tin cá nhân",
+  "First Name": "Họ",
+  "Last Name": "Tên",
+  "Date of Birth": "Ngày tháng năm sinh",
+  "Gender": "giới tính",
+  "Contact": "Liên hệ",
+  "Social": "Mạng xã hội",
+  "Enter your link Codepen": "Nhập vào liên kết tài khoản Codepen của bạn",
+  "Enter your link Gitlab account": "Nhập vào liên kết tài khoản Gitlab của bạn",
+  "Enter your link Stack Overflow account": "Nhập vào đường dẫn Stack Overflow của bạn",
+  "Save Settings": "Lưu thay đổi",
+  "Preview": "Xem trước",
+  "Enter your first name": "Nhập vào Họ của bạn",
+  "Enter your last name": "Nhập vào tên của bạn",
+  "Select your gender": "Chọn giới tính",
+  "Male": "Nam",
+  "Female": "Nữ",
+  "Other": "Khác",
+  "Language": {
+    "Vietnamese": "Tiếng Việt",
+    "English": "Tiếng Anh",
+    "Country": "Việt Nam"
+  },
+  "ChangeLanguage": {
+    "success": "Chuyển ngôn ngữ {{language}} thành công"
+  },
+  "Setting": "Cài đặt",
+  "Profile": "Trang cá nhân",
+  "Logout": "Đăng xuất",
+  "Point": "Điểm "
+}

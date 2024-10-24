@@ -1,0 +1,27 @@
+@use '../../styles/scss/utils/mixin/typography' as *;
+@use '../../styles/scss/flex-grid' as *;
+
+.profile-container {
+  & .banner-with-info {
+    margin-bottom: 64px;
+  }
+
+  .solution__list-section {
+    & > .content .list-solution {
+      @include grid(12, none, 24px);
+      margin-bottom: 62px;
+      & .container-solution {
+        grid-column: span 3;
+      }
+    }
+  }
+
+  & > .company__following-section {
+    & > .content .list-company {
+      @include grid(12, none, 24px);
+      & .container-company-follow {
+        grid-column: span 3;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@use '../../styles/scss/flex-grid' as *;
+@use '../../styles/scss/utils' as *;
+
+.statistic__page-container {
+  & > h1.title-page {
+    @include typography_BVNPro-desktop-h3();
+    margin-bottom: 62px;
+  }
+
+  & > .content {
+    & > section {
+      & > .line {
+        height: 1px;
+        width: 100%;
+        background-color: $benthicBlack-tints-200;
+      }
+      margin: 32px 0px;
+    }
+
+    .section-with-account {
+      margin: 32px 0;
+      @include grid(12, none, 24px, start, stretch);
+      & > section.incomplete__challenge {
+        grid-column: span 9;
+        width: 100%;
+        // & > .challenge__list {
+        //   @include grid(12, none, 24px, start, stretch);
+
+        //   & > .challenge__incomplete {
+        //     grid-column: span 6;
+        //     width: 100%;
+        //   }
+        // }
+      }
+
+      & > .account {
+        position: sticky;
+        top: 0;
+        grid-column: span 3;
+        width: 100%;
+        height: fit-content;
+        border-radius: 12px;
+        border: 1px solid $benthicBlack-tints-200;
+      }
+    }
+
+    & > section.my__solution {
+      width: 100%;
+      & > .solution__list {
+        @include grid(12, none, 24px, start, stretch);
+        & > div {
+          grid-column: span 3;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

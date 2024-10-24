@@ -1,0 +1,52 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.description__skeleton {
+  @include flex-column(4px, flex-start, stretch);
+  & > .line {
+    @include flex-row(4px, flex-start, center);
+    & > div {
+      @include skeleton(0, 8px, 0);
+    }
+
+    &:first-child {
+      & > div:first-child {
+        width: 70%;
+      }
+
+      & > div:last-child {
+        width: 30%;
+      }
+    }
+
+    &:nth-child(2) {
+      & > div:first-child {
+        width: 40%;
+      }
+
+      & > div:last-child {
+        width: 60%;
+      }
+    }
+
+    &:nth-child(3) {
+      & > div:first-child {
+        width: 60%;
+      }
+
+      & > div:last-child {
+        width: 40%;
+      }
+    }
+
+    &:last-child {
+      & > div:first-child {
+        width: 80%;
+      }
+
+      & > div:last-child {
+        width: 20%;
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@use '../../../styles/scss/utils' as *;
+@use '../../../styles/scss/flex-grid' as *;
+
+.login__page-container {
+  width: 100%;
+  @include flex-column(32px, center, center);
+
+  & > .heading {
+    width: 100%;
+    @include flex-column(8px, center, center);
+    & > .title {
+      @include typography_BVNPro-desktop-h4();
+      color: $TEXT-black;
+      text-align: center;
+    }
+
+    & > .sub-title {
+      @include typography_BVNPro-desktop-body-2();
+      color: $TEXT-black;
+      text-align: center;
+    }
+  }
+
+  & > .content {
+    width: 100%;
+    @include flex-column(20px, center, start);
+
+    & > .method__social {
+      width: 100%;
+      @include flex-row(12px, center, center);
+    }
+
+    & > .or {
+      width: 100%;
+      @include flex-row(8px, center, center);
+      text-transform: uppercase;
+      @include typography_BVNPro-desktop-body-3();
+    }
+
+    & > .main__content {
+      width: 100%;
+      @include flex-column(16px, start, center);
+
+      & > .other {
+        & > span {
+          @include typography_BVNPro-desktop-body-2();
+          @include flex-row(4px, start, center);
+          color: $TEXT-black;
+
+          & > a {
+            color: $TEXT-black;
+            text-decoration: underline;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

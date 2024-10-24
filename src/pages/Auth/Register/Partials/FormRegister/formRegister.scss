@@ -1,0 +1,13 @@
+@use '../../../../../styles/scss/utils' as *;
+@use '../../../../../styles/scss/flex-grid' as *;
+
+form.form__register {
+  @include flex-column(16px, flex-start, start);
+  gap: 16px;
+  width: 100%;
+
+  & > .input-group {
+    @include flex-row(12px, space-between, stretch);
+    width: 100%;
+  }
+}

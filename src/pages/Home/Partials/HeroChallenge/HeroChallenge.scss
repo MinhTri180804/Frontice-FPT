@@ -1,0 +1,35 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils' as *;
+
+.hero__challenge-component {
+  padding: 24px;
+  border-radius: 8px;
+  background-color: $BG-white;
+  border: 1px solid $saturatedSky-main;
+  @include flex-column(24px, center, stretch);
+  height: 100%;
+  overflow: hidden;
+  transition: box-shadow $shadow_transition_time_duration linear;
+  &:hover {
+    box-shadow:
+      52px -23px 16px 0px rgba(82, 80, 247, 0),
+      34px -15px 15px 0px rgba(82, 80, 247, 0.01),
+      19px -8px 12px 0px rgba(82, 80, 247, 0.05),
+      8px -4px 9px 0px rgba(82, 80, 247, 0.09),
+      2px -1px 5px 0px rgba(82, 80, 247, 0.1);
+  }
+
+  & > .image {
+    @include flex-row(none, center, none);
+    & > img {
+      width: 150px;
+      height: 90px;
+    }
+  }
+
+  & > .actions {
+    & > button {
+      width: 100%;
+    }
+  }
+}

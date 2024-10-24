@@ -1,0 +1,16 @@
+@use '../../../../../../styles/scss/utils' as *;
+@use '../../../../../../styles/scss/flex-grid' as *;
+.recruiter-model-container {
+  width: 100%;
+  @include flex-column(8px, flex-start, column);
+
+  .recruiter-model-company {
+    color: $satinDeepBlack-tints-300;
+    @include typography_BVNPro-desktop-body-3();
+  }
+
+  .recruiter-model-product {
+    color: $benthicBlack-main;
+    @include typography_BVNPro-desktop-body-2();
+  }
+}

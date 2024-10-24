@@ -1,0 +1,14 @@
+@use '../../../../styles/scss/flex-grid' as *;
+
+.recruiter-info-container {
+  width: 100%;
+
+  .recruiter-info-models {
+    @include grid(12, none, 24px);
+    width: 100%;
+    & > div {
+      grid-column: span 3;
+      width: 100%;
+    }
+  }
+}

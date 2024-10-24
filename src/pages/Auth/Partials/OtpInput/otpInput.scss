@@ -1,0 +1,48 @@
+@use '../../../../styles/scss/utils' as *;
+
+input.otp__input-component {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  @include typography_BVNPro-desktop-h3;
+  color: $TEXT-black;
+  border-radius: 8px;
+  border: 1px solid $satinDeepBlack-tints-300;
+  outline: none;
+  background-color: white;
+
+  transition:
+    border-color $background_transition_time_duration ease-in-out,
+    background-color $background_transition_time_duration ease-in-out,
+    box-shadow $shadow_transition_time_duration ease-in-out;
+
+  &.has-value {
+    background-color: $saturatedSky-main;
+    color: $white;
+    box-shadow: 0px 4px 9.4px 0px rgba(0, 0, 0, 0.25);
+
+    &.success {
+      border-color: $FILED-stroke-success;
+      background-color: $FILED-stroke-success;
+    }
+  }
+
+  &.error {
+    border-color: $FIELD-stroke-error;
+    &.has-value {
+      background-color: $FIELD-stroke-error;
+    }
+
+    &:hover {
+      border-color: $FIELD-stroke-error;
+    }
+  }
+
+  &:hover {
+    border-color: $FIELD-stroke-hover;
+  }
+
+  &:focus {
+    border-color: $FIELD-stroke-focused;
+  }
+}

@@ -1,0 +1,18 @@
+@use '../../styles/scss/flex-grid' as *;
+@use '../../styles/scss/utils/variables/colors' as *;
+@use '../../styles/scss/utils/mixin/typography' as *;
+.container-challenges-page {
+  & > .header {
+    margin-bottom: 32px;
+    @include flex(row, space-between);
+    & > .title {
+      @include typography_BVNPro-desktop-h4;
+    }
+  }
+  & > .challenges-list {
+    @include grid(12, none, 24px);
+    & > .challenge__component-container {
+      grid-column: span 3;
+    }
+  }
+}

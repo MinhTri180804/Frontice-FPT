@@ -1,0 +1,109 @@
+@use '../../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../../styles/scss/utils/variables/colors' as *;
+.container-solution-details {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  & > .summary-component {
+    grid-column: span 8;
+    & > .header {
+      & > p {
+        @include typography_BVNPro-desktop-body-3;
+        color: $satinDeepBlack-tints-300;
+        margin-bottom: 12px;
+      }
+      & > h1 {
+        @include typography_BVNPro-desktop-h4;
+        margin-bottom: 12px;
+      }
+      & > .tech {
+        @include typography_BVNPro-desktop-body-2;
+        color: $saturatedSky-main;
+        margin-bottom: 24px;
+        & > span {
+          padding-left: 12px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    & > .interaction-buttons {
+      & > .action {
+        display: flex;
+        gap: 24px;
+        & > .action-like {
+          display: flex;
+          align-items: center;
+          border: 1px solid $satinDeepBlack-tints-300;
+          border-radius: 4px;
+          & > .like {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-right: 1px solid $satinDeepBlack-tints-300;
+            & > svg {
+              width: 24px;
+              height: 24px;
+            }
+          }
+          & > .quantity {
+            padding: 15.5px 12px;
+          }
+        }
+        & > .action-dislike {
+          display: flex;
+          align-items: center;
+
+          border: 1px solid $satinDeepBlack-tints-300;
+          border-radius: 4px;
+          & > .dislike {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-right: 1px solid $satinDeepBlack-tints-300;
+            & > svg {
+              width: 24px;
+              height: 24px;
+            }
+          }
+          & > .quantity {
+            padding: 15.5px 12px;
+          }
+        }
+        & > .action-comment {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          border: 1px solid $satinDeepBlack-tints-300;
+          border-radius: 4px;
+          & > .comment {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            gap: 12px;
+            border-right: 1px solid $satinDeepBlack-tints-300;
+            & > svg {
+              width: 24px;
+              height: 24px;
+            }
+          }
+          & > .quantity {
+            padding: 15.5px 12px;
+          }
+        }
+      }
+    }
+    & > .questions {
+      margin-top: 30px;
+      & > h2 {
+        margin-bottom: 12px;
+      }
+    }
+  }
+  & > section.author__information {
+    grid-column: span 4;
+    width: 100%;
+  }
+}

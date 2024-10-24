@@ -1,0 +1,96 @@
+@use '../../../../styles/scss/flex-grid' as *;
+@use '../../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../../styles/scss/utils/variables/colors' as *;
+.banner-with-info {
+  & > .banner {
+    object-fit: cover;
+    height: 254px;
+    padding-bottom: 18px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  & > .user {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    & > .avatar {
+      border: solid 2px #0084ff;
+      border-radius: 14px;
+      padding: 6px;
+      grid-column: span 3;
+      aspect-ratio: 1 / 1;
+      & > img {
+        aspect-ratio: 1 / 1;
+        height: 100%;
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+      }
+    }
+    & > figcaption {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      grid-column: span 9;
+      & > .user-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        & > .user-name {
+          & > h1 {
+            @include typography_BVNPro-desktop-body-1;
+            text-transform: capitalize;
+          }
+          & > h2 {
+            @include typography_BVNPro-desktop-body-3;
+            color: $benthicBlack-tints-300;
+          }
+        }
+        & > .action {
+          display: flex;
+          gap: 24px;
+          align-items: center;
+          @include typography_BVNPro-desktop-body-2;
+        }
+      }
+      & > .user-info {
+        & > .container-contact {
+          @include flex-row(32px, flex-start, center);
+          & > .contact {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+            @include typography_BVNPro-desktop-body-2;
+            & > .icon {
+              height: 24px;
+              width: 24px;
+              & > svg {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+      & > .user-info-icon {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        @include typography_BVNPro-desktop-body-2;
+        & > .icon {
+          & > svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+      & > p {
+        @include typography_BVNPro-custom(400, 14px);
+      }
+    }
+  }
+}
