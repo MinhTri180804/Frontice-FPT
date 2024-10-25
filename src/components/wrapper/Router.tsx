@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter,
   Navigate,
   RouteObject,
+  useLocation,
   useRoutes,
 } from 'react-router-dom';
 import routes from '../../configs/routes';
@@ -17,19 +18,20 @@ export interface RouterProps {
 export function Routes(props: RouterProps) {
   const { defaultRoute } = props;
   console.log(defaultRoute);
-  // const location = useLocation();
+  const location = useLocation();
+  console.log('paths location in router: ', location.pathname);
 
-  // Check for stored path in localStorage
-  // const storedPath = localStorage.getItem('path');
+  useEffect(() => {
+    document.querySelector('main')?.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [location.pathname]);
+
   const redirectPath = paths.home;
 
-  // useEffect(() => {
-  //   // Save current path to localStorage whenever it changes
-  //   localStorage.setItem('path', location.pathname);
-  // }, [location.pathname]);
-
   const defaultRouteObject: RouteObject = {
-    index: true,
     path: '/',
     element: <Navigate to={redirectPath} />,
   };

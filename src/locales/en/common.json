@@ -118,7 +118,11 @@
     "VerifyOtp": "Verify OTP code",
     "Authentication": {
       "BackPrevious": "Go back"
-    }
+    },
+    "ViewMore": {
+      "Challenges": "See challenge"
+    },
+    "LoginNow": "Sign in now"
   },
   "Checkbox": {
     "RememberAccount": "Remember account"
@@ -134,5 +138,17 @@
   "Setting": "Setting",
   "Profile": "Personal page",
   "Logout": "Sign out",
-  "Point": "Score"
+  "Point": "Score",
+  "Empty": {
+    "DontJoinedChallenge": "You haven't participated in any challenges yet",
+    "DontSubmittedChallenge": "You don't have any solutions yet"
+  },
+  "Authentication": {
+    "Login": "You are not logged into your account yet"
+  },
+  "Section": {
+    "Overview": "Overview",
+    "IncompleteChallenge": "Challenge not completed",
+    "MySolution": "My solution"
+  }
 }

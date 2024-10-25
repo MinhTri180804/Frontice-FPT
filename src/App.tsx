@@ -14,7 +14,7 @@ const App: React.FC = () => {
     if (checkAuth) {
       const info = getInfo();
       if (info) {
-      login(info);
+        login(info);
       }
     } else {
       logout();

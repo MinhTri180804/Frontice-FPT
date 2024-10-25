@@ -37,10 +37,10 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
           value={profile.gold_account ? 'Premium' : 'Normal'}
         />
         <AboutProfileOverview title="Score" value={profile.point} />
-        {/* <AboutProfileOverview
+        <AboutProfileOverview
           title="Challenge Submit"
-          value={`${profile.totalSubmittedChallenge} Solution`}
-        /> */}
+          value={`${profile.submittedChallenges} Solution`}
+        />
       </div>
 
       <div className="actions">

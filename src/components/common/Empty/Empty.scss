@@ -5,14 +5,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
   & > .empty-image {
-    width: 534px;
-    height: 398px;
+    min-width: 224px;
+    max-width: 424px;
+    overflow: hidden;
     & > img {
+      height: 100%;
       width: 100%;
+      object-fit: cover;
     }
   }
   & > .empty-text {
+    text-align: center;
     @include typography_BVNPro-desktop-h4;
     color: $satinDeepBlack-tints-400;
   }

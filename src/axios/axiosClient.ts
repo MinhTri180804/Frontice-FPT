@@ -6,12 +6,11 @@ import axios, {
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../constant';
 import authService from '../services/authServices';
+import { useAuthStore } from '../store/authStore';
 import { IBaseResponse } from '../types/base';
 import {
   getAccessToken,
   getRefreshToken,
-  removeAccessToken,
-  removeRefreshToken,
   saveAccessToken,
   saveRefreshToken,
 } from '../utils/localstorage';
@@ -81,8 +80,8 @@ axiosClient.interceptors.response.use(
 
         throw new Error('No RefreshToken');
       } catch (refreshTokenError) {
-        removeAccessToken();
-        removeRefreshToken();
+        const { logout } = useAuthStore();
+        logout();
         const navigate = useNavigate();
         navigate(`${paths.auth}/${paths.login}`);
         return Promise.reject(refreshTokenError);

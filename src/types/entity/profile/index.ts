@@ -12,4 +12,7 @@ export interface IProfileEntity {
   cv: string | null;
   image: string;
   username: string;
+  challengeJoined: number;
+  pendingChallenges: number;
+  submittedChallenges: number;
 }

@@ -104,7 +104,11 @@
     "VerifyOtp": "Xác thực mã OTP",
     "Authentication": {
       "BackPrevious": "Quay về"
-    }
+    },
+    "ViewMore": {
+      "Challenges": "Xem thử thách"
+    },
+    "LoginNow": "Đăng nhập ngay"
   },
   "Checkbox": {
     "RememberAccount": "Ghi nhớ tài khoản"
@@ -146,5 +150,17 @@
   "Setting": "Cài đặt",
   "Profile": "Trang cá nhân",
   "Logout": "Đăng xuất",
-  "Point": "Điểm "
+  "Point": "Điểm ",
+  "Empty": {
+    "DontJoinedChallenge": "Bạn chưa tham gia thử thách nào",
+    "DontSubmittedChallenge": "Bạn chưa có bài giải nào"
+  },
+  "Authentication": {
+    "Login": "Bạn chưa đăng nhập tài khoản"
+  },
+  "Section": {
+    "Overview": "Tổng quan",
+    "IncompleteChallenge": "Thử thách chưa hoàn thành",
+    "MySolution": "Giải pháp của tôi"
+  }
 }

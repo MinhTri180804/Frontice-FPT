@@ -8,6 +8,9 @@
   }
 
   & > .content {
+    & > .skeleton__statistic-section {
+      @include skeleton(100%, 200px, 4px);
+    }
     & > section {
       & > .line {
         height: 1px;
@@ -41,16 +44,17 @@
         height: fit-content;
         border-radius: 12px;
         border: 1px solid $benthicBlack-tints-200;
+        padding: 24px ;
       }
     }
 
     & > section.my__solution {
       width: 100%;
-      & > .solution__list {
+
+      & > .solution__list-skeleton {
         @include grid(12, none, 24px, start, stretch);
         & > div {
           grid-column: span 3;
-          width: 100%;
         }
       }
     }

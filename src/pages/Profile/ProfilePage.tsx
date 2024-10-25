@@ -26,40 +26,6 @@ interface DataItemCompany {
   id: string;
 }
 const Profile: React.FC = () => {
-  const [dataSolution, setDataSolution] = useState<DataItemSolution[]>([]);
-  const [dataCompany, setDataCompany] = useState<DataItemCompany[]>([]);
-  //  async/await lấy dữ liệu từ file data.json
-  // data cua solution
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/data.json'); //duong dan file data.json
-        const result = await response.json();
-        setDataSolution(result); // Lưu dữ liệu vào resutl state==>o ham [data,setData]
-      } catch (error) {
-        console.error('Error', error); // Xử lý lỗi
-      } finally {
-        // Sau khi tải xong thì tắt trạng thái loading
-      }
-    };
-
-    fetchData(); // Gọi hàm fetchData
-  }, []); // Chạy khi component mount ==> tim hieu
-  //data cua company
-  useEffect(() => {
-    const fetchDataCompanies = async () => {
-      try {
-        const response = await fetch('/dataCompany.json'); // Đường dẫn file dataCompany.json
-        const result = await response.json();
-        setDataCompany(result);
-      } catch (error) {
-        console.error('Error fetching companies:', error);
-      }
-    };
-
-    fetchDataCompanies();
-  }, []);
-
   return (
     <div className="profile-container">
       <h4>Profile Page</h4>
@@ -74,7 +40,7 @@ const Profile: React.FC = () => {
       >
         <div className="list-solution">
           {/* ham map looop qua tung solution */}
-          {dataSolution.map((solutionItem) => (
+          {/* {dataSolution.map((solutionItem) => (
             <Solution
               key={solutionItem.id}
               image={image} // Hình ảnh mặc định
@@ -83,7 +49,7 @@ const Profile: React.FC = () => {
               tech={solutionItem.tech}
               userAvatar={userAvatar}
             />
-          ))}
+          ))} */}
         </div>
       </Section>
 
@@ -95,13 +61,13 @@ const Profile: React.FC = () => {
         title="Company Following"
       >
         <div className="list-company">
-          {dataCompany.map((companyItem) => (
+          {/* {dataCompany.map((companyItem) => (
             <CompanyFollow
               image={imageCompany}
               name={companyItem.name}
               quantity={companyItem.quantity}
             />
-          ))}
+          ))} non*/}
         </div>
       </Section>
     </div>
