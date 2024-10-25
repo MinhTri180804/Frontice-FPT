@@ -3,9 +3,14 @@ import {
   CommandLineIcon,
   LightBulbIcon,
 } from '@heroicons/react/24/outline';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { InformationAuthor } from '../../components/common';
-import Solution from '../../components/common/Solution';
+import SolutionList from '../../components/common/SolutionList/SolutionList';
+import { SolutionSkeleton } from '../../components/skeleton';
+import { paths } from '../../constant';
+import authService from '../../services/authServices';
+import solutionService from '../../services/solutionService';
 import { useAuthStore } from '../../store/authStore';
 import './StatisticPage.scss';
 import {
@@ -15,19 +20,45 @@ import {
 } from './partitals';
 
 const StatisticPage: React.FC = () => {
-  const { profile } = useAuthStore();
+  const { profile, updateProfile } = useAuthStore();
+  const { isPending: isPendingOfProfile } = useQuery({
+    queryKey: [paths.QUERY_KEY.meInfo],
+    queryFn: async () => {
+      const response = await authService.info();
+      const dataProfile = response.data.data;
+      updateProfile(dataProfile);
+      return dataProfile;
+    },
+  });
+
+  const {
+    data: responseSolutionSubmit,
+    isPending: isPendingOfSolutionSubmitted,
+  } = useQuery({
+    queryKey: [paths.QUERY_KEY.solutionSubmitted, profile?.email],
+    queryFn: async () => {
+      const response = await solutionService.getSolutionSubmitted();
+      const responseData = response?.data.data.solutions;
+      return responseData || [];
+    },
+  });
+
   return (
     <div className="statistic__page-container">
       <h1 className="title-page">Statistic Page</h1>
 
       <div className="content">
-        <SectionStatistic
-          title="Overview"
-          Icon={() => <LightBulbIcon width={32} height={32} />}
-        >
-          <div className="line"></div>
-          {profile && <ProfileOverview profile={profile} />}
-        </SectionStatistic>
+        {isPendingOfProfile ? (
+          <div className="skeleton__statistic-section"></div>
+        ) : (
+          <SectionStatistic
+            title="Overview"
+            Icon={() => <LightBulbIcon width={32} height={32} />}
+          >
+            <div className="line"></div>
+            {profile && <ProfileOverview profile={profile} />}
+          </SectionStatistic>
+        )}
         <div className="section-with-account">
           <SectionStatistic
             options
@@ -48,18 +79,16 @@ const StatisticPage: React.FC = () => {
           className="my__solution"
         >
           <div className="line"></div>
-          <div className="solution__list">
-            {Array.from({
-              length: 8,
-            }).map(() => (
-              <Solution
-                image="https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/dmfvghaamqjt9lrx43ql.jpg"
-                time="About 5 hours ago"
-                name="Contact form"
-                tech={['Html', 'css', 'javascript']}
-              />
-            ))}
-          </div>
+          {isPendingOfSolutionSubmitted && (
+            <div className="solution__list-skeleton">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <SolutionSkeleton key={index} />
+              ))}
+            </div>
+          )}
+          {responseSolutionSubmit && (
+            <SolutionList solutionsData={responseSolutionSubmit} />
+          )}
         </SectionStatistic>
       </div>
     </div>

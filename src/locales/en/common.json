@@ -118,6 +118,9 @@
     "VerifyOtp": "Verify OTP code",
     "Authentication": {
       "BackPrevious": "Go back"
+    },
+    "ViewMore": {
+      "Challenges": "See challenge"
     }
   },
   "Checkbox": {
@@ -134,5 +137,9 @@
   "Setting": "Setting",
   "Profile": "Personal page",
   "Logout": "Sign out",
-  "Point": "Score"
+  "Point": "Score",
+  "Empty": {
+    "DontJoinedChallenge": "You haven't participated in any challenges yet",
+    "DontSubmittedChallenge": "You don't have any solutions yet"
+  }
 }

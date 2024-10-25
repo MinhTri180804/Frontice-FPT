@@ -104,6 +104,9 @@
     "VerifyOtp": "Xác thực mã OTP",
     "Authentication": {
       "BackPrevious": "Quay về"
+    },
+    "ViewMore": {
+      "Challenges": "Xem thử thách"
     }
   },
   "Checkbox": {
@@ -146,5 +149,9 @@
   "Setting": "Cài đặt",
   "Profile": "Trang cá nhân",
   "Logout": "Đăng xuất",
-  "Point": "Điểm "
+  "Point": "Điểm ",
+  "Empty": {
+    "DontJoinedChallenge": "Bạn chưa tham gia thử thách nào",
+    "DontSubmittedChallenge": "Bạn chưa có bài giải nào"
+  }
 }

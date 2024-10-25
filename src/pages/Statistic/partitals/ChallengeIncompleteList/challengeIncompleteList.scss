@@ -5,7 +5,16 @@
   width: 100%;
   @include grid(12, none, 24px, start, stretch);
 
+  &.empty {
+    @include flex-row(none, center, center);
+  }
+
+  & > .skeleton__challenge,
   & > .challenge__incomplete {
     grid-column: span 6;
+  }
+
+  & > .skeleton__challenge {
+    @include skeleton();
   }
 }

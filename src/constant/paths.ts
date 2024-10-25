@@ -49,6 +49,10 @@ const paths = {
     CHALLENGE: {
       getAll: '/challenges',
     },
+    SOLUTION: {
+      getIncompleteChallenge: '/solutions',
+      submitted: '/solutions/submitted',
+    },
   },
 
   LOCAL_STORAGE: {
@@ -68,6 +72,9 @@ const paths = {
 
   QUERY_KEY: {
     challenges: 'challenges',
+    meInfo: 'info',
+    solutionIncompleteChallenge: 'solutionIncompleteChallenge',
+    solutionSubmitted: 'solutionSubmitted',
   },
 };
 

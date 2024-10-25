@@ -14,6 +14,7 @@ type State = {
 type Actions = {
   logout: () => void;
   login: (profile: IProfileEntity | null) => void;
+  updateProfile: (profile: IProfileEntity) => void;
 };
 
 export const useAuthStore = create<State & Actions>((set) => ({
@@ -32,6 +33,11 @@ export const useAuthStore = create<State & Actions>((set) => ({
     set(() => ({
       isAuthentication: false,
       profile: null,
+    }));
+  },
+  updateProfile: (profile) => {
+    set(() => ({
+      profile: profile,
     }));
   },
 }));
