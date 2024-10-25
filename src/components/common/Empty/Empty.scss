@@ -17,6 +17,7 @@
     }
   }
   & > .empty-text {
+    text-align: center;
     @include typography_BVNPro-desktop-h4;
     color: $satinDeepBlack-tints-400;
   }

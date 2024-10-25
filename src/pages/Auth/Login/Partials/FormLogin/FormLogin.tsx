@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Form, FormSubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast, ToastContentProps } from 'react-toastify';
 import { Button, Input } from '../../../../../components/common';
 import { Checkbox } from '../../../../../components/common/Checkbox';
@@ -18,10 +18,7 @@ import {
 import useFormLogin from './formLogin.hook';
 import './formLogin.scss';
 
-const DEFAULT_PAGE_LOGIN_SUCCESS = paths.home;
-
 const FormLogin: FC = () => {
-  const navigate = useNavigate();
   const {
     control,
     register,
@@ -51,7 +48,6 @@ const FormLogin: FC = () => {
             const dataProfile = responseInfo.data.data;
             saveInfo(dataProfile);
             login(dataProfile);
-            navigate(DEFAULT_PAGE_LOGIN_SUCCESS);
             const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.Login.success')}`;
             return MESSAGE_SUCCESS;
           } catch (error) {

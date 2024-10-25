@@ -67,7 +67,7 @@ const Profile: React.FC = () => {
               name={companyItem.name}
               quantity={companyItem.quantity}
             />
-          ))} */}
+          ))} non*/}
         </div>
       </Section>
     </div>

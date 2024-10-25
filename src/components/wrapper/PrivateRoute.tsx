@@ -1,6 +1,6 @@
 import React from 'react';
 import { paths } from '../../constant';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 
 interface PrivateRouteProps {
@@ -9,8 +9,13 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const { isAuthentication, profile } = useAuthStore();
+  const location = useLocation();
+  const REDIRECT_TO = location.state?.previousPage
+    ? location.state?.previousPage
+    : paths.home;
   if (profile && isAuthentication) {
-    return <Navigate to={paths.home} />;
+    return <Navigate to={REDIRECT_TO} />;
+    return;
   }
 
   return <>{children}</>;

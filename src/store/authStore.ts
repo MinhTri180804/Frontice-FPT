@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import {
   removeAccessToken,
   removeAccount,
+  removeInfo,
   removeRefreshToken,
 } from '../utils/localstorage';
 import { IProfileEntity } from '../types/entity';
@@ -30,6 +31,7 @@ export const useAuthStore = create<State & Actions>((set) => ({
     removeAccessToken();
     removeRefreshToken();
     removeAccount();
+    removeInfo();
     set(() => ({
       isAuthentication: false,
       profile: null,

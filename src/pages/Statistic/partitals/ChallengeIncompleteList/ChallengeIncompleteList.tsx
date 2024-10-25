@@ -18,10 +18,13 @@ import './challengeIncompleteList.scss';
 const ChallengeIncompleteList: FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { profile } = useAuthStore();
+  const { profile, isAuthentication } = useAuthStore();
   const { isPending, data: responseIncompleteChallenge } = useQuery({
     queryKey: [paths.QUERY_KEY.solutionIncompleteChallenge, profile?.email],
     queryFn: async () => {
+      if (!isAuthentication) {
+        return;
+      }
       const response = await solutionService.getIncompleteChallenge();
       const responseData = response.data;
       return {
