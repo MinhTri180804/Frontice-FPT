@@ -52,6 +52,7 @@ const paths = {
     SOLUTION: {
       getIncompleteChallenge: '/solutions',
       submitted: '/solutions/submitted',
+      submitSolution: '/solutions/challenge/submit',
     },
   },
 

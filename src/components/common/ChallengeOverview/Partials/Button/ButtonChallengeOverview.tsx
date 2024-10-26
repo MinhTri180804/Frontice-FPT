@@ -2,7 +2,7 @@ import './buttonChallengeOverview.scss';
 import { FC } from 'react';
 import Button from '../../../Button';
 import { IChallengeEntity } from '../../../../../types/entity';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { paths } from '../../../../../constant';
 import { toast, ToastContentProps } from 'react-toastify';
 import challengeService from '../../../../../services/challengeService';
@@ -31,6 +31,8 @@ const ButtonConditionChallengeOverview: FC<
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { profile, isAuthentication } = useAuthStore();
+  const location = useLocation();
+  const pathName = location.pathname;
 
   const handleJoinChallenge = async () => {
     await toast.promise(
@@ -62,11 +64,18 @@ const ButtonConditionChallengeOverview: FC<
   };
 
   const handleSubmitChallenge = () => {
-    navigate(paths.submitSolution, {
-      state: {
-        challengeId,
-      },
-    });
+    if (pathName === paths.submitSolution) {
+      const element = document.getElementById('form-submit');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(paths.submitSolution, {
+        state: {
+          challengeId,
+        },
+      });
+    }
   };
 
   const handleGoToSolution = () => {

@@ -84,6 +84,13 @@
           "Pending": "Document assets download in progress"
         }
       }
+    },
+    "Solution": {
+      "Submit": {
+        "Success": "Post the successful solution",
+        "Error": "Post failed solutions",
+        "Pending": "Posting solution in progress"
+      }
     }
   },
   "ToastMEssage": {
@@ -137,7 +144,10 @@
     "LastName": "Last name",
     "Password": "Password",
     "Nickname": "",
-    "Phone": "Phone number"
+    "Phone": "Phone number",
+    "PrideOf": "What are you most proud of, and what will you do differently next time?",
+    "ChallengeOvercome": "What challenges have you encountered, and how have you overcome them?",
+    "HelpWith": "What specific areas of your project would you like to help with?"
   },
   "Button": {
     "ResetPassword": "Change password",
@@ -151,7 +161,10 @@
     "ViewMore": {
       "Challenges": "See challenge"
     },
-    "LoginNow": "Sign in now"
+    "LoginNow": "Sign in now",
+    "Submit": {
+      "Solution": "Post your solution"
+    }
   },
   "Checkbox": {
     "RememberAccount": "Remember account"

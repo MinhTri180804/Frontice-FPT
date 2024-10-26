@@ -76,6 +76,13 @@
           "Pending": "Đang tiến hành tải tài liệu"
         }
       }
+    },
+    "Solution": {
+      "Submit": {
+        "Success": "Đăng tải giải pháp thành công",
+        "Error": "Đăng tải giải pháp thất bại",
+        "Pending": "Đang thực hiện đăng tải giải pháp"
+      }
     }
   },
   "Validation": {
@@ -123,7 +130,10 @@
     "LastName": "Họ",
     "Password": "Mật khẩu",
     "Nickname": "Biệt Danh",
-    "Phone": "Số điện thoại"
+    "Phone": "Số điện thoại",
+    "PrideOf": "Bạn tự hào nhất về điều gì, và bạn sẽ làm gì khác nhau vào lần sau?",
+    "ChallengeOvercome": "Bạn đã gặp phải những thách thức nào, và bạn đã vượt qua chúng như thế nào?",
+    "HelpWith": "Những lĩnh vực cụ thể nào trong dự án của bạn mà bạn muốn giúp đỡ?"
   },
   "Button": {
     "ResetPassword": "Đổi mật khẩu",
@@ -137,7 +147,10 @@
     "ViewMore": {
       "Challenges": "Xem thử thách"
     },
-    "LoginNow": "Đăng nhập ngay"
+    "LoginNow": "Đăng nhập ngay",
+    "Submit": {
+      "Solution": "Đăng tải giải pháp của bạn"
+    }
   },
   "Checkbox": {
     "RememberAccount": "Ghi nhớ tài khoản"
