@@ -1,56 +1,40 @@
 import './challenge.scss';
 import { FC } from 'react';
 import Button from '../Button';
-import TagChallenge from '../TagChallenge';
+// import TagChallenge from '../TagChallenge';
 import ChallengeTechnical from '../ChallengeTechnical';
 import ChallengeLevelDifficulty from '../ChallengeLevelDifficulty';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../constant';
+import { IChallengeEntity } from '../../../types/entity';
 
 interface IChallengeProps {
-  bannerUrl: string;
-  name: string;
-  technicalList: string[];
-  score: string | number;
-  level: string;
-  difficulty: string | number;
-  description: string;
-  tags: {
-    value: 'premium' | 'free' | 'free++' | 'new';
-  }[];
+  challengeData: IChallengeEntity;
 }
 
-const Challenge: FC<IChallengeProps> = ({
-  bannerUrl,
-  name,
-  technicalList,
-  score,
-  level,
-  difficulty,
-  description,
-  tags,
-}) => {
+const Challenge: FC<IChallengeProps> = ({ challengeData }) => {
   const navigate = useNavigate();
 
   const handleClickViewDetails = () => {
-    navigate(paths.challengeDetails);
+    navigate(`${paths.challengeDetails}/${challengeData.id}`);
   };
+
   return (
     <div className="challenge__component-container">
       <div className="banner">
-        <img src={bannerUrl} alt="" />
+        <img src={challengeData.image} alt="" />
         <div className="tag__challenge-list">
-          {tags.map((tag, index) => (
+          {/* {tags.map((tag, index) => (
             <TagChallenge key={`${tag.value}-${index}`} type={tag.value} />
-          ))}
+          ))} */}
         </div>
       </div>
 
       <div className="content">
         <div className="heading">
-          <div className="heading-name">{name}</div>
+          <div className="heading-name">{challengeData.title}</div>
           <div className="heading-technical">
-            {technicalList.map((technical, index) => (
+            {challengeData.technical.map((technical, index) => (
               <ChallengeTechnical
                 technicalValue={technical}
                 key={`${technical}-${index}`}
@@ -61,14 +45,17 @@ const Challenge: FC<IChallengeProps> = ({
 
         <div className="overview">
           <div className="score">
-            <span className="value">{score}</span>
+            <span className="value">{challengeData.point}</span>
             <span className="label">Score</span>
           </div>
-          <ChallengeLevelDifficulty level={level} difficulty={difficulty} />
+          <ChallengeLevelDifficulty
+            level={challengeData.level}
+            difficulty={challengeData.requiredPoint}
+          />
         </div>
 
         <div className="description">
-          <span>{description}</span>
+          <span>{challengeData.shortDes}</span>
         </div>
       </div>
 

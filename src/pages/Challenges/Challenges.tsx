@@ -50,29 +50,11 @@ const Challenges: React.FC = () => {
         </div>
         <div className="challenges-list">
           {isPending
-            ? Array.from({ length: 10 }).map((_, index) => (
+            ? Array.from({ length: 12 }).map((_, index) => (
                 <ChallengeSkeleton key={`${index}`} />
               ))
             : data?.challenges.map((challenge, index) => (
-                <Challenge
-                  key={`${index}`}
-                  name={challenge.title}
-                  bannerUrl={
-                    challenge.image ||
-                    'https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/wcxhsnz3foidwbzshiia.jpg'
-                  }
-                  description={challenge.shortDes}
-                  level={challenge.level}
-                  difficulty={challenge.requiredPoint}
-                  technicalList={challenge.technical}
-                  score={challenge.point}
-                  tags={[
-                    {
-                      value: challenge.premium ? 'premium' : 'free',
-                    },
-                    { value: 'new' },
-                  ]}
-                />
+                <Challenge key={`${index}`} challengeData={challenge} />
               ))}
         </div>
 

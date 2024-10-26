@@ -1,7 +1,7 @@
 import { axiosClient } from '../axios';
 import { paths } from '../constant';
 import { IBaseResponse } from '../types/base';
-import { IRefreshTokenRequest } from '../types/request';
+import { IRefreshTokenRequest, IResendOtpRequest } from '../types/request';
 import { IForgotPasswordRequest } from '../types/request/forgotPassword';
 import { ILoginRequest } from '../types/request/login';
 import { IRegisterRequest } from '../types/request/register';
@@ -90,6 +90,15 @@ const authService = {
   info: () => {
     return axiosClient.get<IBaseResponse<IInfoResponse>>(
       `${BASE_URL}${paths.API.AUTH.info}`,
+    );
+  },
+
+  resendOtp: (data: IResendOtpRequest) => {
+    return axiosClient.post<IBaseResponse<[]>>(
+      `${BASE_URL}/${paths.API.AUTH.resendOtp}`,
+      {
+        data,
+      },
     );
   },
 };

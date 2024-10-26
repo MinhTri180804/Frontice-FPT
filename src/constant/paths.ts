@@ -47,7 +47,7 @@ const paths = {
       profile: '/profile',
     },
     CHALLENGE: {
-      getAll: '/challenges',
+      root: '/challenges',
     },
     SOLUTION: {
       getIncompleteChallenge: '/solutions',
@@ -75,6 +75,7 @@ const paths = {
     meInfo: 'info',
     solutionIncompleteChallenge: 'solutionIncompleteChallenge',
     solutionSubmitted: 'solutionSubmitted',
+    challengeDetails: 'challengeDetails',
   },
 };
 

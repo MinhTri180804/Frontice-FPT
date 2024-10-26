@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   NotificationIcon,
   UpAndDownIcon,
 } from '../../../../../../../assets/icons';
-import { DefaultAvatar } from '../../../../../../../assets/images';
+import { paths } from '../../../../../../../constant';
+import { useAuthStore } from '../../../../../../../store/authStore';
 import { IOptionLanguage } from '../../../../../../../types/entity';
 import { IOptionSelectItem } from '../../../../../../../types/entity/components';
 import { Button, OptionSelect } from '../../../../../../common';
 import { Dropdown } from './partials';
 import './UserProfile.scss';
-import { useAuthStore } from '../../../../../../../store/authStore';
-import { useNavigate } from 'react-router-dom';
-import { paths } from '../../../../../../../constant';
 
 const UserProfile: React.FC = () => {
   const { i18n, t } = useTranslation();
@@ -70,6 +69,9 @@ const UserProfile: React.FC = () => {
     }
   };
 
+  const avatarDefault =
+    'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg';
+
   return (
     <div className="user-profile-container">
       <div className="option">
@@ -90,7 +92,7 @@ const UserProfile: React.FC = () => {
         <div className="user-profile" onClick={toggleDropdown}>
           <div className="user-avatar">
             <img
-              src={DefaultAvatar}
+              src={profile?.image || avatarDefault}
               alt={t('Layout.Header.UserProfile.avatar')}
             />
           </div>

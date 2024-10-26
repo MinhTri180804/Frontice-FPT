@@ -20,4 +20,10 @@ export interface IChallengeEntity {
   premium: boolean;
   created_at: string;
   updated_at: string;
+  isJoin: boolean;
+  isSubmit: boolean;
+  joinTotal: boolean;
+  enoughPoint: boolean;
+  submittedTotal: boolean;
+  solutionSubmitId: string | null;
 }

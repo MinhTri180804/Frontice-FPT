@@ -7,6 +7,7 @@ import { ISendOtpRequest } from './sendOtp';
 import { IVerifyEmailRequest } from './verifyEmail';
 import { IVerifyForgotPassword } from './verifyForgotPasswordOtp';
 import { IGetAllChallengeRequestParams } from './challenge';
+import { IResendOtpRequest } from './resendOtp';
 export type {
   IForgotPasswordRequest,
   ILoginRequest,
@@ -17,4 +18,5 @@ export type {
   IVerifyEmailRequest,
   IVerifyForgotPassword,
   IGetAllChallengeRequestParams,
+  IResendOtpRequest,
 };
