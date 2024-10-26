@@ -3,20 +3,44 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { paths } from '../../../constant';
 import './otpPage.scss';
 import { OTPForm } from './Partials/OTPForm';
+import { toast, ToastContentProps } from 'react-toastify';
+import authService from '../../../services/authServices';
+import { useTranslation } from 'react-i18next';
 
 const OtpPage: FC = () => {
   const location = useLocation();
-
-  const emailSignUp = location.state?.emailSignUp;
-  const emailForgotPassword = location.state?.emailForgotPassword;
+  const { t } = useTranslation();
+  const emailSignUp = location.state?.emailSignUp as string;
+  const emailForgotPassword = location.state?.emailForgotPassword as string;
 
   if (!emailSignUp && !emailForgotPassword) {
     return <Navigate to={`${paths.auth}/${paths.login}`} />;
   }
 
   //   TODO: Implement logic resend code
-  const handleResendCode: () => void = () => {
-    console.log('resend code !');
+  const handleResendCode: () => void = async () => {
+    await toast.promise(
+      authService
+        .resendOtp({ email: emailSignUp || emailForgotPassword })
+        .then(() => {
+          const MESSAGE_SUCCESS = t('ToastMessage.Auth.ResendOtp.Success');
+          return MESSAGE_SUCCESS;
+        })
+        .catch(() => {
+          const MESSAGE_ERROR = t('ToastMessage.Auth.ResendOtp.Error');
+          return MESSAGE_ERROR;
+        }),
+      {
+        pending: t('ToastMessage.Auth.ResendOtp.Pending'),
+        success: {
+          render: (responseOfSuccess) => responseOfSuccess.data,
+        },
+        error: {
+          render: (responseOfError: ToastContentProps<string>) =>
+            responseOfError.data,
+        },
+      },
+    );
   };
   return (
     <div className="otp__page-container">

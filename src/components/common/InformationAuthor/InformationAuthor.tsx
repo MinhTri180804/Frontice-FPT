@@ -1,21 +1,22 @@
-import './informationAuthor.scss';
 import { FC } from 'react';
-import Button from '../Button';
-import { IProfileEntity } from '../../../types/entity';
-import { DefaultAvatar } from '../../../assets/images';
 import { useTranslation } from 'react-i18next';
+import { IProfileEntity } from '../../../types/entity';
+import Button from '../Button';
+import './informationAuthor.scss';
 
 interface IInformationAuthorProps {
   authorProfile: IProfileEntity;
 }
 
 const InformationAuthor: FC<IInformationAuthorProps> = ({ authorProfile }) => {
+  const avatarDefault =
+    'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg';
   const { t } = useTranslation();
   return (
     <div className="information__author-component">
       <div className="author">
         <div className="image-solution">
-          <img src={authorProfile.image || DefaultAvatar} alt="" />
+          <img src={authorProfile.image || avatarDefault} alt="" />
         </div>
         <div className="name-rank-author">
           <div className="name">

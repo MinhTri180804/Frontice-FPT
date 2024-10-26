@@ -54,6 +54,18 @@
         width: 100%;
         @include flex-row(24px, flex-start, center);
 
+        & > .statistic__skeleton {
+          border-radius: 4px;
+
+          &:nth-child(2) {
+            @include skeleton(165px, 60px, 4px);
+          }
+
+          &:nth-child(3) {
+            @include skeleton(125px, 60px, 4px);
+          }
+        }
+
         & > .score,
         & > .people__participated,
         & > .people__submit {
@@ -103,6 +115,10 @@
 
     & > .action {
       width: 70%;
+
+      & > .button-skeleton {
+        @include skeleton(100%, 60px, 8px);
+      }
       & > button {
         width: 100%;
       }

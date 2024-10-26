@@ -50,6 +50,7 @@ const ChallengeIncompleteList: FC = () => {
           ))
         : responseIncompleteChallenge?.challenge.map((challenge, index) => (
             <ChallengeIncomplete
+              challengeId={challenge.challenge.id}
               key={`${index}`}
               className="challenge__incomplete"
               name={challenge.challenge.title}
@@ -63,7 +64,7 @@ const ChallengeIncompleteList: FC = () => {
       {responseIncompleteChallenge?.challenge?.length === 0 && (
         <EmptyComponent
           pathImg={emptyChallenge}
-          text={t('Empty.DontJoinedChallenge')}
+          text={t('Empty.IncompleteChallenge')}
         >
           <Button
             styleType="secondary"

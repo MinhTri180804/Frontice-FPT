@@ -3,16 +3,17 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { paths } from '../constant';
 import authService from '../services/authServices';
-import { useAuthStore } from '../store/authStore';
 import { IBaseResponse } from '../types/base';
 import {
   getAccessToken,
   getRefreshToken,
+  removeAccessToken,
+  removeInfo,
+  removeRefreshToken,
   saveAccessToken,
-  saveRefreshToken,
+  saveRefreshToken
 } from '../utils/localstorage';
 
 interface ICustomAxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -54,8 +55,11 @@ axiosClient.interceptors.response.use(
 
   async function (error: AxiosError<IBaseResponse<null>>) {
     const originalRequest = error.config as ICustomAxiosRequestConfig;
-
-    if (error.status === 401 && !originalRequest._retry) {
+    console.log('error: ', error);
+    if (
+      (error.status === 401 || error.response?.data?.isExpires) &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       try {
         // call api get new refreshToken and accessToken
@@ -64,6 +68,7 @@ axiosClient.interceptors.response.use(
           const response = await authService.refreshToken({
             refreshToken,
           });
+          console.log('response:: ', response);
           const {
             access_token: accessTokenNew,
             refresh_token: refreshTokenNew,
@@ -77,16 +82,20 @@ axiosClient.interceptors.response.use(
             `Bearer ${accessTokenNew}`;
           return axiosClient(originalRequest); // retry the original request with the new accessToken
         }
-
-        throw new Error('No RefreshToken');
       } catch (refreshTokenError) {
-        const { logout } = useAuthStore();
-        logout();
-        const navigate = useNavigate();
-        navigate(`${paths.auth}/${paths.login}`);
+        removeAccessToken();
+        removeRefreshToken();
+        removeInfo();
+        window.location.href = `${paths.auth}/${paths.login}`;
         return Promise.reject(refreshTokenError);
       }
+    } else if (error.status === 400) {
+      removeAccessToken();
+      removeRefreshToken();
+      removeInfo();
+      window.location.href = `${paths.auth}/${paths.login}`;
     }
+
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     return Promise.reject(

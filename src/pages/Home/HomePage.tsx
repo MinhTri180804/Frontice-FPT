@@ -27,7 +27,7 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <Section
+        {/* <Section
           className="challenge__system"
           title="Challenge System"
           iconPosition="left"
@@ -58,9 +58,9 @@ const Home: React.FC = () => {
             className="button__view-more"
             onClick={handleButtonViewMoreChallenge}
           />
-        </Section>
+        </Section> */}
 
-        <Section
+        {/* <Section
           className="challenge__recruiter"
           title="Challenge Recruiter"
           iconPosition="left"
@@ -91,7 +91,7 @@ const Home: React.FC = () => {
             className="button__view-more"
             onClick={handleButtonViewMoreChallenge}
           />
-        </Section>
+        </Section> */}
       </div>
     </div>
   );

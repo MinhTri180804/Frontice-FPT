@@ -42,4 +42,18 @@ const checkRefreshTokenValidity: (refreshToken: string) => boolean = (
   return true;
 };
 
-export { checkAuthentication, checkRefreshTokenValidity, i18nHelper };
+const handleDownloadFile = (fileUrl: string) => {
+  const link = document.createElement('a');
+  link.href = fileUrl;
+  link.setAttribute('download', '');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+export {
+  checkAuthentication,
+  checkRefreshTokenValidity,
+  i18nHelper,
+  handleDownloadFile,
+};
