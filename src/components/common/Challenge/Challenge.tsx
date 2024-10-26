@@ -7,6 +7,7 @@ import ChallengeLevelDifficulty from '../ChallengeLevelDifficulty';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../constant';
 import { IChallengeEntity } from '../../../types/entity';
+import TagChallenge from '../TagChallenge';
 
 interface IChallengeProps {
   challengeData: IChallengeEntity;
@@ -24,9 +25,9 @@ const Challenge: FC<IChallengeProps> = ({ challengeData }) => {
       <div className="banner">
         <img src={challengeData.image} alt="" />
         <div className="tag__challenge-list">
-          {/* {tags.map((tag, index) => (
-            <TagChallenge key={`${tag.value}-${index}`} type={tag.value} />
-          ))} */}
+          {challengeData.premium && <TagChallenge type={'premium'} />}
+          {!challengeData.premium && <TagChallenge type={'free'} />}
+          <TagChallenge type={'new'} />
         </div>
       </div>
 

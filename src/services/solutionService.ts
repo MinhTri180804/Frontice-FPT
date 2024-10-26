@@ -1,6 +1,7 @@
 import { axiosClient } from '../axios';
 import { paths } from '../constant';
 import { IBaseResponse } from '../types/base';
+import { ISubmitSolutionRequest } from '../types/request';
 import {
   ISolutionIncompleteChallengeResponse,
   ISolutionSubmittedResponse,
@@ -17,6 +18,14 @@ const solutionService = {
   getSolutionSubmitted: () => {
     return axiosClient.get<IBaseResponse<ISolutionSubmittedResponse>>(
       `${URL_API}${paths.API.SOLUTION.submitted}`,
+    );
+  },
+
+  submitSolution: (data: ISubmitSolutionRequest) => {
+    console.log('data in service: ', data);
+    return axiosClient.post(
+      `${URL_API}${paths.API.SOLUTION.submitSolution}`,
+      data,
     );
   },
 };

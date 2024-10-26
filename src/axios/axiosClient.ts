@@ -13,7 +13,7 @@ import {
   removeInfo,
   removeRefreshToken,
   saveAccessToken,
-  saveRefreshToken
+  saveRefreshToken,
 } from '../utils/localstorage';
 
 interface ICustomAxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -57,10 +57,12 @@ axiosClient.interceptors.response.use(
     const originalRequest = error.config as ICustomAxiosRequestConfig;
     console.log('error: ', error);
     if (
-      (error.status === 401 || error.response?.data?.isExpires) &&
+      (error.status === 401 || error.response?.data?.isExpired === true) &&
       !originalRequest._retry
     ) {
-      originalRequest._retry = true;
+      console.log('error interceptor response: ', error);
+      console.log(error.response?.data.isExpired);
+      // originalRequest._retry = true;
       try {
         // call api get new refreshToken and accessToken
         const refreshToken = getRefreshToken();

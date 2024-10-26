@@ -48,8 +48,6 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
     return <ChallengeOverviewSkeleton />;
   }
 
-  console.log(challengeOverviewData);
-
   if (!challengeOverviewData) {
     return;
   }
@@ -80,7 +78,9 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
       <div className="challenge__about">
         <div className="heading">
           <div className="challenge__tag-list">
-            <TagChallenge type="free" />
+            {challengeOverviewData.premium && <TagChallenge type="premium" />}
+            {!challengeOverviewData.premium && <TagChallenge type="premium" />}
+            <TagChallenge type="new" />
           </div>
           <div className="challenge__technical-properties">
             <div className="challenge__technical-list">
