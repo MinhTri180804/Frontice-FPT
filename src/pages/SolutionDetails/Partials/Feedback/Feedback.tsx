@@ -60,7 +60,7 @@ const Feedback: React.FC = () => {
 
   return (
     <>
-      <div className="container-feedback">
+      <div className="container-feedback" id="feedback-solution">
         <div className="header">
           <h1>Feedback </h1>
           <div className="action">

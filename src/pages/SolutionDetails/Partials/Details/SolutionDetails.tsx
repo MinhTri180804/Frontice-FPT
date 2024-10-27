@@ -13,11 +13,15 @@ import { QuestionAnswer } from './Partials';
 import SectionAuthorInformation from './Partials/SectionAuthorInformation/SectionAuthorInformation';
 import './SolutionDetails.scss';
 import Action from '../Action';
+import { useState } from 'react';
+import classNames from 'classnames';
 
 const SolutionDetails: React.FC = () => {
   const { profile } = useAuthStore();
   const navigate = useNavigate();
   const { solutionId } = useParams();
+  const [isLike, setIsLike] = useState<boolean>(false);
+  const [isDislike, setIsDislike] = useState<boolean>(false);
 
   if (!solutionId) {
     // TODO: Implement page 404 for customer
@@ -37,16 +41,38 @@ const SolutionDetails: React.FC = () => {
       });
 
       const responseData = response.data.data;
+      setIsLike(responseData.isLike);
+      setIsDislike(responseData.isDislike);
       return responseData;
     },
   });
 
+  const likeActionClass = classNames('action-like', {
+    active: !isDislike && isLike,
+  });
+  const dislikeActionClass = classNames('action-dislike', {
+    active: isDislike && !isLike,
+  });
+
   const handleLikeAction = () => {
-    console.log('like action');
+    if (isDislike) {
+      setIsDislike(false);
+    }
+    setIsLike(!isLike);
   };
 
   const handleDislikeAction = () => {
-    console.log('dislike action');
+    if (isLike) {
+      setIsLike(false);
+    }
+    setIsDislike(!isDislike);
+  };
+
+  const handleClickComments = () => {
+    const element = document.getElementById('feedback-solution');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -85,7 +111,7 @@ const SolutionDetails: React.FC = () => {
 
               <div className="interaction-buttons">
                 <div className="action">
-                  <div className="action-like" onClick={handleLikeAction}>
+                  <div className={likeActionClass} onClick={handleLikeAction}>
                     <div className="like">
                       <HandThumbUpIcon />
                       like
@@ -94,7 +120,10 @@ const SolutionDetails: React.FC = () => {
                       {solutionDetailsData?.liked || 0}
                     </div>
                   </div>
-                  <div className="action-dislike" onClick={handleDislikeAction}>
+                  <div
+                    className={dislikeActionClass}
+                    onClick={handleDislikeAction}
+                  >
                     <div className="dislike">
                       <HandThumbDownIcon />
                       dislike
@@ -103,7 +132,7 @@ const SolutionDetails: React.FC = () => {
                       {solutionDetailsData?.disliked || 0}
                     </div>
                   </div>
-                  <div className="action-comment">
+                  <div className="action-comment" onClick={handleClickComments}>
                     <div className="comment">
                       <ChatBubbleLeftEllipsisIcon />
                       comment

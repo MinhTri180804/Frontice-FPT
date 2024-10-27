@@ -8,6 +8,7 @@
     @include grid(12, none, 24px);
 
     & > .view-source-code {
+      cursor: pointer;
       width: 100%;
       grid-column: span 4;
       & > .button-container {
@@ -15,6 +16,7 @@
       }
     }
     & > .view-preview-demo {
+      cursor: pointer;
       width: 100%;
       grid-column: span 6;
       & > .button-container {
@@ -22,6 +24,7 @@
       }
     }
     & > .button-report {
+      cursor: pointer;
       grid-column: span 2;
 
       & > button {

@@ -38,11 +38,45 @@
       & > .action {
         display: flex;
         gap: 24px;
+        & > .action-like,
+        & > .action-dislike,
+        & > .action-comment {
+          cursor: pointer;
+          transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            box-shadow $shadow_transition_time_duration ease,
+            border-color 0.3s ease;
+          user-select: none;
+          text-transform: capitalize;
+
+          & > div {
+            transition: border-color 0.3s ease;
+          }
+
+          &:hover {
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.12);
+          }
+
+          &:active {
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+          }
+        }
         & > .action-like {
+          cursor: pointer;
           display: flex;
           align-items: center;
           border: 1px solid $satinDeepBlack-tints-300;
           border-radius: 4px;
+          &.active {
+            background-color: $saturatedSky-main;
+            color: $white;
+            border-color: $saturatedSky-main;
+
+            & > .like {
+              border-color: $white;
+            }
+          }
           & > .like {
             display: flex;
             align-items: center;
@@ -59,8 +93,19 @@
           }
         }
         & > .action-dislike {
+          cursor: pointer;
           display: flex;
           align-items: center;
+
+          &.active {
+            background-color: $dayGlowOrange-main;
+            color: $white;
+            border-color: $dayGlowOrange-main;
+
+            & > .dislike {
+              border-color: $white;
+            }
+          }
 
           border: 1px solid $satinDeepBlack-tints-300;
           border-radius: 4px;
@@ -80,9 +125,9 @@
           }
         }
         & > .action-comment {
+          cursor: pointer;
           display: flex;
           align-items: center;
-          gap: 12px;
           border: 1px solid $satinDeepBlack-tints-300;
           border-radius: 4px;
           & > .comment {

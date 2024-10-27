@@ -5,6 +5,8 @@ export interface ISolutionEntity {
   liveGithub: string;
   liked: number;
   disliked: number;
+  isLike: boolean;
+  isDislike: boolean;
   description: {
     title: string;
     answer: string;
