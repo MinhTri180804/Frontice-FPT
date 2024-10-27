@@ -15,6 +15,7 @@ const ChallengeDetailsPage: FC = () => {
   const [isJoin, setIsJoin] = useState<boolean | null>(null);
   const [enoughPoint, setEnoughPoint] = useState<boolean | null>(null);
   const [isSubmit, setIsSubmit] = useState<boolean | null>(null);
+  const [solutionId, setSolutionId] = useState<string | null>(null);
   const navigate = useNavigate();
   const changeTabActive = (tabId: number, disable: boolean) => {
     if (!disable) {
@@ -31,15 +32,13 @@ const ChallengeDetailsPage: FC = () => {
     submitValue: boolean,
     joinValue: boolean,
     enoughPointValue: boolean,
-  ) => void = (submitValue, joinValue, enoughPointValue) => {
+    solutionSubmitId: string | null,
+  ) => void = (submitValue, joinValue, enoughPointValue, solutionSubmitId) => {
     setEnoughPoint(enoughPointValue);
     setIsSubmit(submitValue);
     setIsJoin(joinValue);
+    setSolutionId(solutionSubmitId);
   };
-
-  console.log('isSubmit: ', isSubmit);
-  console.log('isJoin: ', isJoin);
-  console.log('enoughPoint: ', enoughPoint);
 
   return (
     <div className="challenge__details-page">
@@ -97,7 +96,9 @@ const ChallengeDetailsPage: FC = () => {
           <div className="content__of-tab">
             {tabActive === 1 && <ChallengeDetailsInformation />}
             {tabActive === 2 && <ChallengeDetailsDownload />}
-            {tabActive === 3 && <ChallengeDetailsSolution />}
+            {tabActive === 3 && solutionId && (
+              <ChallengeDetailsSolution solutionId={solutionId} />
+            )}
           </div>
         </section>
 

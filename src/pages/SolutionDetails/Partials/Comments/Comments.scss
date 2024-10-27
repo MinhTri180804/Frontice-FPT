@@ -3,6 +3,11 @@
 
 .container-comment {
   margin-bottom: 24px;
+  &:hover {
+    & > .replies {
+      border-left-color: $saturatedSky-main;
+    }
+  }
 
   & > .info-author {
     display: flex;
@@ -73,5 +78,7 @@
   & > .replies {
     margin-top: 16px;
     padding-left: 32px;
+    border-left: 1px solid $benthicBlack-tints-200;
+    transition: border-color 0.3s ease;
   }
 }

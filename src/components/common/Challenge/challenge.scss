@@ -8,6 +8,7 @@
   transition: box-shadow $shadow_transition_time_duration ease-in-out;
   background-color: $BG-white;
   box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.04);
+  height: 100%;
   cursor: pointer;
   @include flex-column(12px, flex-start, start);
   &:hover {

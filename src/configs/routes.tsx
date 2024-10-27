@@ -6,6 +6,7 @@ import { paths } from '../constant';
 import {
   ChallengeDetailsPage,
   HomePage,
+  MySolutionPage,
   NotFoundPage,
   SubmitSolutionPage,
 } from '../pages';
@@ -46,7 +47,7 @@ const extendedRoutes: RouteObject[] = [
     element: <SettingsProfilePage />,
   },
   {
-    path: paths.solutionDetails,
+    path: `${paths.solutionDetails}/:solutionId`,
     element: <SolutionDetailsPage />,
   },
   {
@@ -74,6 +75,11 @@ const extendedRoutes: RouteObject[] = [
   {
     path: `${paths.challengeDetails}/:challengeId`,
     element: <ChallengeDetailsPage />,
+  },
+
+  {
+    path: paths.mySolutions,
+    element: <MySolutionPage />,
   },
 ];
 

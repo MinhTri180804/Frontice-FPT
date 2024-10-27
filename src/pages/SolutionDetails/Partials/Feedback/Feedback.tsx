@@ -15,7 +15,7 @@ const Feedback: React.FC = () => {
     childrenComment: [
       {
         nameAuthor: 'Nguyen Minh Trri',
-        avatarAuthor: 'path-to-avatar2.jpg',
+        avatarAuthor: imgPath,
         date: '2024-10-16',
         content: 'This is a reply.',
         like: 3,
@@ -25,7 +25,7 @@ const Feedback: React.FC = () => {
         childrenComment: [
           {
             nameAuthor: 'JThay 123',
-            avatarAuthor: 'path-to-avatar2.jpg',
+            avatarAuthor: imgPath,
             date: '2024-10-16',
             content: 'This is a reply.',
             like: 3,
@@ -35,7 +35,7 @@ const Feedback: React.FC = () => {
           },
           {
             nameAuthor: 'Trn Thanh',
-            avatarAuthor: 'path-to-avatar3.jpg',
+            avatarAuthor: imgPath,
             date: '2024-10-17',
             content: 'Another reply here.',
             like: 2,
@@ -47,7 +47,7 @@ const Feedback: React.FC = () => {
       },
       {
         nameAuthor: 'Phuc chan',
-        avatarAuthor: 'path-to-avatar3.jpg',
+        avatarAuthor: imgPath,
         date: '2024-10-17',
         content: 'Another reply here.',
         like: 2,
@@ -73,7 +73,7 @@ const Feedback: React.FC = () => {
             <div>Comment</div>
             <IComment />
           </div>
-          <Comment data={commentData} />;
+          <Comment data={commentData} />
         </div>
       </div>
     </>

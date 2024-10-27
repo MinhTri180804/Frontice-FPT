@@ -45,6 +45,11 @@
       .tech-solution {
         padding-bottom: 8px;
       }
+
+      & > .list__desc {
+        @include flex-column(12px, start, stretch);
+      }
+
       & > .point-panel {
         display: flex;
         justify-content: space-between;
