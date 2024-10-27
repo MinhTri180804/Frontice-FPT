@@ -11,109 +11,100 @@ import {
 } from '../../../../../../components/common';
 import { IconWrapper } from '../../../../../../components/wrapper';
 import './solutionOverview.scss';
-
-interface IDescriptionOfSolution {
-  title: string;
-  description: string;
-}
-
-interface ISolutionData {
-  timeSubmit: string;
-  imageUrl: string;
-  name: string;
-  score: string | number;
-  level: string;
-  difficulty: string;
-  technicalList: string[];
-  like: string | number;
-  dislike: string | number;
-  comment: string | number;
-  contentDescription: IDescriptionOfSolution[];
-}
+import { useQuery } from '@tanstack/react-query';
+import { paths } from '../../../../../../constant';
+import solutionService from '../../../../../../services/solutionService';
 
 interface ISolutionOverview extends HTMLProps<HTMLDivElement> {
-  solutionData: ISolutionData;
+  solutionId: string;
 }
 
-const SolutionOverview: FC<ISolutionOverview> = ({
-  solutionData,
-  className,
-}) => {
-  const {
-    timeSubmit,
-    imageUrl,
-    name,
-    score,
-    level,
-    difficulty,
-    technicalList,
-    like,
-    dislike,
-    comment,
-    contentDescription,
-  } = solutionData;
+const SolutionOverview: FC<ISolutionOverview> = ({ className, solutionId }) => {
+  const { data: solutionData, isPending: pendingSolutionData } = useQuery({
+    queryKey: [paths.QUERY_KEY.solution, solutionId],
+    queryFn: async () => {
+      const response = await solutionService.getDetails({ solutionId });
+      const responseData = response.data.data;
+      return responseData;
+    },
+  });
 
   const solutionOverviewComponentClass = classNames(
     'solution__overview-component',
     className,
   );
+
+  if (pendingSolutionData) {
+    return <div className="solution__overview-skeleton"></div>;
+  }
+
   return (
-    <div className={solutionOverviewComponentClass}>
-      <div className="information__solution">
-        <div className="image__solution">
-          <img src={imageUrl} alt="" />
+    solutionData && (
+      <div className={solutionOverviewComponentClass}>
+        <div className="information__solution">
+          <div className="image__solution">
+            <img src={solutionData?.challenge.image} alt="" />
+          </div>
+
+          <div className="about_-solution">
+            <div className="time-submit">
+              Submitted about {solutionData?.submitedAt}
+            </div>
+
+            <div className="technical__list">
+              {solutionData?.challenge.technical.map((technical, index) => (
+                <ChallengeTechnical
+                  key={`${index}`}
+                  technicalValue={technical}
+                />
+              ))}
+            </div>
+
+            <div className="name">{solutionData?.title}</div>
+
+            <div className="score-levelDifficulty">
+              <div className="score">
+                <div className="value">{solutionData?.challenge.point}</div>
+                <div className="label">Score</div>
+              </div>
+              <ChallengeLevelDifficulty
+                level={solutionData?.challenge.level}
+                difficulty={solutionData?.challenge.requiredPoint}
+              />
+            </div>
+
+            <div className="statistic__action-solution">
+              <div className="action like">
+                <IconWrapper>
+                  <HandThumbUpIcon width={24} height={24} />
+                </IconWrapper>
+                <div className="value">{solutionData?.liked}</div>
+              </div>
+              <div className="action dislike">
+                <IconWrapper>
+                  <HandThumbDownIcon width={24} height={24} />
+                </IconWrapper>
+                <div className="value">{solutionData?.disliked}</div>
+              </div>
+              <div className="action comment">
+                <IconWrapper>
+                  <ChatBubbleLeftEllipsisIcon width={24} height={24} />
+                </IconWrapper>
+                <div className="value">{solutionData?.comment}</div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div className="about_-solution">
-          <div className="time-submit">Submitted about {timeSubmit}</div>
-
-          <div className="technical__list">
-            {technicalList.map((technical, index) => (
-              <ChallengeTechnical key={`${index}`} technicalValue={technical} />
-            ))}
-          </div>
-
-          <div className="name">{name}</div>
-
-          <div className="score-levelDifficulty">
-            <div className="score">
-              <div className="value">{score}</div>
-              <div className="label">Score</div>
+        <div className="content__description-list">
+          {solutionData?.description.map((content, index) => (
+            <div className="content__description" key={`${index}`}>
+              <div className="title">{content.title}</div>
+              <div className="description">{content.answer}</div>
             </div>
-            <ChallengeLevelDifficulty level={level} difficulty={difficulty} />
-          </div>
-
-          <div className="statistic__action-solution">
-            <div className="action like">
-              <IconWrapper>
-                <HandThumbUpIcon width={24} height={24} />
-              </IconWrapper>
-              <div className="value">{like}</div>
-            </div>
-            <div className="action dislike">
-              <IconWrapper>
-                <HandThumbDownIcon width={24} height={24} />
-              </IconWrapper>
-              <div className="value">{dislike}</div>
-            </div>
-            <div className="action comment">
-              <IconWrapper>
-                <ChatBubbleLeftEllipsisIcon width={24} height={24} />
-              </IconWrapper>
-              <div className="value">{comment}</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-      <div className="content__description-list">
-        {contentDescription.map((content, index) => (
-          <div className="content__description" key={`${index}`}>
-            <div className="title">{content.title}</div>
-            <div className="description">{content.description}</div>
-          </div>
-        ))}
-      </div>
-    </div>
+    )
   );
 };
 

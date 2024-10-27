@@ -1,7 +1,8 @@
 @use '../../styles/scss/flex-grid' as *;
 @use '../../styles/scss/utils/variables/colors' as *;
 @use '../../styles/scss/utils/mixin/typography' as *;
-.container-challenges-page {
+
+.container-solution-list-page {
   & > .header {
     margin-bottom: 32px;
     @include flex(row, space-between);
@@ -9,15 +10,12 @@
       @include typography_BVNPro-desktop-h4;
     }
   }
-  & > .challenges-list {
-    @include grid(12, none, 24px, start, stretch);
-    & > div {
+  & > .solution-list {
+    @include grid(12, none, 24px);
+    & .cols {
       grid-column: span 3;
-      height: 100%;
+      width: 100%;
+      @include flex-column(24px, flex-start, stretch);
     }
-  }
-
-  & > .pagination {
-    margin-top: 32px;
   }
 }

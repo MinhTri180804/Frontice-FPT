@@ -33,7 +33,6 @@ const ButtonConditionChallengeOverview: FC<
   const { profile, isAuthentication } = useAuthStore();
   const location = useLocation();
   const pathName = location.pathname;
-
   const handleJoinChallenge = async () => {
     await toast.promise(
       challengeService
@@ -79,8 +78,28 @@ const ButtonConditionChallengeOverview: FC<
   };
 
   const handleGoToSolution = () => {
-    navigate(`${paths.solutionDetails}/${solutionSubmitId}`);
+    navigate(`${paths.solutionDetails}/${solutionSubmitId}`, {
+      state: {
+        challengeId: challengeId,
+      },
+    });
   };
+
+  const handleGotoChallengeDetails = () => {
+    navigate(`${paths.challengeDetails}/${challengeId}`);
+  };
+
+  if (pathName.split('/')[1] === paths.solutionDetails.split('/')[1]) {
+    console.log(1);
+    return (
+      <Button
+        styleType="primary"
+        label="Go to challenge details"
+        buttonSize="normal"
+        onClick={handleGotoChallengeDetails}
+      />
+    );
+  }
 
   if (
     isAuthentication &&

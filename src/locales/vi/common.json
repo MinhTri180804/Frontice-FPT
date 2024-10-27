@@ -212,5 +212,8 @@
       "Authentication": "Phải đăng nhập thì mới có thể tham gia thử thách",
       "ChallengeType": "Thử thách này chỉ dành riêng cho tài khoản premium"
     }
+  },
+  "Placeholder": {
+    "Comment": "Hãy nhập nội dung bình luận của bạn"
   }
 }

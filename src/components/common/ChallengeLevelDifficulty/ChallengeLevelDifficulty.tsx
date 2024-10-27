@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 interface IChallengeLevelDifficultyProps {
   difficulty: string | number;
-  level: string;
+  level: string | number;
 }
 
 const ChallengeLevelDifficulty: FC<IChallengeLevelDifficultyProps> = ({

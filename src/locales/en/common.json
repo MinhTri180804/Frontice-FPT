@@ -200,5 +200,8 @@
       "Authentication": "You must log in to participate in the challenge",
       "ChallengeType": "This challenge is for premium accounts only"
     }
+  },
+  "Placeholder": {
+    "Comment": "Please enter your comment text"
   }
 }

@@ -1,7 +1,9 @@
-import Button from '../Button';
+import { useTranslation } from 'react-i18next';
 import avatarAuthor from '../../../asset/images/avatar.png';
+import Button from '../Button';
 import './Comment.scss';
 const IComment: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="container-comment">
@@ -10,7 +12,11 @@ const IComment: React.FC = () => {
             <img src={avatarAuthor} alt="" />
           </div>
           <div className="input-text">
-            <textarea name="" id=""></textarea>
+            <textarea
+              placeholder={t('Placeholder.Comment')}
+              name=""
+              id=""
+            ></textarea>
           </div>
         </div>
         <div className="action">

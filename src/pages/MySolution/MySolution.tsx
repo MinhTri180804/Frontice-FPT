@@ -1,19 +1,19 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '../../components/common';
 import Solution from '../../components/common/Solution';
 import { SolutionSkeleton } from '../../components/skeleton';
 import solutionService from '../../services/solutionService';
 import { ISolutionResponse } from '../../types/response/solution';
-import './Solution.scss';
+import './MySolution.scss';
 import { paths } from '../../constant';
-const Solutions: React.FC = () => {
-  const [page] = useState<number>(1);
+
+const MySolutionPage: React.FC = () => {
   const { data: solutionsData, isPending } = useQuery({
-    queryKey: [paths.QUERY_KEY.solutionList],
+    queryKey: [paths.QUERY_KEY.mySolution],
     queryFn: async () => {
-      const response = await solutionService.getAll({ page });
+      const response = await solutionService.getSolutionSubmitted();
       const responseData = response?.data?.data?.solutions;
       return responseData || [];
     },
@@ -70,4 +70,4 @@ const Solutions: React.FC = () => {
     </>
   );
 };
-export default Solutions;
+export default MySolutionPage;

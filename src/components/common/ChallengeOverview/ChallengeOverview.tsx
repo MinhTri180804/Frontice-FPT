@@ -16,6 +16,7 @@ interface IChallengeOverviewProps {
     submitValue: boolean,
     joinValue: boolean,
     enoughPointValue: boolean,
+    solutionSubmitId: string | null,
   ) => void;
 }
 
@@ -38,6 +39,7 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
           responseData.isSubmit,
           responseData.isJoin,
           responseData.enoughPoint,
+          challengeOverviewData?.solutionSubmitId || null,
         );
       }
       return responseData;
@@ -57,6 +59,7 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
       challengeOverviewData.isSubmit,
       challengeOverviewData.isJoin,
       challengeOverviewData.enoughPoint,
+      challengeOverviewData.solutionSubmitId || null,
     );
   }
 
@@ -68,6 +71,7 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
           response.data?.isSubmit,
           response.data?.isJoin,
           response.data?.enoughPoint,
+          challengeOverviewData.solutionSubmitId || null,
         );
       }
     });

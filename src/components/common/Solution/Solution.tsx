@@ -11,6 +11,7 @@ import SolutionLevelDifficulty from '../SolutionLevelDifficulty';
 import DescSolution from './Partials/Solutions';
 import DescUser from './Partials/User';
 import './Solution.scss';
+import { useTranslation } from 'react-i18next';
 
 interface ISolutionProps {
   solution: ISolutionResponse;
@@ -21,11 +22,19 @@ const Solution: React.FC<ISolutionProps> = ({
   isShowDescription = false,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   return (
     <>
       <div
         className="container-solution"
-        onClick={() => navigate(paths.solutionDetails)}
+        onClick={() =>
+          navigate(`${paths.solutionDetails}/${solution.id}`, {
+            state: {
+              challengeId: solution.challenge.id,
+            },
+          })
+        }
       >
         <div className="solution">
           <div className="image">
@@ -40,28 +49,34 @@ const Solution: React.FC<ISolutionProps> = ({
               ))}
             </div>
             <div className="point-panel">
-              <div className="score-solution">123 score</div>
+              <div className="score-solution">
+                {solution.challenge.point} {t('Point')}
+              </div>
               <div className="rank-level">
-                <SolutionLevelDifficulty level="Diamon" difficulty="High" />
+                <SolutionLevelDifficulty
+                  level={solution.challenge.level}
+                  difficulty={solution.challenge.requiredPoint}
+                />
               </div>
             </div>
             {isShowDescription && (
               <DescUser
                 userAvatar={solution.taskee.image || DefaultAvatar}
-                userId="#123"
-                userName="user name"
-                userRank="Gold"
+                userId={solution.taskee.username}
+                userName={`${solution.taskee.firstname} ${solution.taskee.lastname}`}
               />
             )}
 
-            {isShowDescription &&
-              solution.description.map((description, index) => (
-                <DescSolution
-                  key={`${index}`}
-                  titleSolution={description.title}
-                  descriptionSolution={description.answer}
-                />
-              ))}
+            <div className="list__desc">
+              {isShowDescription &&
+                solution.description.map((description, index) => (
+                  <DescSolution
+                    key={`${index}`}
+                    titleSolution={description.title}
+                    descriptionSolution={description.answer}
+                  />
+                ))}
+            </div>
             <div className="interaction-panel">
               <div className="action-like">
                 <HandThumbUpIcon />

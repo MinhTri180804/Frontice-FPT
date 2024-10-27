@@ -2,7 +2,7 @@ import './SolutionDifficulty.scss';
 import { FC } from 'react';
 
 interface ISolutionDifficultyProps {
-  difficulty: string;
+  difficulty: string | number;
   level: string;
 }
 

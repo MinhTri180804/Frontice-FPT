@@ -25,6 +25,7 @@ const paths = {
   recruiterCompany: '/recruiter-company',
   submitSolution: '/submit-solution',
   challengeDetails: '/challenge-details',
+  //
 
   API: {
     root: 'api',
@@ -53,6 +54,12 @@ const paths = {
       getIncompleteChallenge: '/solutions',
       submitted: '/solutions/submitted',
       submitSolution: '/solutions/challenge/submit',
+      getAll: '/solutions/challenge',
+      getDetails: `/solutions/challenge/get`,
+      getSolutionsOfChallenge: `/solutions/challenges`,
+    },
+    taskee: {
+      getInformation: '/taskees',
     },
   },
 
@@ -77,6 +84,10 @@ const paths = {
     solutionIncompleteChallenge: 'solutionIncompleteChallenge',
     solutionSubmitted: 'solutionSubmitted',
     challengeDetails: 'challengeDetails',
+    solutionList: 'solutionList',
+    mySolution: 'mySolution',
+    solution: 'solution',
+    solutionOfChallenge: 'solutionOfChallenge',
   },
 };
 
