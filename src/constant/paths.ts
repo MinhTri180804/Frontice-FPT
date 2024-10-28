@@ -93,6 +93,7 @@ const paths = {
     solution: 'solution',
     solutionOfChallenge: 'solutionOfChallenge',
     tasks: 'tasks',
+    informationTaskee: 'informationTaskee',
   },
 };
 

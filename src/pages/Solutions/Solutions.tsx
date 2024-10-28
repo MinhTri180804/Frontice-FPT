@@ -22,7 +22,12 @@ const Solutions: React.FC = () => {
   const location = useLocation();
   const currentPathname = location.pathname;
   const navigate = useNavigate();
-  const { data: solutionsData, isPending } = useQuery({
+  const {
+    data: solutionsData,
+    isPending,
+    isFetching,
+    isFetched,
+  } = useQuery({
     queryKey: [paths.QUERY_KEY.solutionList],
     queryFn: async () => {
       if (!isAuthentication) return [];
@@ -41,9 +46,7 @@ const Solutions: React.FC = () => {
     );
   }
 
-  const solutionListClass = classNames('solution-list', {
-    empty: solutionsData && solutionsData.length === 0 && !isPending,
-  });
+  const solutionListClass = classNames('solution-list');
 
   return (
     <>
@@ -88,10 +91,14 @@ const Solutions: React.FC = () => {
         >
           <div className={solutionListClass}>
             {/* Loading state*/}
-            <ConditionWrapper condition={isPending}>
-              {Array.from({ length: 4 }).map((_, colIndex) => (
+            <ConditionWrapper condition={isPending || isFetching}>
+              {Array.from({
+                length: !isFetched ? 4 : groupedSolutions.length,
+              }).map((_, colIndex) => (
                 <div key={colIndex} className="cols">
-                  {Array.from({ length: 4 }).map((_, index) => (
+                  {Array.from({
+                    length: !isFetched ? 4 : groupedSolutions[colIndex].length,
+                  }).map((_, index) => (
                     <SolutionSkeleton key={index} />
                   ))}
                 </div>

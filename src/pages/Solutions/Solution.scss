@@ -11,9 +11,10 @@
   }
   & > .solution-list {
     @include grid(12, none, 24px);
-    &.empty {
-      @include flex-row(none, center, center);
-    }
+    width: 100%;
+    // &.empty {
+    //   @include flex-row(none, center, center);
+    // }
 
     & .cols {
       grid-column: span 3;

@@ -158,3 +158,20 @@
     position: relative;
   }
 }
+
+.actions__skeleton {
+  @include grid(12, none, 24px, flex-start, stretch);
+  margin: 62px 0px;
+  & > div {
+    width: 100%;
+    height: 67.5px;
+    @include skeleton(100%, 67.5px, 8px);
+    &:first-child {
+      grid-column: span 5;
+    }
+
+    &:last-child {
+      grid-column: span 7;
+    }
+  }
+}
