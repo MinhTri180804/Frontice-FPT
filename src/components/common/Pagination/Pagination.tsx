@@ -41,6 +41,7 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const handlePageClick = (page: number | string) => {
+
     if (typeof page === 'number' && page !== currentPage) {
       onPageChange(page);
     }

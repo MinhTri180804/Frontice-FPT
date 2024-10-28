@@ -91,7 +91,7 @@ axiosClient.interceptors.response.use(
         window.location.href = `${paths.auth}/${paths.login}`;
         return Promise.reject(refreshTokenError);
       }
-    } else if (error.status === 400) {
+    } else if (error.status === 401) {
       removeAccessToken();
       removeRefreshToken();
       removeInfo();

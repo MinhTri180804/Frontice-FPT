@@ -44,5 +44,9 @@
         }
       }
     }
+
+    .empty__authentication {
+      grid-column: span 12 !important;
+    }
   }
 }

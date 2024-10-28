@@ -4,6 +4,7 @@ import { ChallengeOverview } from '../../components/common';
 import { paths } from '../../constant';
 import { SubmitSolutionForm } from './Partials';
 import './submitSolution.scss';
+import { useTranslation } from 'react-i18next';
 
 const SubmitSolutionPage: FC = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const SubmitSolutionPage: FC = () => {
   const [isJoin, setIsJoin] = useState<boolean | null>(null);
   const [enoughPoint, setEnoughPoint] = useState<boolean | null>(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleTransmissionDataFromChildren = (
     submitValue: boolean,
@@ -43,7 +45,7 @@ const SubmitSolutionPage: FC = () => {
 
   return (
     <div className="submit__solution-page">
-      <div className="heading">Solution Details</div>
+      <div className="heading">{t('Page.SubmitSolution.Title')}</div>
       <div className="content">
         <ChallengeOverview
           handleDataTransmissionParent={handleTransmissionDataFromChildren}
@@ -51,7 +53,7 @@ const SubmitSolutionPage: FC = () => {
         />
 
         <section className="form__submit-solution">
-          <div className="title">send challenge information</div>
+          <div className="title">{t('Page.SubmitSolution.Form.Title')}</div>
           <SubmitSolutionForm challengeId={challengeId} />
         </section>
       </div>

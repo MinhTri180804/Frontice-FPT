@@ -15,6 +15,11 @@
     color: $sunsetGlow-shades-500;
   }
 
+  &.task {
+    background-color: $timesSquareScreens-tints-200;
+    color: $timesSquareScreens-main;
+  }
+
   &.free,
   &.free-plus {
     background-color: $saturatedSky-tints-200;

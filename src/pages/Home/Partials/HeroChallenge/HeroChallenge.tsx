@@ -4,12 +4,14 @@ import { Button } from '../../../../components/common';
 import './HeroChallenge.scss';
 import { FC } from 'react';
 import { paths } from '../../../../constant';
+import { useTranslation } from 'react-i18next';
 
 const HeroChallenge: FC = () => {
   const navigate = useNavigate();
   const handleButtonChallenges = () => {
     navigate(`${paths.challenges}`);
   };
+  const { t } = useTranslation();
   return (
     <div className="hero__challenge-component">
       <div className="image">
@@ -20,7 +22,7 @@ const HeroChallenge: FC = () => {
         <Button
           onClick={handleButtonChallenges}
           styleType="secondary"
-          label="Challenges"
+          label={t('Button.Challenges')}
           buttonSize="normal"
         />
       </div>

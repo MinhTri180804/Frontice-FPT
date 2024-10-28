@@ -28,7 +28,7 @@ const OtpPage: FC = () => {
         })
         .catch(() => {
           const MESSAGE_ERROR = t('ToastMessage.Auth.ResendOtp.Error');
-          return MESSAGE_ERROR;
+          throw MESSAGE_ERROR;
         }),
       {
         pending: t('ToastMessage.Auth.ResendOtp.Pending'),
