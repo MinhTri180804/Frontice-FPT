@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { emptyAuthentication } from '../../assets/images';
+import { emptyAuthentication, emptySolution } from '../../assets/images';
 import { Button } from '../../components/common';
 import EmptyComponent from '../../components/common/Empty/Empty';
 import Solution from '../../components/common/Solution';
@@ -13,6 +13,8 @@ import solutionService from '../../services/solutionService';
 import { useAuthStore } from '../../store/authStore';
 import { ISolutionResponse } from '../../types/response/solution';
 import './MySolution.scss';
+import { ConditionWrapper } from '../../components/wrapper';
+import classNames from 'classnames';
 
 const MySolutionPage: React.FC = () => {
   const { isAuthentication } = useAuthStore();
@@ -20,7 +22,7 @@ const MySolutionPage: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPathname = location.pathname;
-  const { data: solutionsData, isPending } = useQuery({
+  const { data: solutionsData, isLoading } = useQuery({
     queryKey: [paths.QUERY_KEY.mySolution],
     queryFn: async () => {
       if (!isAuthentication) {
@@ -41,6 +43,10 @@ const MySolutionPage: React.FC = () => {
     );
   }
 
+  const mySolutionListClass = classNames('my__solution-list', {
+    'empty-my-solution': groupedSolutions.length === 0 && !isLoading,
+  });
+
   return (
     <>
       <div className="container-solution-list-page">
@@ -55,50 +61,84 @@ const MySolutionPage: React.FC = () => {
             Icon={() => <PlusIcon />}
           />
         </div>
-        {!isAuthentication && (
-          <EmptyComponent
-            text={t('Authentication.Login')}
-            pathImg={emptyAuthentication}
-          >
-            <Button
-              styleType="secondary"
-              label={t('Button.LoginNow')}
-              buttonSize="medium"
-              style={{ width: '50%' }}
-              onClick={() => {
-                navigate(`${paths.auth}/${paths.login}`, {
-                  state: {
-                    previousPage: currentPathname,
-                  },
-                });
+
+        <ConditionWrapper
+          condition={isAuthentication}
+          fallback={() => {
+            return (
+              <EmptyComponent
+                text={t('Authentication.Login')}
+                pathImg={emptyAuthentication}
+              >
+                <Button
+                  styleType="secondary"
+                  label={t('Button.LoginNow')}
+                  buttonSize="medium"
+                  style={{ width: '50%' }}
+                  onClick={() => {
+                    navigate(`${paths.auth}/${paths.login}`, {
+                      state: {
+                        previousPage: currentPathname,
+                      },
+                    });
+                  }}
+                />
+              </EmptyComponent>
+            );
+          }}
+        >
+          <div className={mySolutionListClass}>
+            <ConditionWrapper
+              condition={!isLoading}
+              fallback={() => {
+                // State loading my solution data
+                return Array.from({ length: 4 }).map((_, colIndex) => (
+                  <div key={colIndex} className="cols">
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <SolutionSkeleton key={index} />
+                    ))}
+                  </div>
+                ));
               }}
-            />
-          </EmptyComponent>
-        )}
-
-        <div className="solution-list">
-          {isPending &&
-            Array.from({ length: 4 }).map((_, colIndex) => (
-              <div key={colIndex} className="cols">
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <SolutionSkeleton key={index} />
+            >
+              <ConditionWrapper
+                condition={groupedSolutions.length !== 0}
+                fallback={() => {
+                  // State empty my solution data
+                  return (
+                    <EmptyComponent
+                      text={t('Empty.DontJoinedChallenge')}
+                      pathImg={emptySolution}
+                      className="empty-my-solutions"
+                    >
+                      <Button
+                        label={t('Button.ViewMore.Challenges')}
+                        styleType="secondary"
+                        buttonSize="normal"
+                        onClick={() => navigate(paths.challenges)}
+                        style={{
+                          width: '50% ',
+                        }}
+                      />
+                    </EmptyComponent>
+                  );
+                }}
+              >
+                {groupedSolutions.map((column, colIndex) => (
+                  <div key={colIndex} className="cols">
+                    {column.map((solutionItem, index) => (
+                      <Solution
+                        key={index}
+                        isShowDescription
+                        solution={solutionItem}
+                      />
+                    ))}
+                  </div>
                 ))}
-              </div>
-            ))}
-
-          {!isPending &&
-            groupedSolutions.map((column, colIndex) => (
-              <div key={colIndex} className="cols">
-                {column.map((solutionItem, index) => (
-                  <Solution
-                    key={index}
-                    isShowDescription
-                    solution={solutionItem}
-                  />
-                ))}
-              </div>
-            ))}
-        </div>
+              </ConditionWrapper>
+            </ConditionWrapper>
+          </div>
+        </ConditionWrapper>
       </div>
     </>
   );

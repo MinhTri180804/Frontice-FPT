@@ -12,7 +12,7 @@ const ConditionWrapper: FC<ConditionWrapperProps> = ({
   condition,
 }) => {
   if (!condition) {
-    return <>{fallback ? fallback() : null}</>;
+    return <>{fallback && fallback()}</>;
   }
   return <>{children}</>;
 };

@@ -51,9 +51,16 @@ const handleDownloadFile = (fileUrl: string) => {
   document.body.removeChild(link);
 };
 
+const logOnDev = (message: string) => {
+  if (import.meta.env.MODE === 'development') {
+    console.log(message);
+  }
+};
+
 export {
   checkAuthentication,
   checkRefreshTokenValidity,
   i18nHelper,
   handleDownloadFile,
+  logOnDev,
 };

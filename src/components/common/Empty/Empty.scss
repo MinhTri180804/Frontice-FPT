@@ -1,12 +1,10 @@
-@use '../../../styles/scss/utils/variables/colors' as *;
-@use '../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
 .empty-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
   padding: 12px;
-  gap: 24px;
+  @include flex-column(24px, center, center);
   & > .empty-image {
     min-width: 224px;
     max-width: 424px;

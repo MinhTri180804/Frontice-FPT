@@ -24,7 +24,7 @@ const Home: React.FC = () => {
     queryKey: [paths.QUERY_KEY.challenges],
     queryFn: async () => {
       const response = await challengeService.getAll({ page: 1 });
-      const responseData = response.data.data.challenges;
+      const responseData = response.data.challenges;
       return responseData;
     },
   });

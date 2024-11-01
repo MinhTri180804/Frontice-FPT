@@ -15,6 +15,7 @@ import { ISolutionResponse } from '../../types/response/solution';
 import './Solution.scss';
 import { ConditionWrapper } from '../../components/wrapper';
 import classNames from 'classnames';
+
 const Solutions: React.FC = () => {
   const [page] = useState<number>(1);
   const { isAuthentication } = useAuthStore();
@@ -22,12 +23,8 @@ const Solutions: React.FC = () => {
   const location = useLocation();
   const currentPathname = location.pathname;
   const navigate = useNavigate();
-  const {
-    data: solutionsData,
-    isPending,
-    isFetching,
-    isFetched,
-  } = useQuery({
+
+  const { data: solutionsData, isLoading } = useQuery({
     queryKey: [paths.QUERY_KEY.solutionList],
     queryFn: async () => {
       if (!isAuthentication) return [];
@@ -46,7 +43,9 @@ const Solutions: React.FC = () => {
     );
   }
 
-  const solutionListClass = classNames('solution-list');
+  const solutionListClass = classNames('solution-list', {
+    'empty-solutions': groupedSolutions.length === 0 && !isLoading,
+  });
 
   return (
     <>
@@ -71,6 +70,7 @@ const Solutions: React.FC = () => {
               <EmptyComponent
                 text={t('Authentication.Login')}
                 pathImg={emptyAuthentication}
+                className="cols"
               >
                 <Button
                   styleType="secondary"
@@ -90,54 +90,58 @@ const Solutions: React.FC = () => {
           }}
         >
           <div className={solutionListClass}>
-            {/* Loading state*/}
-            <ConditionWrapper condition={isPending || isFetching}>
-              {Array.from({
-                length: !isFetched ? 4 : groupedSolutions.length,
-              }).map((_, colIndex) => (
-                <div key={colIndex} className="cols">
-                  {Array.from({
-                    length: !isFetched ? 4 : groupedSolutions[colIndex].length,
-                  }).map((_, index) => (
-                    <SolutionSkeleton key={index} />
-                  ))}
-                </div>
-              ))}
-            </ConditionWrapper>
-
-            {/* Condition empty */}
             <ConditionWrapper
-              condition={!isPending && groupedSolutions.length !== 0}
+              condition={!isLoading}
               fallback={() => {
-                return (
-                  <EmptyComponent
-                    text={t('Empty.Solution')}
-                    pathImg={emptySolution}
-                  >
-                    <Button
-                      label={t('Button.Challenges.Join')}
-                      styleType="secondary"
-                      buttonSize="normal"
-                      onClick={() => navigate(paths.challenges)}
-                      style={{
-                        width: '50% !important',
-                      }}
-                    />
-                  </EmptyComponent>
-                );
+                // State loading get data solution
+                return Array.from({
+                  length: 4,
+                }).map((_, colIndex) => (
+                  <div key={colIndex} className="cols">
+                    {Array.from({
+                      length: 4,
+                    }).map((_, index) => (
+                      <SolutionSkeleton key={index} />
+                    ))}
+                  </div>
+                ));
               }}
             >
-              {groupedSolutions.map((column, colIndex) => (
-                <div key={colIndex} className="cols">
-                  {column.map((solutionItem, index) => (
-                    <Solution
-                      key={index}
-                      isShowDescription
-                      solution={solutionItem}
-                    />
-                  ))}
-                </div>
-              ))}
+              <ConditionWrapper
+                condition={groupedSolutions.length !== 0}
+                fallback={() => {
+                  // State empty solutions
+                  return (
+                    <EmptyComponent
+                      text={t('Empty.Solution')}
+                      pathImg={emptySolution}
+                      className="empty-solutions"
+                    >
+                      <Button
+                        label={t('Button.ViewMore.Challenges')}
+                        styleType="secondary"
+                        buttonSize="normal"
+                        onClick={() => navigate(paths.challenges)}
+                        style={{
+                          width: '50% ',
+                        }}
+                      />
+                    </EmptyComponent>
+                  );
+                }}
+              >
+                {groupedSolutions.map((column, colIndex) => (
+                  <div key={colIndex} className="cols">
+                    {column.map((solutionItem, index) => (
+                      <Solution
+                        key={index}
+                        isShowDescription
+                        solution={solutionItem}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </ConditionWrapper>
             </ConditionWrapper>
           </div>
         </ConditionWrapper>

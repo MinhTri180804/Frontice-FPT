@@ -1,8 +1,9 @@
 @use '../../styles/scss/flex-grid' as *;
-@use '../../styles/scss/utils/variables/colors' as *;
-@use '../../styles/scss/utils/mixin/typography' as *;
+@use '../../styles/scss/utils' as *;
 
 .container-solution-list-page {
+  height: 100%;
+  @include flex-column(32px, flex-start, stretch);
   & > .header {
     margin-bottom: 32px;
     @include flex(row, space-between);
@@ -10,12 +11,20 @@
       @include typography_BVNPro-desktop-h4;
     }
   }
-  & > .solution-list {
-    @include grid(12, none, 24px);
-    & .cols {
-      grid-column: span 3;
-      width: 100%;
-      @include flex-column(24px, flex-start, stretch);
+  & > .my__solution-list {
+    flex: 1;
+    &:not(.empty-my-solution) {
+      @include grid(12, none, 24px);
+      & .cols {
+        grid-column: span 3;
+        width: 100%;
+        @include flex-column(24px, flex-start, stretch);
+      }
+    }
+
+    &:has(.empty-my-solution) {
+      @include flex-row(0, center, center);
+      height: 100%;
     }
   }
 }

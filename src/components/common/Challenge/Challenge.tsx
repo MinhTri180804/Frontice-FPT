@@ -20,6 +20,7 @@ const Challenge: FC<IChallengeProps> = ({ challengeData }) => {
     navigate(`${paths.challengeDetails}/${challengeData.id}`);
   };
 
+
   return (
     <div className="challenge__component-container">
       <div className="banner">
