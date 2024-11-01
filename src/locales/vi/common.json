@@ -150,7 +150,10 @@
     "LoginNow": "Đăng nhập ngay",
     "Submit": {
       "Solution": "Đăng tải giải pháp của bạn"
-    }
+    },
+    "UnlockPremium": "Nâng cấp tài khoản Premium",
+    "Challenges": "Thử thách",
+    "Solutions": "Giải Pháp"
   },
   "Checkbox": {
     "RememberAccount": "Ghi nhớ tài khoản"
@@ -196,7 +199,8 @@
   "Empty": {
     "DontJoinedChallenge": "Bạn chưa tham gia thử thách nào",
     "DontSubmittedChallenge": "Bạn chưa có bài giải nào",
-    "IncompleteChallenge": "Bạn không có thử thách nào chưa hoàn thành"
+    "IncompleteChallenge": "Bạn không có thử thách nào chưa hoàn thành",
+    "Solution": "Bạn phải thực hiện thử thách để thấy các giáp pháp của người khác"
   },
   "Authentication": {
     "Login": "Bạn chưa đăng nhập tài khoản"
@@ -204,7 +208,9 @@
   "Section": {
     "Overview": "Tổng quan",
     "IncompleteChallenge": "Thử thách chưa hoàn thành",
-    "MySolution": "Giải pháp của tôi"
+    "MySolution": "Giải pháp của tôi",
+    "MissionOfTasker": "Thử thách của nhà tuyển dụng",
+    "MissionOfSystem": "Thử thách của hệ thống"
   },
   "ChallengeOverview": {
     "Error": {
@@ -215,5 +221,35 @@
   },
   "Placeholder": {
     "Comment": "Hãy nhập nội dung bình luận của bạn"
+  },
+  "Page": {
+    "Tasks": {
+      "Title": "Danh sách thử thách của nhà tuyển dụng"
+    },
+    "Challenges": {
+      "Title": "Danh sách thử thách hệ thống"
+    },
+    "SubmitSolution": {
+      "Title": "Nộp giải pháp",
+      "Form": {
+        "Title": "Gửi Thông tin giải pháp"
+      }
+    },
+    "Home": {
+      "Title": "Trang chủ"
+    },
+    "Solutions": {
+      "Title": "Danh sách giải pháp"
+    },
+    "MySolution": {
+      "Title": "Danh sách giải pháp của tôi"
+    }
+  },
+  "Account": {
+    "Update": {
+      "Premium": {
+        "Success": "Tài khoản đã được nâng cấp Premium"
+      }
+    }
   }
 }

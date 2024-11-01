@@ -9,6 +9,7 @@ import {
   MySolutionPage,
   NotFoundPage,
   SubmitSolutionPage,
+  TasksPage,
 } from '../pages';
 import {
   ForgotPasswordPage,
@@ -80,6 +81,10 @@ const extendedRoutes: RouteObject[] = [
   {
     path: paths.mySolutions,
     element: <MySolutionPage />,
+  },
+  {
+    path: paths.tasks,
+    element: <TasksPage />,
   },
 ];
 

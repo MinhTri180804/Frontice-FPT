@@ -13,11 +13,16 @@ import { QuestionAnswer } from './Partials';
 import SectionAuthorInformation from './Partials/SectionAuthorInformation/SectionAuthorInformation';
 import './SolutionDetails.scss';
 import Action from '../Action';
+import { useState } from 'react';
+import classNames from 'classnames';
+import { ConditionWrapper } from '../../../../components/wrapper';
 
 const SolutionDetails: React.FC = () => {
   const { profile } = useAuthStore();
   const navigate = useNavigate();
   const { solutionId } = useParams();
+  const [isLike, setIsLike] = useState<boolean>(false);
+  const [isDislike, setIsDislike] = useState<boolean>(false);
 
   if (!solutionId) {
     // TODO: Implement page 404 for customer
@@ -37,99 +42,125 @@ const SolutionDetails: React.FC = () => {
       });
 
       const responseData = response.data.data;
+      setIsLike(responseData.isLike);
+      setIsDislike(responseData.isDislike);
       return responseData;
     },
   });
 
+  const likeActionClass = classNames('action-like', {
+    active: !isDislike && isLike,
+  });
+  const dislikeActionClass = classNames('action-dislike', {
+    active: isDislike && !isLike,
+  });
+
   const handleLikeAction = () => {
-    console.log('like action');
+    if (isDislike) {
+      setIsDislike(false);
+    }
+    setIsLike(!isLike);
   };
 
   const handleDislikeAction = () => {
-    console.log('dislike action');
+    if (isLike) {
+      setIsLike(false);
+    }
+    setIsDislike(!isDislike);
+  };
+
+  const handleClickComments = () => {
+    const element = document.getElementById('feedback-solution');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <>
-      {!isPending && solutionDetailsData ? (
+      <ConditionWrapper
+        condition={!isPending && Boolean(solutionDetailsData)}
+        fallback={() => {
+          return (
+            <div className="actions__skeleton">
+              <div></div>
+              <div></div>
+            </div>
+          );
+        }}
+      >
         <Action
-          urlGithub={solutionDetailsData.github}
-          urlLiveGithub={solutionDetailsData.liveGithub}
+          urlGithub={solutionDetailsData?.github as string}
+          urlLiveGithub={solutionDetailsData?.liveGithub as string}
         />
-      ) : (
-        <div className="actions__skeleton">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      )}
+      </ConditionWrapper>
 
       <div className="container-solution-details">
-        {!isPending && solutionDetailsData ? (
-          <>
-            <div className="summary-component">
-              <div className="header">
-                <p>Submitted about {solutionDetailsData?.submitedAt}</p>
-                <h1>{solutionDetailsData?.title}</h1>
-                <div className="tech">
-                  {solutionDetailsData?.challenge.technical.map(
-                    (technical, index) => (
-                      <ChallengeTechnical
-                        technicalValue={technical}
-                        key={`${index}`}
-                      />
-                    ),
-                  )}
-                </div>
-              </div>
-
-              <div className="interaction-buttons">
-                <div className="action">
-                  <div className="action-like" onClick={handleLikeAction}>
-                    <div className="like">
-                      <HandThumbUpIcon />
-                      like
-                    </div>
-                    <div className="quantity">
-                      {solutionDetailsData?.liked || 0}
-                    </div>
-                  </div>
-                  <div className="action-dislike" onClick={handleDislikeAction}>
-                    <div className="dislike">
-                      <HandThumbDownIcon />
-                      dislike
-                    </div>
-                    <div className="quantity">
-                      {solutionDetailsData?.disliked || 0}
-                    </div>
-                  </div>
-                  <div className="action-comment">
-                    <div className="comment">
-                      <ChatBubbleLeftEllipsisIcon />
-                      comment
-                    </div>
-                    <div className="quantity">
-                      {solutionDetailsData?.comment}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <section className="questions__list">
-                {solutionDetailsData?.description.map(
-                  (questionAnswer, index) => (
-                    <QuestionAnswer
+        <ConditionWrapper
+          condition={!isPending && Boolean(solutionDetailsData)}
+          fallback={() => {
+            return <div className="solution__details-skeleton"></div>;
+          }}
+        >
+          <div className="summary-component">
+            <div className="header">
+              <p>Submitted about {solutionDetailsData?.submitedAt}</p>
+              <h1>{solutionDetailsData?.title}</h1>
+              <div className="tech">
+                {solutionDetailsData?.challenge.technical.map(
+                  (technical, index) => (
+                    <ChallengeTechnical
+                      technicalValue={technical}
                       key={`${index}`}
-                      questionAnswerData={questionAnswer}
                     />
                   ),
                 )}
-              </section>
+              </div>
             </div>
-          </>
-        ) : (
-          <div className="solution__details-skeleton"></div>
-        )}
+
+            <div className="interaction-buttons">
+              <div className="action">
+                <div className={likeActionClass} onClick={handleLikeAction}>
+                  <div className="like">
+                    <HandThumbUpIcon />
+                    like
+                  </div>
+                  <div className="quantity">
+                    {solutionDetailsData?.liked || 0}
+                  </div>
+                </div>
+                <div
+                  className={dislikeActionClass}
+                  onClick={handleDislikeAction}
+                >
+                  <div className="dislike">
+                    <HandThumbDownIcon />
+                    dislike
+                  </div>
+                  <div className="quantity">
+                    {solutionDetailsData?.disliked || 0}
+                  </div>
+                </div>
+                <div className="action-comment" onClick={handleClickComments}>
+                  <div className="comment">
+                    <ChatBubbleLeftEllipsisIcon />
+                    comment
+                  </div>
+                  <div className="quantity">{solutionDetailsData?.comment}</div>
+                </div>
+              </div>
+            </div>
+
+            <section className="questions__list">
+              {solutionDetailsData?.description.map((questionAnswer, index) => (
+                <QuestionAnswer
+                  key={`${index}`}
+                  questionAnswerData={questionAnswer}
+                />
+              ))}
+            </section>
+          </div>
+        </ConditionWrapper>
         <SectionAuthorInformation
           className="author__information-section"
           username={solutionDetailsData?.taskee.username.split('/')[0] || ''}

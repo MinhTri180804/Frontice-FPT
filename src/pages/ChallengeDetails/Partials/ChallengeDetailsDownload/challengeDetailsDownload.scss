@@ -2,10 +2,12 @@
 @use '../../../../styles/scss/utils' as *;
 
 .challenge__details-download-tab {
+  width: 100%;
   @include grid(12, none, 24px, none, stretch);
 
   & > .download__based-files,
   & > .download__design-file {
+    width: 100%;
     grid-column: span 6;
     & > .content {
       width: 100%;

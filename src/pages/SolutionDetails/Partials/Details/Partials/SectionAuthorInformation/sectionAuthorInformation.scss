@@ -1,0 +1,6 @@
+@use '../../../../../../styles/scss/utils' as *;
+section.author__information {
+  &-skeleton {
+    @include skeleton(100%, 200px, 4px);
+  }
+}

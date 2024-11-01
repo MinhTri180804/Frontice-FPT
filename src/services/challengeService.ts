@@ -17,11 +17,14 @@ import {
 const BASE_URL = `${paths.API.root}${paths.API.CHALLENGE.root}`;
 
 const challengeService = {
-  getAll(params: IGetAllChallengeRequestParams) {
+  async getAll(params: IGetAllChallengeRequestParams) {
     const { page = 1, per_page = 12 } = params;
-    return axiosClient.get<IBaseResponse<IGetAllChallengeResponse>>(
-      `${BASE_URL}?page=${page}&per_page=${per_page}`,
-    );
+    const response = await axiosClient.get<
+      IBaseResponse<IGetAllChallengeResponse>
+    >(`${BASE_URL}?page=${page}&per_page=${per_page}`);
+
+    const responseData = response.data;
+    return responseData;
   },
 
   getDetails(params: IGetChallengeDetailsParams) {

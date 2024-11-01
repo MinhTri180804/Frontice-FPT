@@ -164,7 +164,10 @@
     "LoginNow": "Sign in now",
     "Submit": {
       "Solution": "Post your solution"
-    }
+    },
+    "UnlockPremium": "Unlock Premium",
+    "Challenges": "Challenges",
+    "Solutions": "Solutions"
   },
   "Checkbox": {
     "RememberAccount": "Remember account"
@@ -184,7 +187,8 @@
   "Empty": {
     "DontJoinedChallenge": "You haven't participated in any challenges yet",
     "DontSubmittedChallenge": "You don't have any solutions yet",
-    "IncompleteChallenge": "You have no unfinished challenges"
+    "IncompleteChallenge": "You have no unfinished challenges",
+    "Solution": "You must take the challenge to see other people's armors"
   },
   "Authentication": {
     "Login": "You are not logged into your account yet"
@@ -192,7 +196,9 @@
   "Section": {
     "Overview": "Overview",
     "IncompleteChallenge": "Challenge not completed",
-    "MySolution": "My solution"
+    "MySolution": "My solution",
+    "MissionOfTasker": "Recruiter's challenge",
+    "MissionOfSystem": "System challenge"
   },
   "ChallengeOverview": {
     "Error": {
@@ -203,5 +209,35 @@
   },
   "Placeholder": {
     "Comment": "Please enter your comment text"
+  },
+  "Page": {
+    "Tasks": {
+      "Title": "List of employer challenges"
+    },
+    "Challenges": {
+      "Title": "List of system challenges"
+    },
+    "SubmitSolution": {
+      "Title": "Submit solution",
+      "Form": {
+        "Title": "Send challenge information"
+      }
+    },
+    "Home": {
+      "Title": "Home page"
+    },
+    "Solutions": {
+      "Title": "List of solutions"
+    },
+    "MySolution": {
+      "Title": "My solution list"
+    }
+  },
+  "Account": {
+    "Update": {
+      "Premium": {
+        "Success": "The account has been upgraded to Premium"
+      }
+    }
   }
 }

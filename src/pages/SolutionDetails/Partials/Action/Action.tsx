@@ -1,7 +1,6 @@
 import {
   CodeBracketSquareIcon,
   ComputerDesktopIcon,
-  ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '../../../../components/common';
 import './Action.scss';
@@ -46,14 +45,6 @@ const Action: React.FC<IActionProps> = ({
               disabled={urlLiveGithub === null}
               onClick={() => handleClickNewTab(urlLiveGithub as string)}
             />
-          </div>
-          <div className="button-report">
-            <button>
-              <div>
-                <ExclamationTriangleIcon />
-              </div>
-              Report
-            </button>
           </div>
         </div>
       </div>

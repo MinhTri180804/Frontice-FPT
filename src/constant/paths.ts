@@ -25,6 +25,7 @@ const paths = {
   recruiterCompany: '/recruiter-company',
   submitSolution: '/submit-solution',
   challengeDetails: '/challenge-details',
+  tasks: '/tasks',
   //
 
   API: {
@@ -61,6 +62,9 @@ const paths = {
     taskee: {
       getInformation: '/taskees',
     },
+    task: {
+      root: '/task',
+    },
   },
 
   LOCAL_STORAGE: {
@@ -88,6 +92,8 @@ const paths = {
     mySolution: 'mySolution',
     solution: 'solution',
     solutionOfChallenge: 'solutionOfChallenge',
+    tasks: 'tasks',
+    informationTaskee: 'informationTaskee',
   },
 };
 

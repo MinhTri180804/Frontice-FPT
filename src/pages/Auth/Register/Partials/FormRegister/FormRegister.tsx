@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Form, FormSubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContentProps } from 'react-toastify';
@@ -7,15 +7,12 @@ import { Button, Input } from '../../../../../components/common';
 import { paths } from '../../../../../constant';
 import authService from '../../../../../services/authServices';
 import { IBaseResponse } from '../../../../../types/base';
-import { IOptionLanguage } from '../../../../../types/entity';
 import { IRegisterRequest } from '../../../../../types/request/register';
 import useFormRegister from './formRegister.hook';
 import './formRegister.scss';
 
 const FormRegister: FC = () => {
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
-  const i18nLanguage = i18n.language as IOptionLanguage;
   const {
     aboutOfConfirmPassword,
     aboutOfEmail,
@@ -28,9 +25,9 @@ const FormRegister: FC = () => {
 
   const {
     register,
-    control,
     formState: { errors },
     getValues,
+    handleSubmit,
     setError,
   } = useForm<IRegisterRequest>({
     defaultValues: {
@@ -40,14 +37,10 @@ const FormRegister: FC = () => {
 
   const { t } = useTranslation();
 
-  const handleRegister: FormSubmitHandler<IRegisterRequest> = async (data) => {
-    const formData: IRegisterRequest = {
-      ...data.data,
-    };
-
+  const handleRegister: SubmitHandler<IRegisterRequest> = async (data) => {
     toast.promise(
       authService
-        .signUp(formData)
+        .signUp(data)
         .then((response) => {
           const URL_REDIRECT = `${paths.auth}/${paths.otp}`;
           navigate(URL_REDIRECT, {
@@ -75,10 +68,9 @@ const FormRegister: FC = () => {
                 });
               }
             });
-          } else {
-            if (i18nLanguage === paths.LANGUAGE.vietnamese) throw MESSAGE_ERROR;
-            if (i18nLanguage === paths.LANGUAGE.english) throw MESSAGE_ERROR;
+            throw MESSAGE_ERROR;
           }
+          throw MESSAGE_ERROR;
         }),
       {
         pending: `${t('ToastMessage.Auth.Register.pending')}`,
@@ -97,11 +89,7 @@ const FormRegister: FC = () => {
   };
 
   return (
-    <Form
-      className="form__register"
-      control={control}
-      onSubmit={handleRegister}
-    >
+    <form className="form__register" onSubmit={handleSubmit(handleRegister)}>
       <div className="input-group">
         <Input
           {...register('firstname', aboutOfFirstName.rule)}
@@ -143,6 +131,7 @@ const FormRegister: FC = () => {
         label={aboutOfEmail.name}
         placeholder="Enter your email..."
       />
+
       <Input
         {...register('password', aboutOfPassword.rule)}
         status={errors.password && 'error'}
@@ -170,11 +159,12 @@ const FormRegister: FC = () => {
       />
 
       <Button
+        type="submit"
         styleType="primary"
         label={`${t('Button.Register')}`}
         buttonSize="medium"
       />
-    </Form>
+    </form>
   );
 };
 

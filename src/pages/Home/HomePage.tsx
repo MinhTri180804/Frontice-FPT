@@ -1,21 +1,40 @@
 import { AcademicCapIcon } from '@heroicons/react/24/outline';
-import { Button, Challenge, Section } from '../../components/common';
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { emptyAuthentication } from '../../assets/images';
+import { Button, Challenge, Section, Task } from '../../components/common';
+import EmptyComponent from '../../components/common/Empty/Empty';
+import { ChallengeSkeleton } from '../../components/skeleton';
+import { paths } from '../../constant';
+import challengeService from '../../services/challengeService';
+import taskService from '../../services/taskService';
+import { useAuthStore } from '../../store/authStore';
 import './homePage.scss';
 import { HeroChallenge, HeroPremium, HeroSolution } from './Partials';
-import { useNavigate } from 'react-router-dom';
-import { paths } from '../../constant';
-import { useQuery } from '@tanstack/react-query';
-import challengeService from '../../services/challengeService';
-import { ChallengeSkeleton } from '../../components/skeleton';
 
 const Home: React.FC = () => {
+  const location = useLocation();
+  const currentPathname = location.pathname;
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { isAuthentication } = useAuthStore();
+
   const { isPending: pendingOfChallenges, data: challengesData } = useQuery({
     queryKey: [paths.QUERY_KEY.challenges],
     queryFn: async () => {
       const response = await challengeService.getAll({ page: 1 });
-      const responseData = response.data.data.challenges;
+      const responseData = response.data.challenges;
       return responseData;
+    },
+  });
+
+  const { isPending: pendingOfTasks, data: tasksData } = useQuery({
+    queryKey: [paths.QUERY_KEY.tasks],
+    queryFn: async () => {
+      const response = await taskService.getAll({});
+      const responseData = response.data.data.tasks;
+      return responseData || [];
     },
   });
 
@@ -23,9 +42,13 @@ const Home: React.FC = () => {
     navigate(paths.challenges);
   };
 
+  const handleButtonViewMoreTask = () => {
+    navigate(`${paths.tasks}`);
+  };
+
   return (
     <div className="home__page-container">
-      <h1 className="title__page">Home Page</h1>
+      <h1 className="title__page">{t('Page.Home.Title')}</h1>
 
       <div className="content">
         <div className="heros">
@@ -42,7 +65,7 @@ const Home: React.FC = () => {
 
         <Section
           className="challenge__system"
-          title="Challenge System"
+          title={t('Section.MissionOfSystem')}
           iconPosition="left"
           Icon={() => <AcademicCapIcon width={32} height={32} />}
         >
@@ -57,45 +80,63 @@ const Home: React.FC = () => {
             ))}
           <Button
             styleType="secondary"
-            buttonSize="normal"
+            buttonSize="medium"
             label="View More"
             className="button__view-more"
             onClick={handleButtonViewMoreChallenge}
           />
         </Section>
 
-        {/* <Section
-          className="challenge__recruiter"
-          title="Challenge Recruiter"
+        <Section
+          className={`challenge__recruiter ${!isAuthentication && 'error-authentication'}`}
+          title={t('Section.MissionOfTasker')}
           iconPosition="left"
           Icon={() => <AcademicCapIcon width={32} height={32} />}
         >
-          {Array.from({ length: 7 }).map((_, index) => (
-            <Challenge
-              key={`${index}`}
-              name="Frontend Quiz app"
-              bannerUrl="https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/wcxhsnz3foidwbzshiia.jpg"
-              description="This app will test your skills (as well as your knowledge!) as you build out a fully functional quiz. We provide a local JSON file to help you practice working with JSON!"
-              level="Diamond"
-              difficulty="High"
-              technicalList={['html', 'css', 'javascript']}
-              score={120}
-              tags={[
-                {
-                  value: 'premium',
-                },
-                { value: 'new' },
-              ]}
+          {!isAuthentication && (
+            <EmptyComponent
+              pathImg={emptyAuthentication}
+              text={t('Authentication.Login')}
+              className="empty__authentication"
+            >
+              <Button
+                styleType="secondary"
+                label={t('Button.LoginNow')}
+                buttonSize="medium"
+                style={{ width: '50%' }}
+                onClick={() => {
+                  navigate(`${paths.auth}/${paths.login}`, {
+                    state: {
+                      previousPage: currentPathname,
+                    },
+                  });
+                }}
+              />
+            </EmptyComponent>
+          )}
+          {pendingOfTasks &&
+            isAuthentication &&
+            Array.from({ length: 10 }).map((_, index) => (
+              <ChallengeSkeleton key={`${index}`} />
+            ))}
+
+          {!pendingOfTasks &&
+            tasksData &&
+            isAuthentication &&
+            tasksData?.map((task, index) => (
+              <Task taskData={task} key={`${index}`} />
+            ))}
+
+          {!pendingOfTasks && tasksData && isAuthentication && (
+            <Button
+              styleType="secondary"
+              buttonSize="medium"
+              label="View More"
+              className="button__view-more"
+              onClick={handleButtonViewMoreTask}
             />
-          ))}
-          <Button
-            styleType="secondary"
-            buttonSize="normal"
-            label="View More"
-            className="button__view-more"
-            onClick={handleButtonViewMoreChallenge}
-          />
-        </Section> */}
+          )}
+        </Section>
       </div>
     </div>
   );

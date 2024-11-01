@@ -13,9 +13,9 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const REDIRECT_TO = location.state?.previousPage
     ? location.state?.previousPage
     : paths.home;
+    
   if (profile && isAuthentication) {
     return <Navigate to={REDIRECT_TO} />;
-    return;
   }
 
   return <>{children}</>;

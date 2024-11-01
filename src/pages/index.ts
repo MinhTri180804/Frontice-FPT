@@ -8,3 +8,4 @@ export { default as RecruiterCompanyPage } from './RecruiterCompany';
 export { default as SubmitSolutionPage } from './SubmitSolution';
 export { default as ChallengeDetailsPage } from './ChallengeDetails';
 export { default as MySolutionPage } from './MySolution';
+export { default as TasksPage } from './Tasks';
