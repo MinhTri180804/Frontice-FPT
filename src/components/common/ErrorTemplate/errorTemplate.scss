@@ -1,0 +1,43 @@
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
+
+.error__template {
+  width: 100%;
+  height: 100%;
+
+  @include flex-column(32px, flex-start, stretch);
+  & > .image__error {
+    flex: 1;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  & > .about {
+    & > .name_error {
+      @include typography_BVNPro-desktop-h3();
+      color: $saturatedSky-main;
+    }
+
+    & > .information__error {
+      @include flex-column(12px, flex-start, stretch);
+      & > .title {
+        @include typography_BVNPro-desktop-h5();
+        color: $satinDeepBlack-main;
+      }
+
+      & > .description {
+        @include typography_BVNPro-desktop-body-1();
+        color: $satinDeepBlack-tints-400;
+      }
+    }
+
+    & > .actions {
+      @include flex-row(12px, center, center);
+    }
+  }
+}
