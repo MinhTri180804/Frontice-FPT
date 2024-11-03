@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Form, FormSubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContentProps } from 'react-toastify';
 import { Button, Input } from '../../../../../components/common';
 import { Checkbox } from '../../../../../components/common/Checkbox';
@@ -25,7 +25,7 @@ const FormLogin: FC = () => {
     formState: { errors },
     setError,
   } = useForm<ILoginRequest>();
-
+  const navigate = useNavigate();
   const { login } = useAuthStore();
   const { aboutOfEmail, aboutOfPassword } = useFormLogin();
   const { t } = useTranslation();
@@ -49,6 +49,7 @@ const FormLogin: FC = () => {
             saveInfo(dataProfile);
             login(dataProfile);
             const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.Login.success')}`;
+            navigate(paths.home);
             return MESSAGE_SUCCESS;
           } catch (error) {
             throw error || t('ToastMessage.Challenger.profile.error');

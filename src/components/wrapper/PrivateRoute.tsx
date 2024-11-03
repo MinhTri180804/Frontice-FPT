@@ -1,6 +1,6 @@
 import React from 'react';
-import { NotFoundPage } from '../../pages/ErrorPage/NotFound';
 import { useAuthStore } from '../../store/authStore';
+import UnauthorizedPage from '../../pages/ErrorPage/Unauthorized';
 
 interface PrivateRouteProps {
   children: React.ReactNode;
@@ -8,13 +8,9 @@ interface PrivateRouteProps {
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const { isAuthentication, profile } = useAuthStore();
-  // const location = useLocation();
-  // const REDIRECT_TO = location.state?.previousPage
-  //   ? location.state?.previousPage
-  //   : paths.notfound;
 
   if (!profile || !isAuthentication) {
-    return <NotFoundPage />;
+    return <UnauthorizedPage />;
   }
 
   return <>{children}</>;

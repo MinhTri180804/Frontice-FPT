@@ -1,33 +1,26 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
+import classNames from 'classnames';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { emptyAuthentication, emptySolution } from '../../assets/images';
+import { useNavigate } from 'react-router-dom';
+import { emptySolution } from '../../assets/images';
 import { Button } from '../../components/common';
 import EmptyComponent from '../../components/common/Empty/Empty';
 import Solution from '../../components/common/Solution';
 import { SolutionSkeleton } from '../../components/skeleton';
+import { ConditionWrapper } from '../../components/wrapper';
 import { paths } from '../../constant';
 import solutionService from '../../services/solutionService';
-import { useAuthStore } from '../../store/authStore';
 import { ISolutionResponse } from '../../types/response/solution';
 import './MySolution.scss';
-import { ConditionWrapper } from '../../components/wrapper';
-import classNames from 'classnames';
 
 const MySolutionPage: React.FC = () => {
-  const { isAuthentication } = useAuthStore();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentPathname = location.pathname;
   const { data: solutionsData, isLoading } = useQuery({
     queryKey: [paths.QUERY_KEY.mySolution],
     queryFn: async () => {
-      if (!isAuthentication) {
-        return [];
-      }
       const response = await solutionService.getSolutionSubmitted();
       const responseData = response?.data?.data?.solutions;
       return responseData || [];
@@ -62,83 +55,57 @@ const MySolutionPage: React.FC = () => {
           />
         </div>
 
-        <ConditionWrapper
-          condition={isAuthentication}
-          fallback={() => {
-            return (
-              <EmptyComponent
-                text={t('Authentication.Login')}
-                pathImg={emptyAuthentication}
-              >
-                <Button
-                  styleType="secondary"
-                  label={t('Button.LoginNow')}
-                  buttonSize="medium"
-                  style={{ width: '50%' }}
-                  onClick={() => {
-                    navigate(`${paths.auth}/${paths.login}`, {
-                      state: {
-                        previousPage: currentPathname,
-                      },
-                    });
-                  }}
-                />
-              </EmptyComponent>
-            );
-          }}
-        >
-          <div className={mySolutionListClass}>
+        <div className={mySolutionListClass}>
+          <ConditionWrapper
+            condition={!isLoading}
+            fallback={() => {
+              // State loading my solution data
+              return Array.from({ length: 4 }).map((_, colIndex) => (
+                <div key={colIndex} className="cols">
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <SolutionSkeleton key={index} />
+                  ))}
+                </div>
+              ));
+            }}
+          >
             <ConditionWrapper
-              condition={!isLoading}
+              condition={groupedSolutions.length !== 0}
               fallback={() => {
-                // State loading my solution data
-                return Array.from({ length: 4 }).map((_, colIndex) => (
-                  <div key={colIndex} className="cols">
-                    {Array.from({ length: 4 }).map((_, index) => (
-                      <SolutionSkeleton key={index} />
-                    ))}
-                  </div>
-                ));
+                // State empty my solution data
+                return (
+                  <EmptyComponent
+                    text={t('Empty.DontJoinedChallenge')}
+                    pathImg={emptySolution}
+                    className="empty-my-solutions"
+                  >
+                    <Button
+                      label={t('Button.ViewMore.Challenges')}
+                      styleType="secondary"
+                      buttonSize="normal"
+                      onClick={() => navigate(paths.challenges)}
+                      style={{
+                        width: '50% ',
+                      }}
+                    />
+                  </EmptyComponent>
+                );
               }}
             >
-              <ConditionWrapper
-                condition={groupedSolutions.length !== 0}
-                fallback={() => {
-                  // State empty my solution data
-                  return (
-                    <EmptyComponent
-                      text={t('Empty.DontJoinedChallenge')}
-                      pathImg={emptySolution}
-                      className="empty-my-solutions"
-                    >
-                      <Button
-                        label={t('Button.ViewMore.Challenges')}
-                        styleType="secondary"
-                        buttonSize="normal"
-                        onClick={() => navigate(paths.challenges)}
-                        style={{
-                          width: '50% ',
-                        }}
-                      />
-                    </EmptyComponent>
-                  );
-                }}
-              >
-                {groupedSolutions.map((column, colIndex) => (
-                  <div key={colIndex} className="cols">
-                    {column.map((solutionItem, index) => (
-                      <Solution
-                        key={index}
-                        isShowDescription
-                        solution={solutionItem}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </ConditionWrapper>
+              {groupedSolutions.map((column, colIndex) => (
+                <div key={colIndex} className="cols">
+                  {column.map((solutionItem, index) => (
+                    <Solution
+                      key={index}
+                      isShowDescription
+                      solution={solutionItem}
+                    />
+                  ))}
+                </div>
+              ))}
             </ConditionWrapper>
-          </div>
-        </ConditionWrapper>
+          </ConditionWrapper>
+        </div>
       </div>
     </>
   );

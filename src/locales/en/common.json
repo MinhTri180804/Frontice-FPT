@@ -232,6 +232,11 @@
     },
     "MySolution": {
       "Title": "My solution list"
+    },
+    "Unauthorized": {
+      "ErrorText": "No authorization found",
+      "title": "This page is not publicly available",
+      "Description": "To be able to access you must log in first"
     }
   },
   "Account": {

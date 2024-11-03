@@ -244,6 +244,11 @@
     },
     "MySolution": {
       "Title": "Danh sách giải pháp của tôi"
+    },
+    "Unauthorized": {
+      "ErrorText": "Bạn phải đang nhập để có thể truy cập",
+      "title": "Trang này không có sẵn công khai",
+      "Description": "Để có thể truy cập bạn phải thực hiện đăng nhập đầu tiên"
     }
   },
   "Account": {

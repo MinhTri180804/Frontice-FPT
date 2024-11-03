@@ -35,15 +35,14 @@ const SettingsProfilePage = React.lazy(
   () => import('../pages/SettingsProfilePage'),
 );
 
-const extendedRoutes: RouteObject[] = [
-  {
-    index: true,
-    path: paths.home,
-    element: <HomePage />,
-  },
+const extendRoutesPrivate: RouteObject[] = [
   {
     path: paths.profile,
-    element: <ProfilePage />,
+    element: (
+      <PrivateRoute>
+        <ProfilePage />
+      </PrivateRoute>
+    ),
   },
   {
     path: paths.setting,
@@ -55,19 +54,63 @@ const extendedRoutes: RouteObject[] = [
   },
   {
     path: `${paths.solutionDetails}/:solutionId`,
-    element: <SolutionDetailsPage />,
+    element: (
+      <PrivateRoute>
+        <SolutionDetailsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.solutions,
+    element: (
+      <PrivateRoute>
+        <SolutionsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.statistic,
+    element: (
+      <PrivateRoute>
+        <StatisticPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.submitSolution,
+    element: (
+      <PrivateRoute>
+        <SubmitSolutionPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.mySolutions,
+    element: (
+      <PrivateRoute>
+        <MySolutionPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.tasks,
+    element: (
+      <PrivateRoute>
+        <TasksPage />
+      </PrivateRoute>
+    ),
+  },
+];
+
+const extendedRoutesPublic: RouteObject[] = [
+  {
+    index: true,
+    path: paths.home,
+    element: <HomePage />,
   },
   {
     path: paths.challenges,
     element: <ChallengesPage />,
-  },
-  {
-    path: paths.solutions,
-    element: <SolutionsPage />,
-  },
-  {
-    path: paths.statistic,
-    element: <StatisticPage />,
   },
   {
     path: paths.recruiterCompany,
@@ -75,22 +118,8 @@ const extendedRoutes: RouteObject[] = [
   },
 
   {
-    path: paths.submitSolution,
-    element: <SubmitSolutionPage />,
-  },
-
-  {
     path: `${paths.challengeDetails}/:challengeId`,
     element: <ChallengeDetailsPage />,
-  },
-
-  {
-    path: paths.mySolutions,
-    element: <MySolutionPage />,
-  },
-  {
-    path: paths.tasks,
-    element: <TasksPage />,
   },
 ];
 
@@ -128,7 +157,8 @@ const routes: RouteObject[] = [
       </AppLayout>
     ),
     children: [
-      ...extendedRoutes,
+      ...extendedRoutesPublic,
+      ...extendRoutesPrivate,
       {
         path: '*',
         element: <NotFoundPage />,

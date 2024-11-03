@@ -1,24 +1,17 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, Pagination, Task } from '../../components/common';
 import { ChallengeSkeleton } from '../../components/skeleton';
+import { ConditionWrapper } from '../../components/wrapper';
 import { paths } from '../../constant';
 import taskService from '../../services/taskService';
 import './tasks.scss';
-import { useTranslation } from 'react-i18next';
-import { useAuthStore } from '../../store/authStore';
-import EmptyComponent from '../../components/common/Empty/Empty';
-import { emptyAuthentication } from '../../assets/images';
-import { useLocation, useNavigate } from 'react-router-dom';
 const QUERY_KEY = paths.QUERY_KEY.tasks;
 const TasksPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { t } = useTranslation();
-  const { isAuthentication } = useAuthStore();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const currentPathname = location.pathname;
   useEffect(() => {
     document.querySelector('main')?.scrollTo({
       top: 0,
@@ -57,46 +50,27 @@ const TasksPage: React.FC = () => {
             Icon={() => <PlusIcon />}
           />
         </div>
-        {!isAuthentication && (
-          <EmptyComponent
-            text={t('Authentication.Login')}
-            pathImg={emptyAuthentication}
+        <div className="challenges-list">
+          <ConditionWrapper
+            condition={!isPending}
+            fallback={() => {
+              return Array.from({ length: 12 }).map((_, index) => (
+                <ChallengeSkeleton key={`${index}`} />
+              ));
+            }}
           >
-            <Button
-              onClick={() =>
-                navigate(`${paths.auth}/${paths.login}`, {
-                  state: {
-                    previousPage: currentPathname,
-                  },
-                })
-              }
-              label={t('Button.LoginNow')}
-              buttonSize="medium"
-              styleType="secondary"
-              style={{ width: '50%' }}
-            />
-          </EmptyComponent>
-        )}
-        {isAuthentication && (
-          <>
-            <div className="challenges-list">
-              {isPending
-                ? Array.from({ length: 12 }).map((_, index) => (
-                    <ChallengeSkeleton key={`${index}`} />
-                  ))
-                : data?.tasks.map((task, index) => (
-                    <Task key={`${index}`} taskData={task} />
-                  ))}
-            </div>
+            {data?.tasks.map((task, index) => (
+              <Task key={`${index}`} taskData={task} />
+            ))}
+          </ConditionWrapper>
+        </div>
 
-            <Pagination
-              className="pagination"
-              totalPages={totalPage}
-              currentPage={currentPage}
-              onPageChange={handleChangePage}
-            />
-          </>
-        )}
+        <Pagination
+          className="pagination"
+          totalPages={totalPage}
+          currentPage={currentPage}
+          onPageChange={handleChangePage}
+        />
       </div>
     </>
   );

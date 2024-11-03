@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {
   NotificationIcon,
@@ -11,6 +11,7 @@ import { useAuthStore } from '../../../../../../../store/authStore';
 import { IOptionLanguage } from '../../../../../../../types/entity';
 import { IOptionSelectItem } from '../../../../../../../types/entity/components';
 import { Button, OptionSelect } from '../../../../../../common';
+import { ConditionWrapper } from '../../../../../../wrapper';
 import { Dropdown } from './partials';
 import './UserProfile.scss';
 
@@ -18,6 +19,7 @@ const UserProfile: React.FC = () => {
   const { i18n, t } = useTranslation();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const { profile, isAuthentication } = useAuthStore();
+  const location = useLocation();
   const navigate = useNavigate();
   const languageOptions: IOptionSelectItem[] = [
     {
@@ -88,7 +90,36 @@ const UserProfile: React.FC = () => {
       <div className="notification-icon">
         <NotificationIcon width={24} height={24} />
       </div>
-      {isAuthentication && profile ? (
+      <ConditionWrapper
+        condition={Boolean(isAuthentication && profile)}
+        fallback={() => {
+          return (
+            <div className="option-authentication">
+              <Button
+                buttonSize="small"
+                label={t('Button.Login')}
+                styleType="secondary"
+                onClick={() => {
+                  navigate(`${paths.auth}/${paths.login}`, {
+                    state: {
+                      previousPage: location.pathname,
+                    },
+                  });
+                }}
+              />
+
+              <Button
+                buttonSize="small"
+                label={t('Button.Register')}
+                styleType="secondary"
+                onClick={() => {
+                  navigate(`${paths.auth}/${paths.register}`);
+                }}
+              />
+            </div>
+          );
+        }}
+      >
         <div className="user-profile" onClick={toggleDropdown}>
           <div className="user-avatar">
             <img
@@ -98,9 +129,9 @@ const UserProfile: React.FC = () => {
           </div>
           <div className="user-info">
             <div className="user-name">
-              {profile.firstname} {profile.lastname}
+              {profile?.firstname} {profile?.lastname}
             </div>
-            <div className="user-id">@{profile.username}</div>
+            <div className="user-id">@{profile?.username}</div>
           </div>
           <div className="drop-down">
             <UpAndDownIcon width={24} height={24} stroke="black" />
@@ -108,27 +139,7 @@ const UserProfile: React.FC = () => {
 
           <Dropdown isOpen={isDropdownOpen} />
         </div>
-      ) : (
-        <div className="option-authentication">
-          <Button
-            buttonSize="small"
-            label={t('Button.Login')}
-            styleType="secondary"
-            onClick={() => {
-              navigate(`${paths.auth}/${paths.login}`);
-            }}
-          />
-
-          <Button
-            buttonSize="small"
-            label={t('Button.Register')}
-            styleType="secondary"
-            onClick={() => {
-              navigate(`${paths.auth}/${paths.register}`);
-            }}
-          />
-        </div>
-      )}
+      </ConditionWrapper>
     </div>
   );
 };
