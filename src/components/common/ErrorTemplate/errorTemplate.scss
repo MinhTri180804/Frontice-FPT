@@ -11,7 +11,7 @@
   & > .image__error {
     flex: 1;
     width: auto;
-    height: auto ;
+    height: auto;
     & > img {
       object-fit: cover;
       width: auto;
@@ -28,6 +28,7 @@
     & > .name_error {
       @include typography_BVNPro-desktop-h3();
       color: $saturatedSky-main;
+      text-transform: uppercase;
     }
 
     & > .information__error {

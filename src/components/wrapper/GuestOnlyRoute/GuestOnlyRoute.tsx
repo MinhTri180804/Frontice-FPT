@@ -12,7 +12,7 @@ const GuestOnlyRoute: FC<IGuestOnlyRouteProps> = ({ children }) => {
   const location = useLocation();
   const REDIRECT_TO = location.state?.previousPage
     ? location.state?.previousPage
-    : paths.notfound;
+    : paths.home;
 
   if (profile && isAuthentication) {
     return <Navigate to={REDIRECT_TO} />;
