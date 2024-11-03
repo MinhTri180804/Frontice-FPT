@@ -167,7 +167,8 @@
     },
     "UnlockPremium": "Unlock Premium",
     "Challenges": "Challenges",
-    "Solutions": "Solutions"
+    "Solutions": "Solutions",
+    "BackToHomePage": "Return to home page"
   },
   "Checkbox": {
     "RememberAccount": "Remember account"

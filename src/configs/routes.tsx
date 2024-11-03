@@ -2,12 +2,12 @@ import React from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 import { AppLayout } from '../components/layout/app';
 import { AuthLayout } from '../components/layout/auth';
+import GuestOnlyRoute from '../components/wrapper/GuestOnlyRoute';
 import { paths } from '../constant';
 import {
   ChallengeDetailsPage,
   HomePage,
   MySolutionPage,
-  NotFoundPage,
   SubmitSolutionPage,
   TasksPage,
 } from '../pages';
@@ -18,6 +18,8 @@ import {
   ResetPasswordPage,
 } from '../pages/Auth';
 import OtpPage from '../pages/Auth/OTP/OtpPage';
+import { NotFoundPage } from '../pages/ErrorPage/NotFound';
+import PrivateRoute from '../components/wrapper/PrivateRoute';
 
 const ProfilePage = React.lazy(() => import('../pages/Profile'));
 const SolutionDetailsPage = React.lazy(
@@ -45,7 +47,11 @@ const extendedRoutes: RouteObject[] = [
   },
   {
     path: paths.setting,
-    element: <SettingsProfilePage />,
+    element: (
+      <PrivateRoute>
+        <SettingsProfilePage />
+      </PrivateRoute>
+    ),
   },
   {
     path: `${paths.solutionDetails}/:solutionId`,
@@ -96,6 +102,7 @@ const extendedRoutesAuth: RouteObject[] = [
   },
   {
     path: paths.register,
+
     element: <RegisterPage />,
   },
   {
@@ -130,7 +137,11 @@ const routes: RouteObject[] = [
   },
   {
     path: paths.auth,
-    element: <AuthLayout />,
+    element: (
+      <GuestOnlyRoute>
+        <AuthLayout />
+      </GuestOnlyRoute>
+    ),
     children: [
       ...extendedRoutesAuth,
       {

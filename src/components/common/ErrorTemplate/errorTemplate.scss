@@ -4,20 +4,27 @@
 .error__template {
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  @include flex-column(32px, start, stretch);
+  text-align: center;
 
-  @include flex-column(32px, flex-start, stretch);
   & > .image__error {
     flex: 1;
-
+    width: auto;
+    height: auto ;
     & > img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
+      width: auto;
+      height: auto;
       object-position: center;
     }
   }
 
   & > .about {
+    text-align: center;
+    @include flex-column(24px, flex-start, stretch);
+    max-width: 50%;
+    margin: 0 auto;
     & > .name_error {
       @include typography_BVNPro-desktop-h3();
       color: $saturatedSky-main;
