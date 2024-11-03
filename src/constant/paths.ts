@@ -26,6 +26,7 @@ const paths = {
   submitSolution: '/submit-solution',
   challengeDetails: '/challenge-details',
   tasks: '/tasks',
+  notfound: '/notfound',
   //
 
   API: {

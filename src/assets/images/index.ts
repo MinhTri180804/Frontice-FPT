@@ -8,6 +8,7 @@ import solutionSVG from './solution.svg';
 import emptyChallenge from './empty-challenge.svg';
 import emptySolution from './empty-solution.svg';
 import emptyAuthentication from './authentication-empty.svg';
+import notFoundImage from './404-notFound-error.svg';
 export {
   GithubLogo,
   GoogleLogo,
@@ -19,4 +20,5 @@ export {
   emptyChallenge,
   emptySolution,
   emptyAuthentication,
+  notFoundImage,
 };
