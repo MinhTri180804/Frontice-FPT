@@ -24,7 +24,7 @@ const Solutions: React.FC = () => {
     queryKey: [paths.QUERY_KEY.solutionList],
     queryFn: async () => {
       const response = await solutionService.getAll({ page });
-      const responseData = response?.data?.data?.solutions;
+      const responseData = response?.data?.solutions;
       return responseData || [];
     },
   });

@@ -57,10 +57,28 @@ const logOnDev = (message: string) => {
   }
 };
 
+const calculateTimeLeft = (timestamp: number) => {
+  const targetTime = new Date(timestamp).getTime();
+  const currentTime = new Date().getTime();
+  const difference = targetTime - currentTime;
+  console.log(difference);
+
+  if (difference <= 0) {
+    return null;
+  }
+
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((difference / (1000 * 60)) % 60);
+  const seconds = Math.floor((difference / 1000) % 60);
+
+  return { hours, minutes, seconds };
+};
+
 export {
   checkAuthentication,
   checkRefreshTokenValidity,
   i18nHelper,
   handleDownloadFile,
   logOnDev,
+  calculateTimeLeft,
 };

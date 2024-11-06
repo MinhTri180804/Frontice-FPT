@@ -1,27 +1,22 @@
 import { FC } from 'react';
 import { Form, FormSubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { Button, Input } from '../../../../../components/common';
-import { paths } from '../../../../../constant';
-import authService from '../../../../../services/authServices';
-import { IBaseResponse } from '../../../../../types/base';
 import { IResetPasswordRequest } from '../../../../../types/request/resetPassword';
 import useResetPasswordForm from './resetPasswordForm.hook';
+import useResetPasswordFormLogic from './resetPasswordForm.logic';
 import './resetPasswordForm.scss';
 
 interface IResetPasswordFromProps {
-  resetToken: string;
+  tokenResetPassword: string;
   emailResetPassword: string;
 }
 
 const ResetPasswordForm: FC<IResetPasswordFromProps> = ({
-  resetToken,
+  tokenResetPassword,
   emailResetPassword,
 }) => {
   const { t } = useTranslation();
-
   const {
     register,
     formState: { errors },
@@ -30,44 +25,15 @@ const ResetPasswordForm: FC<IResetPasswordFromProps> = ({
   } = useForm<IResetPasswordRequest>();
 
   const { aboutOfConfirmPassword, aboutOfNewPassword } = useResetPasswordForm();
+  const { handleResetPasswordForm } = useResetPasswordFormLogic();
 
-  const navigate = useNavigate();
-
-  const handleResetPassword: FormSubmitHandler<IResetPasswordRequest> = (
+  const handleResetPassword: FormSubmitHandler<IResetPasswordRequest> = async (
     data,
   ) => {
-    const formData: IResetPasswordRequest = {
-      ...data.data,
-    };
-
-    toast.promise(
-      authService
-        .resetPassword(formData, resetToken, emailResetPassword)
-        .then((response) => {
-          const URL_NAVIGATE = `${paths.auth}/${paths.login}`;
-          navigate(URL_NAVIGATE);
-
-          const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.ResetPassword.success')}`;
-          return response.data.message || MESSAGE_SUCCESS;
-        })
-        .catch((error: IBaseResponse<null>) => {
-          const MESSAGE_ERROR = `${t('ToastMessage.Auth.ResetPassword.error')}`;
-          return error.message || MESSAGE_ERROR;
-        }),
-      {
-        pending: `${t('ToastMessage.Auth.ResetPassword.pending')}`,
-        success: {
-          render: (response) => {
-            return response.data as string;
-          },
-        },
-        error: {
-          render: (response) => {
-            return response.data as string;
-          },
-        },
-      },
-    );
+    await handleResetPasswordForm(data.data, {
+      token: tokenResetPassword,
+      email: emailResetPassword,
+    });
   };
 
   return (
@@ -81,18 +47,20 @@ const ResetPasswordForm: FC<IResetPasswordFromProps> = ({
         status={errors.password && 'error'}
         message={errors.password?.message}
         label={aboutOfNewPassword.name}
+        placeholder={`${t('Placeholder.Password')}...`}
         type="password"
       />
       <Input
         {...register('password_confirmation', {
           ...aboutOfConfirmPassword.rule,
           validate: (value) =>
-            value === getValues('password_confirmation') ||
+            value === getValues('password') ||
             `${t('Validation.Field.PasswordConfirm.Match')}`,
         })}
         status={errors.password_confirmation && 'error'}
         message={errors.password_confirmation?.message}
         label={aboutOfConfirmPassword.name}
+        placeholder={`${t('Placeholder.PasswordConfirmation')}...`}
         type="password"
       />
 

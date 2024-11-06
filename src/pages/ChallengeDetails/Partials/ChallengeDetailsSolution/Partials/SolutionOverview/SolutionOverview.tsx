@@ -24,7 +24,7 @@ const SolutionOverview: FC<ISolutionOverview> = ({ className, solutionId }) => {
     queryKey: [paths.QUERY_KEY.solution, solutionId],
     queryFn: async () => {
       const response = await solutionService.getDetails({ solutionId });
-      const responseData = response.data.data;
+      const responseData = response.data;
       return responseData;
     },
   });

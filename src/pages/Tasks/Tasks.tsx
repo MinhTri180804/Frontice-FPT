@@ -26,7 +26,7 @@ const TasksPage: React.FC = () => {
       const response = await taskService.getAll({
         page: currentPage,
       });
-      const data = response.data.data;
+      const data = response.data;
       return data;
     },
   });

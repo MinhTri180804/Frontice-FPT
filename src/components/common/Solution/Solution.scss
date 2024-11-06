@@ -94,7 +94,8 @@
         display: flex;
         flex-wrap: wrap;
         @include typography_BVNPro-desktop-body-3;
-        justify-content: space-evenly;
+        justify-content: center;
+        gap: 24px;
         & > .action-like,
         .action-dislike,
         .action-comment {

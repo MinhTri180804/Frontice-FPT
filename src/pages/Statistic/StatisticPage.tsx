@@ -5,11 +5,9 @@ import {
 } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import {
-  emptyAuthentication,
-  emptyChallenge,
-  emptySolution,
-} from '../../assets/images';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { emptySolution } from '../../assets/images';
 import { Button, InformationAuthor } from '../../components/common';
 import EmptyComponent from '../../components/common/Empty/Empty';
 import SolutionList from '../../components/common/SolutionList/SolutionList';
@@ -19,29 +17,26 @@ import { paths } from '../../constant';
 import authService from '../../services/authServices';
 import solutionService from '../../services/solutionService';
 import { useAuthStore } from '../../store/authStore';
+import { IProfileResponse } from '../../types/response';
+import { ISolutionSubmittedResponse } from '../../types/response/solution';
 import './StatisticPage.scss';
 import {
   ChallengeIncompleteList,
   ProfileOverview,
   SectionStatistic,
 } from './partitals';
-import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+
+const PER_PAGE_SOLUTIONS_SUBMITTED = 8;
 
 const StatisticPage: React.FC = () => {
   const { t } = useTranslation();
-  const { profile, updateProfile, isAuthentication } = useAuthStore();
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentPathname = location.pathname;
+  const { profile, updateProfile } = useAuthStore();
   const { isPending: isPendingOfProfile } = useQuery({
     queryKey: [paths.QUERY_KEY.meInfo],
     queryFn: async () => {
-      if (!isAuthentication) {
-        return;
-      }
       const response = await authService.info();
-      const dataProfile = response.data.data;
+      const dataProfile = response.data;
       updateProfile(dataProfile);
       return dataProfile;
     },
@@ -51,13 +46,16 @@ const StatisticPage: React.FC = () => {
     data: responseSolutionSubmit,
     isPending: isPendingOfSolutionSubmitted,
   } = useQuery({
-    queryKey: [paths.QUERY_KEY.solutionSubmitted, profile?.email],
+    queryKey: [
+      paths.QUERY_KEY.solutionSubmitted,
+      profile?.email,
+      PER_PAGE_SOLUTIONS_SUBMITTED,
+    ],
     queryFn: async () => {
-      if (!isAuthentication) {
-        return null;
-      }
-      const response = await solutionService.getSolutionSubmitted();
-      const responseData = response?.data.data.solutions;
+      const response = await solutionService.getSolutionSubmitted({
+        per_page: PER_PAGE_SOLUTIONS_SUBMITTED,
+      });
+      const responseData = response?.data.solutions;
       return responseData || [];
     },
   });
@@ -67,41 +65,23 @@ const StatisticPage: React.FC = () => {
       <h1 className="title-page">Statistic Page</h1>
 
       <div className="content">
-        {isPendingOfProfile ? (
-          <div className="skeleton__statistic-section"></div>
-        ) : (
+        {/* Condition of state of section overview */}
+        <ConditionWrapper
+          condition={!isPendingOfProfile}
+          // Shown for status loading overview component
+          fallback={() => {
+            return <div className="skeleton__statistic-section"></div>;
+          }}
+        >
           <SectionStatistic
             title={t('Section.Overview')}
             Icon={() => <LightBulbIcon width={32} height={32} />}
           >
             <div className="line"></div>
-            <ConditionWrapper
-              fallback={() => (
-                <EmptyComponent
-                  pathImg={emptyAuthentication}
-                  text={t('Authentication.Login')}
-                >
-                  <Button
-                    style={{ width: '50%' }}
-                    label={t('Button.LoginNow')}
-                    buttonSize="medium"
-                    styleType="secondary"
-                    onClick={() =>
-                      navigate(`${paths.auth}/${paths.login}`, {
-                        state: {
-                          previousPage: currentPathname,
-                        },
-                      })
-                    }
-                  />
-                </EmptyComponent>
-              )}
-              condition={isAuthentication}
-            >
-              {profile && <ProfileOverview profile={profile} />}
-            </ConditionWrapper>
+            <ProfileOverview profile={profile as IProfileResponse} />
           </SectionStatistic>
-        )}
+        </ConditionWrapper>
+
         <div className="section-with-account">
           <SectionStatistic
             options
@@ -110,99 +90,72 @@ const StatisticPage: React.FC = () => {
             title={t('Section.IncompleteChallenge')}
           >
             <div className="line"></div>
-            <ConditionWrapper
-              condition={isAuthentication}
-              fallback={() => (
-                <EmptyComponent
-                  pathImg={emptyChallenge}
-                  text={t('Empty.DontJoinedChallenge')}
-                  style={{ padding: '25px' }}
-                >
-                  <Button
-                    styleType="secondary"
-                    label={t('Button.LoginNow')}
-                    buttonSize="medium"
-                    style={{ width: '50%' }}
-                    onClick={() => {
-                      navigate(`${paths.auth}/${paths.login}`, {
-                        state: {
-                          previousPage: currentPathname,
-                        },
-                      });
-                    }}
-                  />
-                </EmptyComponent>
-              )}
-            >
-              <ChallengeIncompleteList />
-            </ConditionWrapper>
+            <ChallengeIncompleteList />
           </SectionStatistic>
           <div className="account">
-            <ConditionWrapper
-              condition={isAuthentication}
-              fallback={() => (
-                <EmptyComponent
-                  pathImg={emptyAuthentication}
-                  text={t('Authentication.Login')}
-                >
-                  <Button
-                    onClick={() =>
-                      navigate(`${paths.auth}/${paths.login}`, {
-                        state: {
-                          previousPage: currentPathname,
-                        },
-                      })
-                    }
-                    label={t('Button.LoginNow')}
-                    buttonSize="medium"
-                    styleType="secondary"
-                  />
-                </EmptyComponent>
-              )}
-            >
-              {profile && <InformationAuthor authorProfile={profile} />}
-            </ConditionWrapper>
+            <InformationAuthor authorProfile={profile as IProfileResponse} />
           </div>
         </div>
+
         <SectionStatistic
-          title={t('Section.MySolution')}
+          title={t('Section.MySolutionChallengesSystem')}
           Icon={() => <CommandLineIcon width={24} height={24} />}
-          className="my__solution"
+          className="my__solution solutions__system"
         >
           <div className="line"></div>
           <ConditionWrapper
-            condition={isAuthentication}
-            fallback={() => (
-              <EmptyComponent
-                pathImg={emptySolution}
-                text={t('Empty.DontSubmittedChallenge')}
-              >
-                <Button
-                  label={t('Button.LoginNow')}
-                  onClick={() =>
-                    navigate(`${paths.auth}/${paths.login}`, {
-                      state: {
-                        previousPage: currentPathname,
-                      },
-                    })
-                  }
-                  buttonSize="medium"
-                  styleType="secondary"
-                  style={{ width: '50%' }}
-                />
-              </EmptyComponent>
-            )}
+            condition={!isPendingOfSolutionSubmitted}
+            fallback={() => {
+              return (
+                <div className="solution__list-skeleton">
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <SolutionSkeleton key={index} />
+                  ))}
+                </div>
+              );
+            }}
           >
-            {isPendingOfSolutionSubmitted && (
-              <div className="solution__list-skeleton">
-                {Array.from({ length: 6 }).map((_, index) => (
-                  <SolutionSkeleton key={index} />
-                ))}
-              </div>
-            )}
-            {responseSolutionSubmit && (
-              <SolutionList solutionsData={responseSolutionSubmit} />
-            )}
+            <SolutionList
+              solutionsData={
+                responseSolutionSubmit as ISolutionSubmittedResponse['solutions']
+              }
+            />
+            <Button
+              styleType="secondary"
+              buttonSize="medium"
+              label={t('Button.ViewMore.Default')}
+              onClick={() => navigate(paths.mySolutions)}
+            />
+          </ConditionWrapper>
+        </SectionStatistic>
+
+        <SectionStatistic
+          title={t('Section.MySolutionTask')}
+          Icon={() => <CommandLineIcon width={24} height={24} />}
+          className="my__solution solutions__task"
+        >
+          {/* Condition of my tasks */}
+          <ConditionWrapper
+            condition={false}
+            fallback={() => {
+              return (
+                <EmptyComponent
+                  pathImg={emptySolution}
+                  title={t('Empty.SolutionTask.Title')}
+                  text={t('Empty.SolutionTask.Text')}
+                >
+                  <Button
+                    buttonSize="medium"
+                    label={t('Button.GoToTasks')}
+                    style={{ width: '50%' }}
+                    styleType="secondary"
+                  />
+                </EmptyComponent>
+              );
+            }}
+          >
+            <div></div>
+            {/* TODO: Implement my tasks */}
           </ConditionWrapper>
         </SectionStatistic>
       </div>

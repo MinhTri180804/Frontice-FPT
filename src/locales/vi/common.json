@@ -145,7 +145,8 @@
       "BackPrevious": "Quay về"
     },
     "ViewMore": {
-      "Challenges": "Xem thử thách"
+      "Challenges": "Xem thử thách",
+      "Default": "Xem thêm"
     },
     "LoginNow": "Đăng nhập ngay",
     "Submit": {
@@ -154,7 +155,8 @@
     "UnlockPremium": "Nâng cấp tài khoản Premium",
     "Challenges": "Thử thách",
     "Solutions": "Giải Pháp",
-    "BackToHomePage": "Trở về trang chủ"
+    "BackToHomePage": "Trở về trang chủ",
+    "GoToTasks": "Xem các nhiệm vụ"
   },
   "Checkbox": {
     "RememberAccount": "Ghi nhớ tài khoản"
@@ -201,7 +203,13 @@
     "DontJoinedChallenge": "Bạn chưa tham gia thử thách nào",
     "DontSubmittedChallenge": "Bạn chưa có bài giải nào",
     "IncompleteChallenge": "Bạn không có thử thách nào chưa hoàn thành",
-    "Solution": "Bạn phải thực hiện thử thách để thấy các giáp pháp của người khác"
+    "Solution": "Bạn phải thực hiện thử thách để thấy các giáp pháp của người khác",
+    "SolutionsOfChallenge": "Chưa có giải pháp nào cho thử thách này",
+    "ChallengeSystem": "Không có thử thách nào ",
+    "SolutionTask": {
+      "Title": "Bạn chưa có giải pháp nào cho nhiệm vụ",
+      "Text": "Tham gia nhiệm vụ và nộp solution"
+    }
   },
   "Authentication": {
     "Login": "Bạn chưa đăng nhập tài khoản"
@@ -211,7 +219,9 @@
     "IncompleteChallenge": "Thử thách chưa hoàn thành",
     "MySolution": "Giải pháp của tôi",
     "MissionOfTasker": "Thử thách của nhà tuyển dụng",
-    "MissionOfSystem": "Thử thách của hệ thống"
+    "MissionOfSystem": "Thử thách của hệ thống",
+    "MySolutionChallengesSystem": "Giải pháp cho thử thách hệ thống",
+    "MySolutionTask": "Giải pháp cho nhiệm vụ"
   },
   "ChallengeOverview": {
     "Error": {
@@ -221,7 +231,10 @@
     }
   },
   "Placeholder": {
-    "Comment": "Hãy nhập nội dung bình luận của bạn"
+    "Comment": "Hãy nhập nội dung bình luận của bạn",
+    "Email": "Nhập địa chỉ email của bạn",
+    "Password": "Nhập mật khẩu của bạn",
+    "PasswordConfirmation": "Nhập mật khẩu xác nhận của bạn"
   },
   "Page": {
     "Tasks": {
@@ -257,5 +270,9 @@
         "Success": "Tài khoản đã được nâng cấp Premium"
       }
     }
+  },
+  "ForgotPassword": "Quên mật khẩu",
+  "Label": {
+    "ExpiredTime": "Hết hạn vào"
   }
 }

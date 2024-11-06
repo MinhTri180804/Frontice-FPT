@@ -2,6 +2,7 @@ import { EllipsisHorizontalCircleIcon } from '@heroicons/react/24/outline';
 import './sectionStatistic.scss';
 import { FC, HTMLProps, ReactNode } from 'react';
 import classNames from 'classnames';
+import { ConditionWrapper } from '../../../../components/wrapper';
 
 interface ISectionStatisticProps extends HTMLProps<HTMLDivElement> {
   Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -33,11 +34,11 @@ const SectionStatistic: FC<ISectionStatisticProps> = ({
           <div className="value">{title}</div>
         </div>
 
-        {options && (
+        <ConditionWrapper condition={Boolean(options)}>
           <div className="options">
             <EllipsisHorizontalCircleIcon />
           </div>
-        )}
+        </ConditionWrapper>
       </div>
 
       {children}

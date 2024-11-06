@@ -33,16 +33,16 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
     queryKey: [challengeId, paths.QUERY_KEY.challengeDetails],
     queryFn: async () => {
       const response = await challengeService.getDetails({ challengeId });
-      const responseData = response.data.data;
+      const { isSubmit, isJoin, enoughPoint } = response.data;
       if (handleDataTransmissionParent) {
         handleDataTransmissionParent(
-          responseData.isSubmit,
-          responseData.isJoin,
-          responseData.enoughPoint,
+          isSubmit,
+          isJoin,
+          enoughPoint,
           challengeOverviewData?.solutionSubmitId || null,
         );
       }
-      return responseData;
+      return response.data;
     },
   });
 

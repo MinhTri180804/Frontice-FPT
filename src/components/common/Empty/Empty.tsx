@@ -1,8 +1,9 @@
 import { HTMLProps, ReactNode } from 'react';
 import './Empty.scss';
 import classNames from 'classnames';
+import { ConditionWrapper } from '../../wrapper';
 interface EmptyProps extends HTMLProps<HTMLDivElement> {
-  text: string;
+  text?: string;
   pathImg?: string;
   children?: ReactNode;
 }
@@ -14,7 +15,9 @@ const EmptyComponent: React.FC<EmptyProps> = ({ ...props }) => {
       <div className="empty-image">
         <img src={pathImg} alt="" />
       </div>
-      <div className="empty-text">{text}</div>
+      <ConditionWrapper condition={Boolean(text)}>
+        <div className="empty-text">{text}</div>
+      </ConditionWrapper>
       {children}
     </div>
   );

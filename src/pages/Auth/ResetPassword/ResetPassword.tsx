@@ -35,7 +35,7 @@ const ResetPasswordPage: FC = () => {
         <div className="main__content">
           <ResetPasswordForm
             emailResetPassword={emailResetPassword}
-            resetToken={resetToken}
+            tokenResetPassword={resetToken}
           />
 
           <div className="other">

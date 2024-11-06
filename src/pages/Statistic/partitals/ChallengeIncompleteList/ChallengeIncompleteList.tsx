@@ -26,11 +26,11 @@ const ChallengeIncompleteList: FC = () => {
         return;
       }
       const response = await solutionService.getIncompleteChallenge();
-      const responseData = response.data;
+      const { data, code, message } = response;
       return {
-        challenge: responseData?.data?.solutions || [],
-        code1: responseData.code,
-        message: responseData.message,
+        challenge: data.solutions || [],
+        code1: code,
+        message: message,
       };
     },
   });

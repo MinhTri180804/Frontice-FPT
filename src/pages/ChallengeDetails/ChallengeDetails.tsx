@@ -8,6 +8,7 @@ import {
   ChallengeDetailsInformation,
   ChallengeDetailsSolution,
 } from './Partials';
+import { ConditionWrapper } from '../../components/wrapper';
 
 const ChallengeDetailsPage: FC = () => {
   const [tabActive, setTabActive] = useState<number>(1);
@@ -58,12 +59,19 @@ const ChallengeDetailsPage: FC = () => {
               Information
             </li>
 
-            {isJoin === null && isSubmit === null && enoughPoint === null ? (
-              <>
-                <div className="tab__skeleton"></div>
-                <div className="tab__skeleton"></div>
-              </>
-            ) : (
+            <ConditionWrapper
+              condition={
+                !(isJoin === null && isSubmit === null && enoughPoint === null)
+              }
+              fallback={() => {
+                return (
+                  <>
+                    <div className="tab__skeleton"></div>
+                    <div className="tab__skeleton"></div>
+                  </>
+                );
+              }}
+            >
               <>
                 <li
                   onClick={() => changeTabActive(2, isJoin === false)}
@@ -90,14 +98,17 @@ const ChallengeDetailsPage: FC = () => {
                   Solution
                 </li>
               </>
-            )}
+            </ConditionWrapper>
           </ul>
 
           <div className="content__of-tab">
             {tabActive === 1 && <ChallengeDetailsInformation />}
             {tabActive === 2 && <ChallengeDetailsDownload />}
-            {tabActive === 3 && solutionId && (
-              <ChallengeDetailsSolution solutionId={solutionId} />
+            {tabActive === 3 && solutionId && challengeId && (
+              <ChallengeDetailsSolution
+                challengeId={challengeId}
+                solutionId={solutionId}
+              />
             )}
           </div>
         </section>

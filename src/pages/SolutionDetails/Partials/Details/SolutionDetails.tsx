@@ -41,7 +41,7 @@ const SolutionDetails: React.FC = () => {
         solutionId: solutionId as string,
       });
 
-      const responseData = response.data.data;
+      const responseData = response.data;
       setIsLike(responseData.isLike);
       setIsDislike(responseData.isDislike);
       return responseData;

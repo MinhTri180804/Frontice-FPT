@@ -22,7 +22,7 @@ const SubmitSolutionForm: FC<ISubmitSolutionFormProps> = ({ challengeId }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const {
-  register,
+    register,
     control,
     formState: { errors },
   } = useForm<ISubmitSolutionRequest>({

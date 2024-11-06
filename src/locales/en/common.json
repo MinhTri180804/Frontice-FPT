@@ -159,7 +159,8 @@
       "BackPrevious": "Go back"
     },
     "ViewMore": {
-      "Challenges": "See challenge"
+      "Challenges": "See challenge",
+      "Default": "See more"
     },
     "LoginNow": "Sign in now",
     "Submit": {
@@ -168,7 +169,8 @@
     "UnlockPremium": "Unlock Premium",
     "Challenges": "Challenges",
     "Solutions": "Solutions",
-    "BackToHomePage": "Return to home page"
+    "BackToHomePage": "Return to home page",
+    "GoToTasks": "View tasks"
   },
   "Checkbox": {
     "RememberAccount": "Remember account"
@@ -189,7 +191,10 @@
     "DontJoinedChallenge": "You haven't participated in any challenges yet",
     "DontSubmittedChallenge": "You don't have any solutions yet",
     "IncompleteChallenge": "You have no unfinished challenges",
-    "Solution": "You must take the challenge to see other people's armors"
+    "Solution": "You must take the challenge to see other people's armors",
+    "SolutionsOfChallenge": "There is no solution to this challenge yet",
+    "ChallengeSystem": "There are no challenges",
+    "SolutionTask": "You don't have a solution for the task yet"
   },
   "Authentication": {
     "Login": "You are not logged into your account yet"
@@ -199,7 +204,9 @@
     "IncompleteChallenge": "Challenge not completed",
     "MySolution": "My solution",
     "MissionOfTasker": "Recruiter's challenge",
-    "MissionOfSystem": "System challenge"
+    "MissionOfSystem": "System challenge",
+    "MySolutionChallengesSystem": "Solutions to systemic challenges",
+    "MySolutionTask": "Solution to the task"
   },
   "ChallengeOverview": {
     "Error": {
@@ -209,7 +216,10 @@
     }
   },
   "Placeholder": {
-    "Comment": "Please enter your comment text"
+    "Comment": "Please enter your comment text",
+    "Email": "Enter your email address",
+    "Password": "Enter your password",
+    "PasswordConfirmation": "Enter your confirmation password"
   },
   "Page": {
     "Tasks": {
@@ -245,5 +255,9 @@
         "Success": "The account has been upgraded to Premium"
       }
     }
+  },
+  "ForgotPassword": "Forgot password",
+  "Label": {
+    "ExpiredTime": "Expires on"
   }
 }

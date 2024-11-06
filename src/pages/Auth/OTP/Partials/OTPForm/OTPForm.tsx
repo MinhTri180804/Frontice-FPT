@@ -1,15 +1,16 @@
 import { FC, useState } from 'react';
 import { Form, FormSubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { toast, ToastContentProps } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Button } from '../../../../../components/common';
-import { paths } from '../../../../../constant';
-import authService from '../../../../../services/authServices';
-import { IBaseResponse } from '../../../../../types/base';
 import { IVerifyEmailRequest } from '../../../../../types/request/verifyEmail';
-import { IVerifyForgotPassword } from '../../../../../types/request/verifyForgotPasswordOtp';
+import {
+  IVerifyForgotPasswordOTPParams,
+  IVerifyForgotPasswordOTPRequest,
+} from '../../../../../types/request/verifyForgotPasswordOtp';
 import { OtpInput } from '../../../Partials/OtpInput';
+import useOtpFormLogic from './otpForm.logic';
 import './otpForm.scss';
 
 interface IOTPFormProps {
@@ -21,6 +22,7 @@ const OTPForm: FC<IOTPFormProps> = ({ lengthOTP }) => {
   const emailSignUp = location.state?.emailSignUp;
   const emailForgotPassword = location.state?.emailForgotPassword;
   const tokenForgotPassword = location.state?.tokenForgotPassword;
+  const { verifyEmailForgotPassword, verifyEmailSignUp } = useOtpFormLogic();
 
   const { t } = useTranslation();
   const [OTPValues, setOTPValues] = useState<number[]>(
@@ -28,18 +30,17 @@ const OTPForm: FC<IOTPFormProps> = ({ lengthOTP }) => {
   );
   const [stateOTP, setStateOTP] = useState<boolean[]>([]);
 
-  const navigate = useNavigate();
-
-  const { control } = useForm<IVerifyEmailRequest | IVerifyForgotPassword>();
+  const { control } = useForm<
+    IVerifyEmailRequest | IVerifyForgotPasswordOTPRequest
+  >();
 
   const handleVerifyOtp: FormSubmitHandler<
-    IVerifyEmailRequest | IVerifyForgotPassword
+    IVerifyEmailRequest | IVerifyForgotPasswordOTPRequest
   > = () => {
     const stateOTPReport = OTPValues.map((otpValue) => {
       if (otpValue === null) {
         return true;
       }
-
       return false;
     });
 
@@ -50,82 +51,25 @@ const OTPForm: FC<IOTPFormProps> = ({ lengthOTP }) => {
     }
 
     const OTPString = [...OTPValues].join('');
-    // TODO: Refactor login in here
     if (emailSignUp) {
-      toast.promise(
-        authService
-          .verifyEmailSignup({
-            email: emailSignUp,
-            otp: OTPString,
-          })
-          .then((response) => {
-            navigate(`${paths.auth}/${paths.login}`);
-            const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.OTP.success')}`;
-            return response.data.message || MESSAGE_SUCCESS;
-          })
-          .catch((error: IBaseResponse<null>) => {
-            const MESSAGE_ERROR = `${t('ToastMessage.Auth.OTP.error')}`;
-            throw error.message || MESSAGE_ERROR;
-          }),
-        {
-          pending: `${t('ToastMessage.Auth.OTP.pending')}`,
-          success: {
-            render: (response) => {
-              return response.data as string;
-            },
-          },
-          error: {
-            render: (response) => {
-              return response.data as string;
-            },
-          },
-        },
-      );
+      const dataBody: IVerifyEmailRequest = {
+        email: emailSignUp,
+        otp: OTPString,
+      };
+
+      verifyEmailSignUp(dataBody);
     }
 
     if (emailForgotPassword) {
-      toast.promise(
-        authService
-          .verifyForgotPasswordOTP({
-            email: emailForgotPassword,
-            otp: OTPString,
-            token: tokenForgotPassword,
-          })
-          .then((response) => {
-            const params = new URLSearchParams(
-              response.data.data.url.split('?')[1],
-            );
+      const dataBody: IVerifyForgotPasswordOTPRequest = {
+        otp: OTPString,
+      };
+      const params: IVerifyForgotPasswordOTPParams = {
+        email: emailForgotPassword,
+        token: tokenForgotPassword,
+      };
 
-            const email = params.get('email');
-            const token = params.get('token');
-            navigate(`${paths.auth}/${paths.resetPassword}`, {
-              state: {
-                resetToken: token,
-                emailResetPassword: email,
-              },
-            });
-
-            const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.OTP.success')}`;
-            return response.data.message || MESSAGE_SUCCESS;
-          })
-          .catch((error: IBaseResponse<null>) => {
-            const MESSAGE_ERROR = `${t('ToastMessage.Auth.OTP.error')}`;
-            return error.message || MESSAGE_ERROR;
-          }),
-        {
-          pending: `${t('ToastMessage.Auth.OTP.pending')}`,
-          success: {
-            render: (response) => {
-              return response.data as string;
-            },
-          },
-          error: {
-            render: (response: ToastContentProps<string>) => {
-              return response.data as string;
-            },
-          },
-        },
-      );
+      verifyEmailForgotPassword(dataBody, params);
     }
   };
 
