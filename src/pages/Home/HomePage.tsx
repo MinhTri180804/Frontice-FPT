@@ -6,14 +6,13 @@ import { emptyAuthentication, emptyChallenge } from '../../assets/images';
 import { Button, Challenge, Section, Task } from '../../components/common';
 import EmptyComponent from '../../components/common/Empty/Empty';
 import { ChallengeSkeleton } from '../../components/skeleton';
+import { ConditionWrapper } from '../../components/wrapper';
 import { paths } from '../../constant';
 import challengeService from '../../services/challengeService';
 import taskService from '../../services/taskService';
 import { useAuthStore } from '../../store/authStore';
 import './homePage.scss';
 import { HeroChallenge, HeroPremium, HeroSolution } from './Partials';
-import { ConditionWrapper } from '../../components/wrapper';
-import useTimeCountDown from '../../hooks/useTimeCountDown';
 
 const PER_PAGE_CHALLENGES_SYSTEM = 8;
 const PER_PAGE_TASK = 8;
@@ -24,7 +23,6 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { isAuthentication } = useAuthStore();
-  const time = useTimeCountDown(1730924360);
 
   const { isPending: pendingOfChallenges, data: challengesData } = useQuery({
     queryKey: [paths.QUERY_KEY.challenges],
@@ -60,9 +58,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="testing">
-        {time?.hours} : {time?.minutes} : {time?.seconds}
-      </div>
       <div className="home__page-container">
         <h1 className="title__page">{t('Page.Home.Title')}</h1>
         <div className="content">

@@ -7,6 +7,7 @@ import ChallengeLevelDifficulty from '../ChallengeLevelDifficulty';
 import ChallengeTechnical from '../ChallengeTechnical';
 import TagChallenge from '../TagChallenge';
 import { CompanyInformation } from './Partials';
+import { ExpiredTime } from './Partials/ExpiredTime';
 
 interface IChallengeProps {
   taskData: Omit<
@@ -57,7 +58,7 @@ const Task: FC<IChallengeProps> = ({ taskData }) => {
           <span>{taskData.shortDes}</span>
         </div>
       </div>
-
+      <ExpiredTime expiredTime="1731240235" />
       <Button
         onClick={handleClickViewDetails}
         label="View Details"
