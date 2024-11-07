@@ -5,6 +5,7 @@
   position: relative;
   border: 1px solid $satinDeepBlack-tints-400;
   border-radius: 4px;
+  z-index: 999;
 
   &.show {
     & > .trigger {

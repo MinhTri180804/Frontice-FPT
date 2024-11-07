@@ -7,6 +7,7 @@ export interface ITaskEntity {
     lastname: string;
     image: string;
     url: string;
+    company: string;
   };
   technical: string[];
   image: string;

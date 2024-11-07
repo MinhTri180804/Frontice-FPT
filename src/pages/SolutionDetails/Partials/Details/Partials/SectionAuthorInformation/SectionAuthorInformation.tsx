@@ -27,7 +27,7 @@ const SectionAuthorInformation: FC<ISectionAuthorInformationProps> = ({
     queryFn: async () => {
       if (username === '') return null;
       const response = await taskeeService.getInformation({ username });
-      const responseData = response.data.data;
+      const responseData = response.data;
       return responseData;
     },
   });

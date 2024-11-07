@@ -17,3 +17,5 @@ export type IGetAllSolutionParams = IPaginationParams;
 export type IGetSolutionsOfChallengeParams = IPaginationParams & {
   challengeId: string;
 };
+
+export type IGetMySolutionsSubmittedParams = IPaginationParams;

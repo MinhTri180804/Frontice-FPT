@@ -1,14 +1,13 @@
 import { axiosClient } from '../axios';
 import { paths } from '../constant';
-import { IBaseResponse } from '../types/base';
 import { IGetInformationTaskeeParams } from '../types/request/taskee';
-import { IGetInformationTaskeeResponse } from '../types/response/taskee';
+import { ITaskeeSerivce } from '../types/services/taskee';
 
 const URL_API = `${paths.API.root}`;
 
-const taskeeService = {
+const taskeeService: ITaskeeSerivce = {
   getInformation: (params: IGetInformationTaskeeParams) => {
-    return axiosClient.get<IBaseResponse<IGetInformationTaskeeResponse>>(
+    return axiosClient.get(
       `${URL_API}${paths.API.taskee.getInformation}/${params.username}`,
     );
   },

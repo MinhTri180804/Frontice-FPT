@@ -6,6 +6,8 @@ import { ITaskEntity } from '../../../types/entity/task';
 import ChallengeLevelDifficulty from '../ChallengeLevelDifficulty';
 import ChallengeTechnical from '../ChallengeTechnical';
 import TagChallenge from '../TagChallenge';
+import { CompanyInformation } from './Partials';
+import { ExpiredTime } from './Partials/ExpiredTime';
 
 interface IChallengeProps {
   taskData: Omit<
@@ -23,6 +25,7 @@ const Task: FC<IChallengeProps> = ({ taskData }) => {
 
   return (
     <div className="task__component-container">
+      <CompanyInformation data={taskData.owner} />
       <div className="banner">
         <img src={taskData.image} alt="" />
         <div className="tag__challenge-list">
@@ -55,7 +58,7 @@ const Task: FC<IChallengeProps> = ({ taskData }) => {
           <span>{taskData.shortDes}</span>
         </div>
       </div>
-
+      <ExpiredTime expiredTime="1731240235" />
       <Button
         onClick={handleClickViewDetails}
         label="View Details"

@@ -25,8 +25,9 @@ const TasksPage: React.FC = () => {
     queryFn: async () => {
       const response = await taskService.getAll({
         page: currentPage,
+        per_page: 12,
       });
-      const data = response.data.data;
+      const data = response.data;
       return data;
     },
   });

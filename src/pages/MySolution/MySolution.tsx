@@ -5,39 +5,41 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { emptySolution } from '../../assets/images';
-import { Button } from '../../components/common';
+import { Button, Pagination } from '../../components/common';
 import EmptyComponent from '../../components/common/Empty/Empty';
 import Solution from '../../components/common/Solution';
 import { SolutionSkeleton } from '../../components/skeleton';
 import { ConditionWrapper } from '../../components/wrapper';
 import { paths } from '../../constant';
 import solutionService from '../../services/solutionService';
-import { ISolutionResponse } from '../../types/response/solution';
+import { ISolutionSubmittedResponse } from '../../types/response/solution';
 import './MySolution.scss';
+import { useAuthStore } from '../../store/authStore';
 
 const MySolutionPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { data: solutionsData, isLoading } = useQuery({
-    queryKey: [paths.QUERY_KEY.mySolution],
+  const { profile } = useAuthStore();
+  const { data: dataOfMySolutions, isLoading } = useQuery({
+    queryKey: [paths.QUERY_KEY.mySolution, profile?.email, 12],
     queryFn: async () => {
-      const response = await solutionService.getSolutionSubmitted();
-      const responseData = response?.data?.data?.solutions;
-      return responseData || [];
+      const response = await solutionService.getSolutionSubmitted({ page: 1 });
+      const responseData = response.data;
+      return responseData;
     },
   });
 
-  const COLUMN = 4;
-  let groupedSolutions: ISolutionResponse[][] = [];
+  const {
+    solutions,
+    perPage = 0,
+    total = 0,
+    currentPage = 1,
+  } = (dataOfMySolutions || {}) as ISolutionSubmittedResponse;
 
-  if (solutionsData && solutionsData.length !== 0) {
-    groupedSolutions = Array.from({ length: COLUMN }, (_, i) =>
-      solutionsData.filter((_, index) => index % COLUMN === i),
-    );
-  }
+  const totalPage = Math.ceil((total || 0) / (perPage || 1));
 
   const mySolutionListClass = classNames('my__solution-list', {
-    'empty-my-solution': groupedSolutions.length === 0 && !isLoading,
+    'empty-my-solution': !isLoading && solutions?.length === 0,
   });
 
   return (
@@ -60,17 +62,13 @@ const MySolutionPage: React.FC = () => {
             condition={!isLoading}
             fallback={() => {
               // State loading my solution data
-              return Array.from({ length: 4 }).map((_, colIndex) => (
-                <div key={colIndex} className="cols">
-                  {Array.from({ length: 4 }).map((_, index) => (
-                    <SolutionSkeleton key={index} />
-                  ))}
-                </div>
+              return Array.from({ length: 4 }).map((_, index) => (
+                <SolutionSkeleton key={index} />
               ));
             }}
           >
             <ConditionWrapper
-              condition={groupedSolutions.length !== 0}
+              condition={solutions?.length !== 0}
               fallback={() => {
                 // State empty my solution data
                 return (
@@ -92,17 +90,18 @@ const MySolutionPage: React.FC = () => {
                 );
               }}
             >
-              {groupedSolutions.map((column, colIndex) => (
-                <div key={colIndex} className="cols">
-                  {column.map((solutionItem, index) => (
-                    <Solution
-                      key={index}
-                      isShowDescription
-                      solution={solutionItem}
-                    />
-                  ))}
-                </div>
+              {solutions?.map((solution, index) => (
+                <Solution key={`${index}`} solution={solution} />
               ))}
+
+              <Pagination
+                className="pagination__my-solutions"
+                totalPages={totalPage}
+                currentPage={currentPage}
+                onPageChange={() => {
+                  console.log(1);
+                }}
+              />
             </ConditionWrapper>
           </ConditionWrapper>
         </div>

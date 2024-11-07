@@ -15,10 +15,15 @@
     flex: 1;
     &:not(.empty-my-solution) {
       @include grid(12, none, 24px);
-      & .cols {
+      & > div:not(.pagination__my-solutions) {
         grid-column: span 3;
         width: 100%;
         @include flex-column(24px, flex-start, stretch);
+      }
+
+      & > .pagination__my-solutions {
+        grid-column: span 12;
+        margin-top: 12px;
       }
     }
 

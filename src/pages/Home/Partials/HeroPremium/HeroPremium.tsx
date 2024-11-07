@@ -4,7 +4,6 @@ import { pricingPlans } from '../../../../assets/images';
 import { axiosClient } from '../../../../axios';
 import { Button } from '../../../../components/common';
 import { useAuthStore } from '../../../../store/authStore';
-import { IBaseResponse } from '../../../../types/base';
 import './heroPremium.scss';
 
 const HeroPremium: FC = () => {
@@ -12,16 +11,17 @@ const HeroPremium: FC = () => {
   const { isAuthentication, profile } = useAuthStore();
 
   const handleUpdatePremium = async () => {
+    // TODO: implement handle register premium for account
     try {
       const data = {
         service_id: 1,
         code: '',
       };
-      const response = await axiosClient.post<IBaseResponse<{ url: string }>>(
+      const response = await axiosClient.post(
         `https://frontice-production-6245.up.railway.app/api/subscription/register`,
         data,
       );
-      const url = response.data.data.url;
+      const url = response.data.url;
       window.open(url);
     } catch (error) {
       console.log(error);

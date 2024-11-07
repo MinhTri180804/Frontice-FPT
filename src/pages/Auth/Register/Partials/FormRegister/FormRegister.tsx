@@ -1,18 +1,13 @@
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { toast, ToastContentProps } from 'react-toastify';
 import { Button, Input } from '../../../../../components/common';
-import { paths } from '../../../../../constant';
-import authService from '../../../../../services/authServices';
-import { IBaseResponse } from '../../../../../types/base';
 import { IRegisterRequest } from '../../../../../types/request/register';
 import useFormRegister from './formRegister.hook';
+import useRegisterFormLogic from './formRegister.logic';
 import './formRegister.scss';
 
 const FormRegister: FC = () => {
-  const navigate = useNavigate();
   const {
     aboutOfConfirmPassword,
     aboutOfEmail,
@@ -34,58 +29,11 @@ const FormRegister: FC = () => {
       role: 'taskee',
     },
   });
-
+  const { handleRegisterForm } = useRegisterFormLogic();
   const { t } = useTranslation();
 
   const handleRegister: SubmitHandler<IRegisterRequest> = async (data) => {
-    toast.promise(
-      authService
-        .signUp(data)
-        .then((response) => {
-          const URL_REDIRECT = `${paths.auth}/${paths.otp}`;
-          navigate(URL_REDIRECT, {
-            state: {
-              emailSignUp: response.data.data.email,
-            },
-          });
-
-          const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.Register.success')}`;
-          return MESSAGE_SUCCESS;
-        })
-        .catch((error: IBaseResponse<null>) => {
-          const MESSAGE_ERROR = `${t('ToastMessage.Auth.Register.error')}`;
-          if (
-            error.message &&
-            typeof error.message === 'object' &&
-            error.message.error
-          ) {
-            // Set errors for each field based on the response
-            Object.keys(error.message.error).forEach((key) => {
-              if (typeof error.message === 'object') {
-                setError(key as keyof IRegisterRequest, {
-                  type: 'manual',
-                  message: error.message.error[key][0], // Get the first error message
-                });
-              }
-            });
-            throw MESSAGE_ERROR;
-          }
-          throw MESSAGE_ERROR;
-        }),
-      {
-        pending: `${t('ToastMessage.Auth.Register.pending')}`,
-        success: {
-          render: (response) => {
-            return response.data as string;
-          },
-        },
-        error: {
-          render: (response: ToastContentProps<string>) => {
-            return response.data;
-          },
-        },
-      },
-    );
+    await handleRegisterForm(data, setError);
   };
 
   return (
@@ -98,7 +46,7 @@ const FormRegister: FC = () => {
           label={aboutOfFirstName.name}
           placeholder="Enter your first name..."
         />
-        {/* TODO: implement input password component in here */}
+
         <Input
           {...register('lastname', aboutOfLastName.rule)}
           status={errors.lastname && 'error'}
