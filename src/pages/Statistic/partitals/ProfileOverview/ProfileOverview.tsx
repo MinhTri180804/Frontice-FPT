@@ -5,6 +5,7 @@ import './profileOverview.scss';
 import { FC } from 'react';
 import { paths } from '../../../../constant';
 import { IProfileEntity } from '../../../../types/entity';
+import { ConditionWrapper } from '../../../../components/wrapper';
 
 interface IProfileOverviewProps {
   profile: IProfileEntity;
@@ -39,6 +40,12 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
           title="Challenge Submit"
           value={`${profile.submittedChallenges} Solution`}
         />
+        <ConditionWrapper condition={profile.gold_account}>
+          <AboutProfileOverview
+            title="Premium Expired"
+            value={`${profile.goldExpires} `}
+          />
+        </ConditionWrapper>
       </div>
 
       <div className="actions">

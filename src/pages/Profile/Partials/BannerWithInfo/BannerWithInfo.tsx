@@ -1,25 +1,39 @@
-import './BannerWithInfo.scss';
-import Banner from '../../../../asset/images/banner.png';
-import Avatar from '../../../../asset/images/avatar.png';
+import { EnvelopeIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { Button } from '../../../../components/common';
-import { PlusIcon, EnvelopeIcon, LinkIcon } from '@heroicons/react/24/outline';
+import { ConditionWrapper } from '../../../../components/wrapper';
+import { IProfileEntity } from '../../../../types/entity';
+import './BannerWithInfo.scss';
 
-const BannerWithInfo: React.FC = () => {
+interface BannerWithInfoProps {
+  profileData: IProfileEntity;
+}
+
+const BannerWithInfo: React.FC<BannerWithInfoProps> = ({ profileData }) => {
   return (
     <div className="banner-with-info">
-      <figure className="banner">
-        <img src={Banner} alt="banner" />
-      </figure>
       <figure className="user">
         <div className="avatar">
-          <img src={Avatar} alt="avatar" />
+          <img
+            src={
+              profileData?.image ||
+              'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
+            }
+            alt="avatar"
+          />
         </div>
 
         <figcaption>
           <div className="user-header">
             <div className="user-name">
-              <h1>Ngo Thanh Y -Diamond rank </h1>
-              <h2>@ycute</h2>
+              <div className="about">
+                <h1>
+                  {profileData.firstname} {profileData.lastname}
+                </h1>
+                <ConditionWrapper condition={profileData.gold_account}>
+                  -<div className="premium">Premium</div>
+                </ConditionWrapper>
+              </div>
+              <h2>@{profileData.username}</h2>
             </div>
             <div className="action">
               <Button
@@ -44,36 +58,30 @@ const BannerWithInfo: React.FC = () => {
                 <div className="icon">
                   <EnvelopeIcon />
                 </div>
-                <p className="mail">nguyenminhtri1808t@gmail.com</p>
-              </div>
-              <div className="contact">
-                <div className="icon">
-                  <EnvelopeIcon />
-                </div>
-                <p className="mail">nguyenminhtri1808t@gmail.com</p>
-              </div>
-              <div className="contact">
-                <div className="icon">
-                  <EnvelopeIcon />
-                </div>
-                <p className="mail">nguyenminhtri1808t@gmail.com</p>
+                <p className="mail">{profileData.email}</p>
               </div>
             </div>
           </div>
           <div className="user-info-icon">
-            <div className="icon">
-              <LinkIcon />
+            <div className="statistic">
+              <div className="title">Tham gia</div>
+              <div className="value">
+                {profileData.challengeJoined} challenge
+              </div>
             </div>
-            <div className="icon">
-              <LinkIcon />
+            <div className="statistic">
+              <div className="title">Chưa hoàn thành</div>
+              <div className="value">
+                {profileData.pendingChallenges} challenge
+              </div>
             </div>
-            <div className="icon">
-              <LinkIcon />
+            <div className="statistic">
+              <div className="title">Hoàn thành</div>
+              <div className="value">
+                {profileData.submittedChallenges} challenge
+              </div>
             </div>
-            <div className="icon">
-              <LinkIcon />
-            </div>
-          </div>
+        </div>
           <p>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
             odit, veniam quas sit blanditiis illo veritatis adipisci odio

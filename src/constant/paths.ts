@@ -26,7 +26,10 @@ const paths = {
   submitSolution: '/submit-solution',
   challengeDetails: '/challenge-details',
   tasks: '/tasks',
+  taskDetails: '/task-details',
+  submitSolutionTask: '/submit-solution-task',
   notfound: '/notfound',
+  parcing: '/pracing',
   //
 
   API: {
@@ -65,6 +68,8 @@ const paths = {
     },
     task: {
       root: '/task',
+      downloadFigma: '/download-figma',
+      downloadSource: '/download-source',
     },
   },
 
@@ -95,6 +100,7 @@ const paths = {
     solutionOfChallenge: 'solutionOfChallenge',
     tasks: 'tasks',
     informationTaskee: 'informationTaskee',
+    getAllSolutionTaskOfMe: 'my-solution-task',
   },
 };
 

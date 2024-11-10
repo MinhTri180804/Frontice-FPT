@@ -4,14 +4,15 @@ import { paths } from '../../../constant';
 import { SocialAuthButton } from '../Partials/SocialAuthButton';
 import './login.scss';
 import { FormLogin } from './Partials/FormLogin';
+import authService from '../../../services/authServices';
 
 const Login: React.FC = () => {
   const handleLoginGoogle = () => {
     console.log('login google');
   };
 
-  const handleLoginGithub = () => {
-    console.log('login github');
+  const handleLoginGithub = async () => {
+    return await authService.loginGithub();
   };
 
   return (

@@ -1,0 +1,6 @@
+@use '../../../../styles/scss/flex-grid' as *;
+
+form.form__submit-solution-component {
+  width: 100%;
+  @include flex-column(24px, flex-start, start);
+}
