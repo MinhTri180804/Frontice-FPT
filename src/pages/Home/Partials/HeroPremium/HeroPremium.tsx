@@ -1,32 +1,17 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { pricingPlans } from '../../../../assets/images';
-import { axiosClient } from '../../../../axios';
 import { Button } from '../../../../components/common';
+import { paths } from '../../../../constant';
 import { useAuthStore } from '../../../../store/authStore';
 import './heroPremium.scss';
 
 const HeroPremium: FC = () => {
   const { t } = useTranslation();
   const { isAuthentication, profile } = useAuthStore();
+  const navigate = useNavigate();
 
-  const handleUpdatePremium = async () => {
-    // TODO: implement handle register premium for account
-    try {
-      const data = {
-        service_id: 1,
-        code: '',
-      };
-      const response = await axiosClient.post(
-        `https://frontice-production-6245.up.railway.app/api/subscription/register`,
-        data,
-      );
-      const url = response.data.url;
-      window.open(url);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div className="hero__premium-component">
       <div className="image">
@@ -38,7 +23,7 @@ const HeroPremium: FC = () => {
             buttonSize="normal"
             styleType="secondary"
             label={t('Button.UnlockPremium')}
-            onClick={handleUpdatePremium}
+            onClick={() => navigate(paths.parcing)}
           />
         )}
 

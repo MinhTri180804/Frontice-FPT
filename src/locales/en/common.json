@@ -91,6 +91,13 @@
         "Error": "Post failed solutions",
         "Pending": "Posting solution in progress"
       }
+    },
+    "Task": {
+      "Join": {
+        "Success": "Join the mission successfully",
+        "Error": "Join failed mission",
+        "Peding": "Ongoing mission participation"
+      }
     }
   },
   "ToastMEssage": {

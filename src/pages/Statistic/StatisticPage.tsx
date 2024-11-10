@@ -25,6 +25,8 @@ import {
   ProfileOverview,
   SectionStatistic,
 } from './partitals';
+import taskService from '../../services/taskService';
+import { SolutionTask } from '../../components/common/SolutionTask';
 
 const PER_PAGE_SOLUTIONS_SUBMITTED = 8;
 
@@ -32,6 +34,7 @@ const StatisticPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { profile, updateProfile } = useAuthStore();
+
   const { isPending: isPendingOfProfile } = useQuery({
     queryKey: [paths.QUERY_KEY.meInfo],
     queryFn: async () => {
@@ -59,6 +62,16 @@ const StatisticPage: React.FC = () => {
       return responseData || [];
     },
   });
+
+  const { data: dataMySolutionTask, isFetching: pendingOfMySolutionTask } =
+    useQuery({
+      queryKey: [paths.QUERY_KEY.getAllSolutionTaskOfMe],
+      queryFn: async () => {
+        const response = await taskService.getAllSolutionTaskOfMe();
+        const responseData = response.data;
+        return responseData;
+      },
+    });
 
   return (
     <div className="statistic__page-container">
@@ -136,26 +149,39 @@ const StatisticPage: React.FC = () => {
         >
           {/* Condition of my tasks */}
           <ConditionWrapper
-            condition={false}
+            condition={!pendingOfMySolutionTask}
             fallback={() => {
-              return (
-                <EmptyComponent
-                  pathImg={emptySolution}
-                  title={t('Empty.SolutionTask.Title')}
-                  text={t('Empty.SolutionTask.Text')}
-                >
-                  <Button
-                    buttonSize="medium"
-                    label={t('Button.GoToTasks')}
-                    style={{ width: '50%' }}
-                    styleType="secondary"
-                  />
-                </EmptyComponent>
-              );
+              return Array.from({ length: 12 }).map((_, index) => {
+                return <SolutionSkeleton key={index} />;
+              });
             }}
           >
-            <div></div>
-            {/* TODO: Implement my tasks */}
+            <ConditionWrapper
+              condition={dataMySolutionTask?.tasks.length !== 0}
+              fallback={() => {
+                return (
+                  <EmptyComponent
+                    pathImg={emptySolution}
+                    title={t('Empty.SolutionTask.Title')}
+                    text={t('Empty.SolutionTask.Text')}
+                  >
+                    <Button
+                      buttonSize="medium"
+                      label={t('Button.GoToTasks')}
+                      style={{ width: '50%' }}
+                      styleType="secondary"
+                    />
+                  </EmptyComponent>
+                );
+              }}
+            >
+              <div className="solution__task-list">
+                {dataMySolutionTask &&
+                  dataMySolutionTask.tasks?.map((solution, index) => (
+                    <SolutionTask solutionTaskData={solution} key={index} />
+                  ))}
+              </div>
+            </ConditionWrapper>
           </ConditionWrapper>
         </SectionStatistic>
       </div>

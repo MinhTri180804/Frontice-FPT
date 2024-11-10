@@ -95,6 +95,10 @@ const authService: IAuthService = {
       email,
     });
   },
+
+  loginGithub: () => {
+    return axiosClient.get(`api/auth/github`);
+  },
 };
 
 export default authService;

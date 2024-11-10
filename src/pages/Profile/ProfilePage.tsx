@@ -1,73 +1,87 @@
-import {
-  BuildingOfficeIcon,
-  CommandLineIcon,
-} from '@heroicons/react/24/outline';
-import React, { useEffect, useState } from 'react';
-import userAvatar from '../../asset/images/avatar.png';
-import {
-  default as image,
-  default as imageCompany,
-} from '../../asset/images/solution.png';
+import { CommandLineIcon } from '@heroicons/react/24/outline';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { Button, Section } from '../../components/common';
+import SolutionList from '../../components/common/SolutionList/SolutionList';
+import { SolutionSkeleton } from '../../components/skeleton';
+import { ConditionWrapper } from '../../components/wrapper';
+import { paths } from '../../constant';
+import authService from '../../services/authServices';
+import solutionService from '../../services/solutionService';
+import { ISolutionSubmittedResponse } from '../../types/response/solution';
 import BannerWithInfo from './Partials/BannerWithInfo';
-import CompanyFollow from './Partials/CompanyFollow/CompanyFollow';
-import Solution from '../../components/common/Solution';
 import './ProfilePage.scss';
-import { Section } from '../../components/common';
-interface DataItemSolution {
-  time: string;
-  name: string;
-  tech: string[];
-  id: string;
-} // TODO: implement
-interface DataItemCompany {
-  image: string;
-  name: string;
-  quantity: string;
-  id: string;
-}
 const Profile: React.FC = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { isPending: pendingProfile, data: dataProfile } = useQuery({
+    queryKey: [paths.QUERY_KEY.meInfo],
+    queryFn: async () => {
+      const response = await authService.info();
+      const responseData = response.data;
+      return responseData;
+    },
+  });
+
+  const {
+    data: responseSolutionSubmit,
+    isPending: isPendingOfSolutionSubmitted,
+  } = useQuery({
+    queryKey: [paths.QUERY_KEY.solutionSubmitted, dataProfile?.email, 100],
+    queryFn: async () => {
+      const response = await solutionService.getSolutionSubmitted({
+        per_page: 100,
+      });
+      const responseData = response?.data.solutions;
+      return responseData || [];
+    },
+  });
+
   return (
     <div className="profile-container">
       <h4>Profile Page</h4>
-      <BannerWithInfo />
-
+      <ConditionWrapper
+        condition={!pendingProfile}
+        fallback={() => {
+          return <div className="skeleton-profile"></div>;
+        }}
+      >
+        {dataProfile && <BannerWithInfo profileData={dataProfile} />}
+      </ConditionWrapper>
       <Section
         title="Solution"
         titlePosition="left"
         Icon={() => <CommandLineIcon width={24} height={24} />}
         iconPosition="left"
-        className="solution__list-section"
+        className={`solution__list-section ${responseSolutionSubmit?.length === 0 && 'empty'}`}
       >
         <div className="list-solution">
-          {/* ham map looop qua tung solution */}
-          {/* {dataSolution.map((solutionItem) => (
-            <Solution
-              key={solutionItem.id}
-              image={image} // Hình ảnh mặc định
-              name={solutionItem.name}
-              time={solutionItem.time}
-              tech={solutionItem.tech}
-              userAvatar={userAvatar}
+          <ConditionWrapper
+            condition={!isPendingOfSolutionSubmitted}
+            fallback={() => {
+              return (
+                <div className="solution__list-skeleton">
+                  {Array.from({ length: 6 }).map((_, index) => (
+                    <SolutionSkeleton key={index} />
+                  ))}
+                </div>
+              );
+            }}
+          >
+            <SolutionList
+              solutionsData={
+                responseSolutionSubmit as ISolutionSubmittedResponse['solutions']
+              }
             />
-          ))} */}
-        </div>
-      </Section>
-
-      <Section
-        className="company__following-section"
-        titlePosition="left"
-        iconPosition="left"
-        Icon={() => <BuildingOfficeIcon width={24} height={24} />}
-        title="Company Following"
-      >
-        <div className="list-company">
-          {/* {dataCompany.map((companyItem) => (
-            <CompanyFollow
-              image={imageCompany}
-              name={companyItem.name}
-              quantity={companyItem.quantity}
+            <Button
+              styleType="secondary"
+              buttonSize="medium"
+              label={t('Button.ViewMore.Default')}
+              onClick={() => navigate(paths.mySolutions)}
             />
-          ))} non*/}
+          </ConditionWrapper>
         </div>
       </Section>
     </div>

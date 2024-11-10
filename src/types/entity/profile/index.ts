@@ -4,6 +4,7 @@ export interface IProfileEntity {
   email: string;
   role: string;
   bio: string;
+  goldExpires: string;
   gold_account: boolean;
   point: number;
   github: string | null;

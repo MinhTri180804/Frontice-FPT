@@ -83,6 +83,13 @@
         "Error": "Đăng tải giải pháp thất bại",
         "Pending": "Đang thực hiện đăng tải giải pháp"
       }
+    },
+    "Task": {
+      "Join": {
+        "Success": "Tham gia nhiệm vụ thành công",
+        "Error": "Tham gia nhiệm vụ thất bại",
+        "Peding": "Đang thực hiện tham gia nhiệm vụ"
+      }
     }
   },
   "Validation": {

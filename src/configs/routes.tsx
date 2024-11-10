@@ -20,6 +20,9 @@ import {
 import OtpPage from '../pages/Auth/OTP/OtpPage';
 import { NotFoundPage } from '../pages/ErrorPage/NotFound';
 import PrivateRoute from '../components/wrapper/PrivateRoute';
+import { TaskDetailsPage } from '../pages/TaskDetails';
+import SubmitSolutionTaskPage from '../pages/SubmitSolutionTask/SubmitSolutionTask';
+import { Pracing } from '../pages/Pracing';
 
 const ProfilePage = React.lazy(() => import('../pages/Profile'));
 const SolutionDetailsPage = React.lazy(
@@ -97,6 +100,30 @@ const extendRoutesPrivate: RouteObject[] = [
     element: (
       <PrivateRoute>
         <TasksPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${paths.taskDetails}/:taskId`,
+    element: (
+      <PrivateRoute>
+        <TaskDetailsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${paths.submitSolutionTask}`,
+    element: (
+      <PrivateRoute>
+        <SubmitSolutionTaskPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${'/pracing'}`,
+    element: (
+      <PrivateRoute>
+        <Pracing />
       </PrivateRoute>
     ),
   },

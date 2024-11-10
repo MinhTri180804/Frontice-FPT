@@ -17,7 +17,7 @@ export interface ITaskEntity {
   submittedTotal: number;
   isJoin: boolean;
   isSubmit: boolean;
-  solutionSubmitId: boolean;
+  solutionSubmitId: string | null;
   shortDes: string;
   expiredAt: string;
   created_at: string;

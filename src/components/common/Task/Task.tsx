@@ -8,6 +8,8 @@ import ChallengeTechnical from '../ChallengeTechnical';
 import TagChallenge from '../TagChallenge';
 import { CompanyInformation } from './Partials';
 import { ExpiredTime } from './Partials/ExpiredTime';
+import { paths } from '../../../constant';
+import { useNavigate } from 'react-router-dom';
 
 interface IChallengeProps {
   taskData: Omit<
@@ -17,10 +19,10 @@ interface IChallengeProps {
 }
 
 const Task: FC<IChallengeProps> = ({ taskData }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClickViewDetails = () => {
-    // navigate(`${paths.solutionDetails}/${taskData.id}`);
+    navigate(`${paths.taskDetails}/${taskData.id}`);
   };
 
   return (
@@ -58,7 +60,7 @@ const Task: FC<IChallengeProps> = ({ taskData }) => {
           <span>{taskData.shortDes}</span>
         </div>
       </div>
-      <ExpiredTime expiredTime="1731240235" />
+      <ExpiredTime expiredTime={taskData.expiredAt} />
       <Button
         onClick={handleClickViewDetails}
         label="View Details"

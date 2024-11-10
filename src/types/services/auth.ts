@@ -52,4 +52,6 @@ export interface IAuthService {
   logout: () => Promise<IBaseResponse<null>>;
   info: () => Promise<IBaseResponse<IInfoResponse>>;
   resendOtp: (data: IResendOtpRequest) => Promise<IBaseResponse<[]>>;
+
+  loginGithub: () => Promise<void>;
 }

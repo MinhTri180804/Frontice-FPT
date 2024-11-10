@@ -5,6 +5,7 @@
   @include flex-row(16px, flex-start, center);
 
   & > .avatar {
+    flex-shrink: 0;
     width: 52px;
     height: 52px;
     border-radius: 100%;
@@ -19,6 +20,7 @@
 
   & > .about {
     @include flex-column(4px, flex-start, stretch);
+    overflow: hidden;
 
     & > .name {
       @include typography_BVNPro-desktop-body-2();
@@ -30,6 +32,7 @@
       color: $satinDeepBlack-tints-300;
       max-width: 100%;
       text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 }
