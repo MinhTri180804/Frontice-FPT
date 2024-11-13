@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const useTimeCountDown = (expiredTime: number) => {
-  const calculateTimeLeft = () => {
+  const calculateTimeLeft = useCallback(() => {
     const now = new Date().getTime();
     const difference = expiredTime - now;
 
@@ -19,7 +19,7 @@ const useTimeCountDown = (expiredTime: number) => {
     };
 
     return timeLeft;
-  };
+  }, [expiredTime]);
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -29,7 +29,7 @@ const useTimeCountDown = (expiredTime: number) => {
     }, 1000);
 
     return () => clearInterval(timer); // Cleanup interval on component unmount
-  }, [expiredTime]);
+  }, [calculateTimeLeft]);
 
   return timeLeft;
 };

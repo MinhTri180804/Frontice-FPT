@@ -82,6 +82,22 @@
         "Success": "Đăng tải giải pháp thành công",
         "Error": "Đăng tải giải pháp thất bại",
         "Pending": "Đang thực hiện đăng tải giải pháp"
+      },
+      "Like": {
+        "Success": "Yêu thích giải pháp thành công ",
+        "Error": "Yêu thích giải pháp thất bại"
+      },
+      "Dislike": {
+        "Success": "Không thích giải pháp thành công",
+        "Error": "Không thích giái pháp thất bại"
+      },
+      "UnInteraction": {
+        "Dislike": {
+          "Error": "Hủy bỏ không yêu thích thất bại"
+        },
+        "Like": {
+          "Error": "Hủy bỏ yêu thích không thành công"
+        }
       }
     },
     "Task": {
@@ -89,6 +105,12 @@
         "Success": "Tham gia nhiệm vụ thành công",
         "Error": "Tham gia nhiệm vụ thất bại",
         "Peding": "Đang thực hiện tham gia nhiệm vụ"
+      }
+    },
+    "Comment": {
+      "Remove": {
+        "Success": "Xóa bình luận thành công",
+        "Error": "Xóa bình luận thất bại"
       }
     }
   },
@@ -216,7 +238,8 @@
     "SolutionTask": {
       "Title": "Bạn chưa có giải pháp nào cho nhiệm vụ",
       "Text": "Tham gia nhiệm vụ và nộp solution"
-    }
+    },
+    "Comment": "Chưa có ai bình luận về giải pháp này"
   },
   "Authentication": {
     "Login": "Bạn chưa đăng nhập tài khoản"
@@ -281,5 +304,25 @@
   "ForgotPassword": "Quên mật khẩu",
   "Label": {
     "ExpiredTime": "Hết hạn vào"
+  },
+  "ReplyComment": "Trả lời bình luận",
+  "Comment": {
+    "Success": "Bình luận thành công",
+    "Error": "Trả lời bình luận thất bại"
+  },
+  "Remove": {
+    "Comment": "Xóa"
+  },
+  "Edit": {
+    "Comment": "Chỉnh sửa"
+  },
+  "CommentReply": {
+    "Success": "Trả lời bình luận thành công"
+  },
+  "RepliesComment": {
+    "Notfound": "Không tìm thấy các phản hồi bình luận"
+  },
+  "ViewMore": {
+    "Comments": "Xem thêm phản hồi bình luận"
   }
 }

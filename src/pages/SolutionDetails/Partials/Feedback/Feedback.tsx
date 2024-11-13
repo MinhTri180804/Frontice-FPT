@@ -1,62 +1,35 @@
-import Comment from '../Comments';
-import './Feedback.scss';
-import imgPath from '../../../../asset/images/avatar.png';
+import { useQuery } from '@tanstack/react-query';
+import { emptyComment } from '../../../../assets/images';
 import IComment from '../../../../components/common/Comment';
-const Feedback: React.FC = () => {
-  const commentData = {
-    nameAuthor: 'Ngo Thanh U',
-    avatarAuthor: imgPath,
-    date: '2024-10-15',
-    content: 'This is a comment.',
-    like: 10,
-    dislike: 2,
-    commentCount: 5,
-    isReply: false,
-    childrenComment: [
-      {
-        nameAuthor: 'Nguyen Minh Trri',
-        avatarAuthor: imgPath,
-        date: '2024-10-16',
-        content: 'This is a reply.',
-        like: 3,
-        dislike: 0,
-        commentCount: 0,
-        isReply: false,
-        childrenComment: [
-          {
-            nameAuthor: 'JThay 123',
-            avatarAuthor: imgPath,
-            date: '2024-10-16',
-            content: 'This is a reply.',
-            like: 3,
-            dislike: 0,
-            commentCount: 0,
-            isReply: true,
-          },
-          {
-            nameAuthor: 'Trn Thanh',
-            avatarAuthor: imgPath,
-            date: '2024-10-17',
-            content: 'Another reply here.',
-            like: 2,
-            dislike: 1,
-            commentCount: 1,
-            isReply: true,
-          },
-        ],
-      },
-      {
-        nameAuthor: 'Phuc chan',
-        avatarAuthor: imgPath,
-        date: '2024-10-17',
-        content: 'Another reply here.',
-        like: 2,
-        dislike: 1,
-        commentCount: 1,
-        isReply: true,
-      },
-    ],
-  };
+import EmptyComponent from '../../../../components/common/Empty/Empty';
+import { CommentSkeleton } from '../../../../components/skeleton/Comment';
+import { ConditionWrapper } from '../../../../components/wrapper';
+import { paths } from '../../../../constant';
+import solutionService from '../../../../services/solutionService';
+import useSelfCommentsStore from '../../../../store/seftCommentsStore';
+import Comment from '../Comments';
+import { SelfComments } from '../SeftComments';
+import './Feedback.scss';
+import { useTranslation } from 'react-i18next';
+
+interface IFeedbackProps {
+  solutionId: string;
+}
+
+const Feedback: React.FC<IFeedbackProps> = ({ solutionId }) => {
+  const { t } = useTranslation();
+  const selfComments = useSelfCommentsStore((state) => state.comments);
+  const { data: commentsData, isPending: pendingOfComments } = useQuery({
+    queryKey: [paths.QUERY_KEY.commentsOfSolution, solutionId],
+    queryFn: async () => {
+      const response = await solutionService.getAllComment({
+        solutionId,
+      });
+
+      const responseData = response.data;
+      return responseData;
+    },
+  });
 
   return (
     <>
@@ -71,9 +44,40 @@ const Feedback: React.FC = () => {
         <div className="list-feedback">
           <div className="input-feedback">
             <div>Comment</div>
-            <IComment />
+            <IComment solutionId={solutionId} />
           </div>
-          <Comment data={commentData} />
+          <div className="list">
+            <ConditionWrapper
+              condition={!pendingOfComments}
+              fallback={() => {
+                return (
+                  <>
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <CommentSkeleton key={`${index}`} />
+                    ))}
+                  </>
+                );
+              }}
+            >
+              <ConditionWrapper
+                condition={
+                  Boolean(selfComments.length) ||
+                  Boolean(commentsData?.comments?.length)
+                }
+                fallback={() => (
+                  <EmptyComponent
+                    pathImg={emptyComment}
+                    text={t('Empty.Comment')}
+                  />
+                )}
+              >
+                <SelfComments />
+                {commentsData?.comments.map((comment, index) => (
+                  <Comment key={`${index}`} commentData={comment} />
+                ))}
+              </ConditionWrapper>
+            </ConditionWrapper>
+          </div>
         </div>
       </div>
     </>

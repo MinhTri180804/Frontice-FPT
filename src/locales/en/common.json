@@ -90,6 +90,22 @@
         "Success": "Post the successful solution",
         "Error": "Post failed solutions",
         "Pending": "Posting solution in progress"
+      },
+      "Like": {
+        "Success": "Love the successful solution",
+        "Error": "Love the failed solution"
+      },
+      "Dislike": {
+        "Success": "Doesn't like successful solutions",
+        "Error": "Don't like failed solutions"
+      },
+      "UnInteraction": {
+        "Dislike": {
+          "Error": "Cancel unfavorite failure"
+        },
+        "Like": {
+          "Error": "Cancel favorite failed"
+        }
       }
     },
     "Task": {
@@ -97,6 +113,12 @@
         "Success": "Join the mission successfully",
         "Error": "Join failed mission",
         "Peding": "Ongoing mission participation"
+      }
+    },
+    "Comment": {
+      "Remove": {
+        "Success": "Comment deleted successfully",
+        "Error": "Comment deletion failed"
       }
     }
   },
@@ -201,7 +223,8 @@
     "Solution": "You must take the challenge to see other people's armors",
     "SolutionsOfChallenge": "There is no solution to this challenge yet",
     "ChallengeSystem": "There are no challenges",
-    "SolutionTask": "You don't have a solution for the task yet"
+    "SolutionTask": "You don't have a solution for the task yet",
+    "Comment": "No one has commented on this solution yet"
   },
   "Authentication": {
     "Login": "You are not logged into your account yet"
@@ -266,5 +289,22 @@
   "ForgotPassword": "Forgot password",
   "Label": {
     "ExpiredTime": "Expires on"
+  },
+  "ReplyComment": "Reply to comments",
+  "Comment": {
+    "Success": "Comment successful",
+    "Error": "Reply to comment failed"
+  },
+  "Remove": {
+    "Comment": "Erase"
+  },
+  "Edit": {
+    "Comment": "Edit"
+  },
+  "CommentReply": {
+    "Success": "Reply to comment successfully"
+  },
+  "ViewMore": {
+    "Comments": "See more comment responses"
   }
 }

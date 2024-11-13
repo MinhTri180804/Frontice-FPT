@@ -1,2 +1,7 @@
 @use './styles/scss/_flex-grid.scss' as *;
 @use './styles/scss/global-style' as *;
+
+.atu {
+  & > content {
+  }
+}

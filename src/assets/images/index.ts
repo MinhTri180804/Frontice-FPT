@@ -10,6 +10,7 @@ import emptySolution from './empty-solution.svg';
 import emptyAuthentication from './authentication-empty.svg';
 import notFoundImage from './404-notFound-error.svg';
 import unauthorizedImage from './401-unauthorized.svg';
+import emptyComment from './EmptyComment.svg';
 export {
   GithubLogo,
   GoogleLogo,
@@ -23,4 +24,5 @@ export {
   emptyAuthentication,
   notFoundImage,
   unauthorizedImage,
+  emptyComment,
 };

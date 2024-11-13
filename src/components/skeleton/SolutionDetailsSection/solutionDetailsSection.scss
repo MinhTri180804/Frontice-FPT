@@ -1,0 +1,52 @@
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
+
+.skeleton__solution-details-section {
+  margin: 32px 0;
+  & > .actions {
+    width: 100%;
+    @include grid(12, none, 24px);
+    margin: 32px 0;
+
+    & > div {
+      @include skeleton();
+      height: 67px;
+    }
+
+    & > div:first-child {
+      cursor: pointer;
+      width: 100%;
+      grid-column: span 5;
+      & > .button-container {
+        width: 100%;
+      }
+    }
+
+    & div:last-child {
+      cursor: pointer;
+      width: 100%;
+      grid-column: span 7;
+      & > .button-container {
+        width: 100%;
+      }
+    }
+  }
+
+  & > .content {
+    @include grid(12, none, 24px);
+    height: 542px;
+
+    & > div {
+      @include skeleton();
+      height: 100%;
+    }
+
+    & > .solution__details-content {
+      grid-column: span 8;
+    }
+
+    & > .author__of-solution {
+      grid-column: span 4;
+    }
+  }
+}

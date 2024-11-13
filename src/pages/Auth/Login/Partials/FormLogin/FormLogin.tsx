@@ -42,7 +42,7 @@ const FormLogin: FC = () => {
       <Input
         {...register('password', aboutOfPassword.rule)}
         message={errors.email?.message}
-        status={errors.email && 'error'}
+        status={errors.password && 'error'}
         label={aboutOfPassword.name}
         placeholder={`${t('Placeholder.Password')}...`}
         type="password"

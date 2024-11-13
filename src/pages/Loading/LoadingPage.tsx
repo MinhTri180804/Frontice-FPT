@@ -1,4 +1,4 @@
-const Loading: React.FC = () => {
+const Loading: React.FC = ({ data }) => {
   return <div className="loading-container"></div>;
 };
 

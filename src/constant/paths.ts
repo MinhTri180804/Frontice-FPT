@@ -62,6 +62,8 @@ const paths = {
       getAll: '/solutions/challenge',
       getDetails: `/solutions/challenge/get`,
       getSolutionsOfChallenge: `/solutions/challenges`,
+      interaction: '/interaction',
+      comment: '/comment',
     },
     taskee: {
       getInformation: '/taskees',
@@ -101,6 +103,12 @@ const paths = {
     tasks: 'tasks',
     informationTaskee: 'informationTaskee',
     getAllSolutionTaskOfMe: 'my-solution-task',
+    solutionDetails: 'solution-details',
+    commentsOfSolution: 'comment-of-solution',
+  },
+
+  MUTATION_KEY: {
+    remove_comment: 'remove-comment',
   },
 };
 
