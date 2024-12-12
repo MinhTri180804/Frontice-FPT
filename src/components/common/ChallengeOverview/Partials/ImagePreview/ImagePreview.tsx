@@ -1,6 +1,5 @@
 import './imagePreview.scss';
-import { FC, useState } from 'react';
-import OptionImagePreview from '../OptionImagePreview';
+import { FC } from 'react';
 
 interface IImagePreviewProps {
   imageURL: string;

@@ -5,10 +5,10 @@ import { toast } from 'react-toastify';
 import avatarAuthor from '../../../asset/images/avatar.png';
 import solutionService from '../../../services/solutionService';
 import { useAuthStore } from '../../../store/authStore';
-import useSelfCommentsStore from '../../../store/seftCommentsStore';
-import { ICommentEntity } from '../../../types/entity/comment';
+import { ICommentEntity } from '../../../tpes/entity/comment';
 import Button from '../Button';
 import './Comment.scss';
+import useSelfCommentsStore from '../../../store/seftCommentsStore';
 
 interface ICommentProps {
   parentComment?: string;
@@ -101,12 +101,14 @@ const IComment: React.FC<ICommentProps> = ({
     return mutationComment.mutate();
   };
 
+  console.log('avatar: ', profile);
+
   return (
     <>
       <div className="container-comment">
         <div className="main-comment">
           <div className="image">
-            <img src={avatarAuthor} alt="" />
+            <img src={profile?.image || avatarAuthor} alt="" />
           </div>
           <div className="input-text">
             <textarea
