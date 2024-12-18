@@ -1,6 +1,6 @@
 import { UseFormSetError } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContentProps } from 'react-toastify';
 import { paths } from '../../../../../constant';
 import authService from '../../../../../services/authServices';
@@ -15,21 +15,23 @@ interface IHandleRegisterFormMethod {
 const useRegisterFormLogic = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const emailRegister = location.state?.emailRegister || null;
 
   const handleRegisterForm = async (
     dataBody: IHandleRegisterFormMethod['dataBody'],
     setError: IHandleRegisterFormMethod['setError'],
   ) => {
+    if (!emailRegister) {
+      return;
+    }
+
     return toast.promise(
       authService
-        .signUp(dataBody)
-        .then((response) => {
-          const URL_REDIRECT = `${paths.auth}/${paths.otp}`;
-          navigate(URL_REDIRECT, {
-            state: {
-              emailSignUp: response.data.email,
-            },
-          });
+        .signUp({ ...dataBody, email: emailRegister })
+        .then(() => {
+          const URL_REDIRECT = `${paths.auth}/${paths.login}`;
+          navigate(URL_REDIRECT);
 
           const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.Register.success')}`;
           return MESSAGE_SUCCESS;

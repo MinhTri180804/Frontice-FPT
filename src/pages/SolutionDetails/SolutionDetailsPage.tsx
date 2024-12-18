@@ -9,6 +9,7 @@ import solutionService from '../../services/solutionService';
 import { SolutionDetailsSection } from './Partials';
 import Feedback from './Partials/Feedback/Feedback';
 import './SolutionDetailsPage.scss';
+import { useAuthStore } from '../../store/authStore';
 
 type IUseNavigate = {
   solutionId: string;
@@ -16,6 +17,7 @@ type IUseNavigate = {
 
 const SolutionDetails: React.FC = () => {
   const navigate = useNavigate();
+  const profile = useAuthStore((state) => state.profile);
   const { solutionId } = useParams<IUseNavigate>();
 
   useEffect(() => {
@@ -60,7 +62,39 @@ const SolutionDetails: React.FC = () => {
             <SolutionDetailsSection solutionDetailsData={solutionDetailsData} />
           )}
         </ConditionWrapper>
-
+        <ConditionWrapper
+          condition={
+            Boolean(profile?.gold_account) &&
+            Boolean(solutionDetailsData?.mentor_feedback)
+          }
+        >
+          <section className="section__feedback-mentor">
+            <div className="title">Góp ý của mentor</div>
+            <div className="feedback_component">
+              <div className="author">
+                <div className="image">
+                  <img
+                    src={
+                      solutionDetailsData?.mentor_feedback?.admin_feedback
+                        .image ||
+                      'https://img.freepik.com/premium-vector/man-empty-avatar-casual-business-style-vector-photo-placeholder-social-networks-resumes_885953-434.jpg'
+                    }
+                    alt=""
+                  />
+                </div>
+                <div className="name">
+                  {
+                    solutionDetailsData?.mentor_feedback?.admin_feedback
+                      .fullname
+                  }
+                </div>
+              </div>
+              <div className="value">
+                {solutionDetailsData?.mentor_feedback?.feedback}
+              </div>
+            </div>
+          </section>
+        </ConditionWrapper>
         {solutionId && <Feedback solutionId={solutionId} />}
       </div>
     </>

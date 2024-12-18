@@ -3,12 +3,17 @@ import { Button } from '../../../../components/common';
 import { ConditionWrapper } from '../../../../components/wrapper';
 import { IProfileEntity } from '../../../../types/entity';
 import './BannerWithInfo.scss';
+import { handleClickNewTab } from '../../../../utils/helper';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface BannerWithInfoProps {
   profileData: IProfileEntity;
 }
 
 const BannerWithInfo: React.FC<BannerWithInfoProps> = ({ profileData }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div className="banner-with-info">
       <figure className="user">
@@ -38,17 +43,18 @@ const BannerWithInfo: React.FC<BannerWithInfoProps> = ({ profileData }) => {
             <div className="action">
               <Button
                 styleType="secondary"
-                label="View CV"
+                label={`${t('ViewCv')}`}
                 iconPosition="left"
                 buttonSize="small"
+                disabled={!profileData.cv}
                 Icon={() => <PlusIcon />}
+                onClick={() => handleClickNewTab(profileData.cv as string)}
               />
               <Button
                 styleType="primary"
-                label="Follow"
-                iconPosition="right"
+                label={t('Setting')}
+                onClick={() => navigate('/setting')}
                 buttonSize="small"
-                Icon={() => <PlusIcon />}
               />
             </div>
           </div>
@@ -64,30 +70,25 @@ const BannerWithInfo: React.FC<BannerWithInfoProps> = ({ profileData }) => {
           </div>
           <div className="user-info-icon">
             <div className="statistic">
-              <div className="title">Tham gia</div>
+              <div className="title">{t('Join')}</div>
               <div className="value">
-                {profileData.challengeJoined} challenge
+                {profileData.challengeJoined} {t('Challenge')}
               </div>
             </div>
             <div className="statistic">
-              <div className="title">Chưa hoàn thành</div>
+              <div className="title">{t('NonSubmitted')}</div>
               <div className="value">
-                {profileData.pendingChallenges} challenge
+                {profileData.pendingChallenges} {t('Challenge')}
               </div>
             </div>
             <div className="statistic">
-              <div className="title">Hoàn thành</div>
+              <div className="title">{t('Submitted')}</div>
               <div className="value">
                 {profileData.submittedChallenges} challenge
               </div>
             </div>
-        </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-            odit, veniam quas sit blanditiis illo veritatis adipisci odio
-            recusandae perferendis modi dolor sint commodi in cupiditate at
-            nostrum error quae?
-          </p>
+          </div>
+          <p>{profileData.bio ? profileData.bio : 'Chưa có tiểu sử'}</p>
         </figcaption>
       </figure>
     </div>

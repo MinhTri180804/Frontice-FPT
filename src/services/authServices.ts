@@ -45,9 +45,7 @@ const authService: IAuthService = {
   },
 
   sendOTP: (data: ISendOtpRequest) => {
-    return axiosClient.post(
-      `${BASE_URL}${paths.API.AUTH.send_otp}?gmail=${data.gmail}`,
-    );
+    return axiosClient.post(`${BASE_URL}${paths.API.AUTH.send_otp}`, data);
   },
 
   verifyEmailSignup: (data: IVerifyEmailRequest) => {
@@ -98,6 +96,34 @@ const authService: IAuthService = {
 
   loginGithub: () => {
     return axiosClient.get(`api/auth/github`);
+  },
+
+  paracing: () => {
+    return axiosClient.get('api/subscription');
+  },
+
+  uploadCV: (cv: File) => {
+    const formData = new FormData();
+    formData.append('cv', cv);
+    return axiosClient.post('/api/auth/upload/cv', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
+
+  uploadImage: (image: File) => {
+    const formData = new FormData();
+    formData.append('image', image);
+    return axiosClient.post('/api/auth/upload/image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
+
+  updateProfile: (data) => {
+    return axiosClient.put('/api/auth/update', data);
   },
 };
 

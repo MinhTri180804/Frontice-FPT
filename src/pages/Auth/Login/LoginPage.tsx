@@ -1,15 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Line } from '../../../components/common/Line';
 import { paths } from '../../../constant';
+import authService from '../../../services/authServices';
 import { SocialAuthButton } from '../Partials/SocialAuthButton';
 import './login.scss';
 import { FormLogin } from './Partials/FormLogin';
-import authService from '../../../services/authServices';
 
 const Login: React.FC = () => {
-  const handleLoginGoogle = () => {
-    console.log('login google');
-  };
+  const { t } = useTranslation();
 
   const handleLoginGithub = async () => {
     return await authService.loginGithub();
@@ -18,22 +17,19 @@ const Login: React.FC = () => {
   return (
     <div className="login__page-container">
       <div className="heading">
-        <div className="title">Sign In Account</div>
+        <div className="title">{t('Login')}</div>
 
-        <div className="sub-title">
-          Enter your email and password to login application
-        </div>
+        <div className="sub-title">{t('LoginDescription')}</div>
       </div>
 
       <div className="content">
         <div className="method__social">
-          <SocialAuthButton social="google" eventClick={handleLoginGoogle} />
           <SocialAuthButton social="github" eventClick={handleLoginGithub} />
         </div>
 
         <div className="or">
           <Line />
-          <div className="or-text">or</div>
+          <div className="or-text">{t('OR')}</div>
           <Line />
         </div>
 
@@ -42,8 +38,10 @@ const Login: React.FC = () => {
 
           <div className="other">
             <span>
-              You don't have an account yet?
-              <Link to={`${paths.auth}/${paths.register}`}>Register</Link>
+              {t('YouDontHaveAccount')}
+              <Link to={`${paths.auth}/${paths.emailRegister}`}>
+                {t('Register')}
+              </Link>
             </span>
           </div>
         </div>

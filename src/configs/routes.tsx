@@ -3,6 +3,7 @@ import { Outlet, RouteObject } from 'react-router-dom';
 import { AppLayout } from '../components/layout/app';
 import { AuthLayout } from '../components/layout/auth';
 import GuestOnlyRoute from '../components/wrapper/GuestOnlyRoute';
+import PrivateRoute from '../components/wrapper/PrivateRoute';
 import { paths } from '../constant';
 import {
   ChallengeDetailsPage,
@@ -17,12 +18,12 @@ import {
   RegisterPage,
   ResetPasswordPage,
 } from '../pages/Auth';
+import { EmailRegisterPage } from '../pages/Auth/EmailRegister';
 import OtpPage from '../pages/Auth/OTP/OtpPage';
 import { NotFoundPage } from '../pages/ErrorPage/NotFound';
-import PrivateRoute from '../components/wrapper/PrivateRoute';
-import { TaskDetailsPage } from '../pages/TaskDetails';
-import SubmitSolutionTaskPage from '../pages/SubmitSolutionTask/SubmitSolutionTask';
 import { Pracing } from '../pages/Pracing';
+import SubmitSolutionTaskPage from '../pages/SubmitSolutionTask/SubmitSolutionTask';
+import { TaskDetailsPage } from '../pages/TaskDetails';
 
 const ProfilePage = React.lazy(() => import('../pages/Profile'));
 const SolutionDetailsPage = React.lazy(
@@ -172,6 +173,10 @@ const extendedRoutesAuth: RouteObject[] = [
   {
     path: paths.resetPassword,
     element: <ResetPasswordPage />,
+  },
+  {
+    path: paths.emailRegister,
+    element: <EmailRegisterPage />,
   },
 ];
 

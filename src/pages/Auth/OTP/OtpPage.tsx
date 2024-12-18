@@ -42,6 +42,7 @@ const OtpPage: FC = () => {
       },
     );
   };
+
   return (
     <div className="otp__page-container">
       <div className="heading">

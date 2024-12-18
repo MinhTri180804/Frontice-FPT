@@ -34,13 +34,8 @@ const Feedback: React.FC<IFeedbackProps> = ({ solutionId }) => {
   return (
     <>
       <div className="container-feedback" id="feedback-solution">
-        
         <div className="header">
-          <h1>Feedback </h1>
-          <div className="action">
-            <div className="mentor">Mentor</div>
-            <div className="other">Other</div>
-          </div>
+          <h1>{t('Comment.Text')} </h1>
         </div>
         <div className="list-feedback">
           <div className="input-feedback">

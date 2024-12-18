@@ -1,14 +1,15 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import avatarAuthor from '../../../asset/images/avatar.png';
 import solutionService from '../../../services/solutionService';
 import { useAuthStore } from '../../../store/authStore';
-import { ICommentEntity } from '../../../tpes/entity/comment';
 import Button from '../Button';
 import './Comment.scss';
 import useSelfCommentsStore from '../../../store/seftCommentsStore';
+import { paths } from '../../../constant';
+import { ICommentEntity } from '../../../types/entity/comment';
 
 interface ICommentProps {
   parentComment?: string;
@@ -22,6 +23,7 @@ const IComment: React.FC<ICommentProps> = ({
   handleReplyCommentSuccess,
 }) => {
   const [commentValue, setCommentValue] = useState<string>('');
+  const queryClient = useQueryClient();
   const createCommentPending = useSelfCommentsStore(
     (state) => state.createCommentPending,
   );
@@ -56,6 +58,9 @@ const IComment: React.FC<ICommentProps> = ({
       if (response) {
         addToComment(response.data, 'success');
         toast.success(t('Comment.Success'));
+        queryClient.refetchQueries({
+          queryKey: [paths.QUERY_KEY.solutionDetails, solutionId],
+        });
         return;
       }
 
@@ -80,6 +85,9 @@ const IComment: React.FC<ICommentProps> = ({
       if (handleReplyCommentSuccess && parentComment) {
         toast.success(t('CommentReply.Success'));
         handleReplyCommentSuccess(response.data);
+        queryClient.refetchQueries({
+          queryKey: [paths.QUERY_KEY.solutionDetails, solutionId],
+        });
       } else {
         throw new Error('Parent Comment not found !A');
       }

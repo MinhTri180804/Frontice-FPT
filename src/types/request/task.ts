@@ -36,3 +36,7 @@ export interface ISubmitSolutionTaskRequest {
 export interface ISubmitSolutionTaskParams {
   taskId: string;
 }
+
+export interface IGetAllTaskSolutionCommentParams {
+  taskId: string;
+}

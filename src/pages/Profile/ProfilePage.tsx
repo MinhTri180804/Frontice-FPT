@@ -13,14 +13,17 @@ import solutionService from '../../services/solutionService';
 import { ISolutionSubmittedResponse } from '../../types/response/solution';
 import BannerWithInfo from './Partials/BannerWithInfo';
 import './ProfilePage.scss';
+import { useAuthStore } from '../../store/authStore';
 const Profile: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const updateProfile = useAuthStore((state) => state.updateProfile);
   const { isPending: pendingProfile, data: dataProfile } = useQuery({
     queryKey: [paths.QUERY_KEY.meInfo],
     queryFn: async () => {
       const response = await authService.info();
       const responseData = response.data;
+      updateProfile(responseData);
       return responseData;
     },
   });
@@ -41,7 +44,7 @@ const Profile: React.FC = () => {
 
   return (
     <div className="profile-container">
-      <h4>Profile Page</h4>
+      <h4>{t('Profile')}</h4>
       <ConditionWrapper
         condition={!pendingProfile}
         fallback={() => {
@@ -51,7 +54,7 @@ const Profile: React.FC = () => {
         {dataProfile && <BannerWithInfo profileData={dataProfile} />}
       </ConditionWrapper>
       <Section
-        title="Solution"
+        title={t('Solutions')}
         titlePosition="left"
         Icon={() => <CommandLineIcon width={24} height={24} />}
         iconPosition="left"

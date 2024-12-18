@@ -63,7 +63,6 @@
         & > .point-panel {
           display: flex;
           justify-content: space-between;
-          padding-bottom: 24px;
           @include typography_BVNPro-desktop-body-3;
           & > .score-solution {
             text-transform: capitalize;
@@ -112,6 +111,7 @@
       & > .actions {
         @include flex-row(12px, flex-start, center);
         width: 100%;
+        flex-wrap: wrap;
         overflow: hidden;
         & > button {
           width: 100%;

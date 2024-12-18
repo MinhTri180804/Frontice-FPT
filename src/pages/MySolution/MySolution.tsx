@@ -1,4 +1,3 @@
-import { PlusIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
 import classNames from 'classnames';
 import React from 'react';
@@ -12,9 +11,9 @@ import { SolutionSkeleton } from '../../components/skeleton';
 import { ConditionWrapper } from '../../components/wrapper';
 import { paths } from '../../constant';
 import solutionService from '../../services/solutionService';
+import { useAuthStore } from '../../store/authStore';
 import { ISolutionSubmittedResponse } from '../../types/response/solution';
 import './MySolution.scss';
-import { useAuthStore } from '../../store/authStore';
 
 const MySolutionPage: React.FC = () => {
   const { t } = useTranslation();
@@ -47,14 +46,6 @@ const MySolutionPage: React.FC = () => {
       <div className="container-solution-list-page">
         <div className="header">
           <div className="title">{t('Page.MySolution.Title')}</div>
-          <Button
-            style={{ width: 'fit-content' }}
-            label="Filter"
-            buttonSize="small"
-            iconPosition="left"
-            styleType="secondary"
-            Icon={() => <PlusIcon />}
-          />
         </div>
 
         <div className={mySolutionListClass}>

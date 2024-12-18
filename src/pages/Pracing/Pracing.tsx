@@ -1,13 +1,32 @@
 import { FC } from 'react';
 import { axiosClient } from '../../axios';
 import './pracing.scss';
+import { useQuery } from '@tanstack/react-query';
+import authService from '../../services/authServices';
+import { ConditionWrapper } from '../../components/wrapper';
+import { useTranslation } from 'react-i18next';
+import { formatCurrencyVND } from '../../utils/helper';
 
 const Pracing: FC = () => {
-  const handleUpdatePremium = async () => {
+  const { t } = useTranslation();
+  const { isFetching, data } = useQuery({
+    queryKey: ['pracing'],
+    queryFn: async () => {
+      try {
+        const response = await authService.paracing();
+        const responseData = response.data.services[0];
+        return responseData;
+      } catch (error) {
+        console.log('error: ', error);
+      }
+    },
+  });
+
+  const handleUpdatePremium = async (id: string) => {
     // TODO: implement handle register premium for account
     try {
       const data = {
-        service_id: 1,
+        service_id: id,
         code: '',
       };
       const response = await axiosClient.post(
@@ -20,6 +39,7 @@ const Pracing: FC = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="background">
       <div className="container">
@@ -30,56 +50,80 @@ const Pracing: FC = () => {
               alt=""
               className="pricing-img"
             />
-            <h2 className="pricing-header">No Time</h2>
+            <h2 className="pricing-header">{t('VV')}</h2>
             <ul className="pricing-features">
-              <li className="pricing-features-item">Custom domains</li>
-              <li className="pricing-features-item">
-                Sleeps after 30 mins of inactivity
+              <li
+                className="pricing-features-item"
+                style={{ textDecoration: 'line-through', color: 'gray' }}
+              >
+                Tham gia các thử thách premium
+              </li>
+              <li
+                className="pricing-features-item"
+                style={{ textDecoration: 'line-through', color: 'gray' }}
+              >
+                Được góp ý bởi mentor
               </li>
             </ul>
             <span className="pricing-price">Free</span>
           </div>
 
-          <div className="pricing-plan">
-            <img
-              src="https://s28.postimg.cc/ju5bnc3x9/plane.png"
-              alt=""
-              className="pricing-img"
-            />
-            <h2 className="pricing-header">6 Months</h2>
-            <ul className="pricing-features">
-              <li className="pricing-features-item">Never sleeps</li>
-              <li className="pricing-features-item">
-                Multiple workers for more powerful apps
-              </li>
-            </ul>
-            <span className="pricing-price">$150</span>
-            <button
-              className="pricing-button is-featured"
-              onClick={handleUpdatePremium}
-            >
-              Update
-            </button>
-          </div>
-
-          <div className="pricing-plan">
-            <img
-              src="https://s21.postimg.cc/tpm0cge4n/space-ship.png"
-              alt=""
-              className="pricing-img"
-            />
-            <h2 className="pricing-header">1 Year</h2>
-            <ul className="pricing-features">
-              <li className="pricing-features-item">Dedicated</li>
-              <li className="pricing-features-item">
-                Simple horizontal scalability
-              </li>
-            </ul>
-            <span className="pricing-price">$400</span>
-            <button className="pricing-button" onClick={handleUpdatePremium}>
-              update
-            </button>
-          </div>
+          <ConditionWrapper condition={!isFetching}>
+            {data?.slice(0, 2).map((item, index) => (
+              <div className="pricing-plan" key={index}>
+                <img
+                  src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png"
+                  alt=""
+                  className="pricing-img"
+                />
+                <h2 className="pricing-header">{item.name}</h2>
+                <ul className="pricing-features">
+                  <li className="pricing-features-item">
+                    Tham gia các thử thách premium
+                  </li>
+                  <li className="pricing-features-item">
+                    Được góp ý bởi mentor
+                  </li>
+                </ul>
+                <span className="pricing-price" style={{ fontSize: '20px' }}>
+                  {formatCurrencyVND(item.price)} VNĐ
+                </span>
+                <button
+                  className="pricing-button is-featured"
+                  onClick={() => handleUpdatePremium(item.id)}
+                >
+                  {t('RegisterPracing')}
+                </button>
+              </div>
+            ))}
+          </ConditionWrapper>
+        </div>
+        <div className="panel pricing-table">
+          {data?.slice(2).map((item, index) => (
+            <div className="pricing-plan" key={index}>
+              <img
+                src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png"
+                alt=""
+                className="pricing-img"
+              />
+              <h2 className="pricing-header">{item.name}</h2>
+              <ul className="pricing-features">
+                <li className="pricing-features-item">
+                  Tham gia các thử thách premium
+                </li>
+                <li className="pricing-features-item">Được góp ý bởi mentor</li>
+              </ul>
+              <span className="pricing-price" style={{ fontSize: '20px' }}>
+                {formatCurrencyVND(item.price)} VNĐ
+              </span>
+              <button
+                className="pricing-button is-featured"
+                onClick={() => handleUpdatePremium(item.id)}
+              >
+                {t('RegisterPracing')}
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </div>

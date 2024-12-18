@@ -1,5 +1,10 @@
 import { IBaseResponse } from '../base';
 import {
+  IPracingResponse,
+  IUpdateProfileRequest,
+  IUploadImageResponse,
+} from '../entity/pracing';
+import {
   IForgotPasswordRequest,
   ILoginRequest,
   IRefreshTokenRequest,
@@ -54,4 +59,10 @@ export interface IAuthService {
   resendOtp: (data: IResendOtpRequest) => Promise<IBaseResponse<[]>>;
 
   loginGithub: () => Promise<void>;
+
+  paracing: () => Promise<IBaseResponse<IPracingResponse>>;
+
+  uploadImage: (avatar: File) => Promise<IBaseResponse<IUploadImageResponse>>;
+  updateProfile: (data: IUpdateProfileRequest) => Promise<IBaseResponse<null>>;
+  uploadCV: (cv: File) => Promise<IBaseResponse<IUploadImageResponse>>;
 }

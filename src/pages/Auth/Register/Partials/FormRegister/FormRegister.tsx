@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Button, Input } from '../../../../../components/common';
 import { IRegisterRequest } from '../../../../../types/request/register';
 import useFormRegister from './formRegister.hook';
@@ -31,6 +32,13 @@ const FormRegister: FC = () => {
   });
   const { handleRegisterForm } = useRegisterFormLogic();
   const { t } = useTranslation();
+  const location = useLocation();
+
+  const emailRegister = location.state?.emailRegister || null;
+
+  if (!emailRegister) {
+    return <Navigate to={'/'} replace />;
+  }
 
   const handleRegister: SubmitHandler<IRegisterRequest> = async (data) => {
     await handleRegisterForm(data, setError);
@@ -69,15 +77,20 @@ const FormRegister: FC = () => {
         message={errors.phone?.message}
         label={aboutOfPhone.name}
         placeholder="Enter your phone..."
-        type="number"
+        type="string"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const value = e.target.value;
+          if (!/^\d*$/.test(value)) {
+            e.target.value = value.replace(/\D/g, '');
+          }
+        }}
       />
 
       <Input
-        {...register('email', aboutOfEmail.rule)}
-        status={errors.email && 'error'}
-        message={errors.email?.message}
         label={aboutOfEmail.name}
-        placeholder="Enter your email..."
+        value={emailRegister}
+        defaultValue={emailRegister}
+        disabled
       />
 
       <Input

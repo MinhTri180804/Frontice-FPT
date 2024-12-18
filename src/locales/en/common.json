@@ -169,7 +169,7 @@
     "NewPassword": "New password",
     "ConfirmPassword": "Confirm password",
     "Email": "E-mail",
-    "FirstName": "First name",
+    "FirstName": "First Name",
     "LastName": "Last name",
     "Password": "Password",
     "Nickname": "",
@@ -293,7 +293,8 @@
   "ReplyComment": "Reply to comments",
   "Comment": {
     "Success": "Comment successful",
-    "Error": "Reply to comment failed"
+    "Error": "Reply to comment failed",
+    "Text": "Comment"
   },
   "Remove": {
     "Comment": "Erase"
@@ -306,5 +307,19 @@
   },
   "ViewMore": {
     "Comments": "See more comment responses"
-  }
+  },
+  "ViewCv": "See CV",
+  "Join": "Join",
+  "Challenge": "Challenge",
+  "NonSubmitted": "Unfinished",
+  "Submitted": "Completed",
+  "Solutions": "My solutions",
+  "Register": "Register an account",
+  "EnterEmailRegister": "Enter the email you want to register for an account",
+  "PreviousPage": "Return to previous page",
+  "LoginDescription": "Enter email and password to log in",
+  "YouDontHaveAccount": "Don't have an account yet?",
+  "OR": "Or",
+  "RegisterPracing": "Buy",
+  "UploadCV": "Upload your CV"
 }

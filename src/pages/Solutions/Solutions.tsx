@@ -1,4 +1,3 @@
-import { PlusIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
 import classNames from 'classnames';
 import React, { useState } from 'react';
@@ -23,7 +22,7 @@ const Solutions: React.FC = () => {
   const { data: solutionsData, isLoading } = useQuery({
     queryKey: [paths.QUERY_KEY.solutionList],
     queryFn: async () => {
-      const response = await solutionService.getAll({ page });
+      const response = await solutionService.getAll({ page, per_page: 100 });
       const responseData = response?.data?.solutions;
       return responseData || [];
     },
@@ -47,14 +46,6 @@ const Solutions: React.FC = () => {
       <div className="container-solution-list-page">
         <div className="header">
           <div className="title">{t('Page.Solutions.Title')}</div>
-          <Button
-            style={{ width: 'fit-content' }}
-            label="Filter"
-            buttonSize="small"
-            iconPosition="left"
-            styleType="secondary"
-            Icon={() => <PlusIcon />}
-          />
         </div>
 
         {/* Condition authentication */}

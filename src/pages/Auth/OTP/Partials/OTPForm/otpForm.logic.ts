@@ -30,7 +30,11 @@ const useOtpFormLogic = () => {
       authService
         .verifyEmailSignup(dataBody)
         .then((response) => {
-          navigate(`${paths.auth}/${paths.login}`);
+          navigate(`${paths.auth}/${paths.register}`, {
+            state: {
+              emailRegister: dataBody.email,
+            },
+          });
           const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.OTP.success')}`;
           return response.message || MESSAGE_SUCCESS;
         })

@@ -10,6 +10,7 @@ const paths = {
   forgotPassword: 'forgot-password',
   otp: 'otp',
   resetPassword: 'reset-password',
+  emailRegister: 'email-register',
 
   // protected path
   challengesSystem: '/challenges-system',
@@ -41,8 +42,8 @@ const paths = {
       logout: '/logout',
       forgot_password: '/forgotPassword/send',
       reset_password: '/forgotPassword/reset',
-      send_otp: '/otp-sending',
-      verify_email: '/verify',
+      send_otp: '/send-otp',
+      verify_email: '/verify-otp',
       verify_forgot_password_otp: '/forgotPassword/verify',
       refreshToken: '/refresh',
       resendOtp: 'otp-resend',

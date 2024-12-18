@@ -6,10 +6,6 @@ import { FormRegister } from './Partials/FormRegister';
 import './registerPage.scss';
 
 const Register: React.FC = () => {
-  const handleRegisterGoogle = () => {
-    console.log('Register google');
-  };
-
   const handleRegisterGithub = () => {
     console.log('Register github');
   };
@@ -26,7 +22,6 @@ const Register: React.FC = () => {
 
       <div className="content">
         <div className="method__social">
-          <SocialAuthButton social="google" eventClick={handleRegisterGoogle} />
           <SocialAuthButton social="github" eventClick={handleRegisterGithub} />
         </div>
 

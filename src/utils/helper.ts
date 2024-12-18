@@ -25,6 +25,19 @@ const checkAuthentication: () => boolean = () => {
   return true;
 };
 
+const formatCurrencyVND = (amount: number | string): string => {
+  if (isNaN(Number(amount))) return '0';
+
+  return amount
+    .toLocaleString('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+      minimumFractionDigits: 0,
+    })
+    .replace('₫', '')
+    .trim();
+};
+
 const checkRefreshTokenValidity: (refreshToken: string) => boolean = (
   refreshToken,
 ) => {
@@ -71,4 +84,5 @@ export {
   handleDownloadFile,
   logOnDev,
   handleClickNewTab,
+  formatCurrencyVND,
 };

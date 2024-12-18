@@ -155,8 +155,8 @@
     "NewPassword": "Mật khẩu mới",
     "ConfirmPassword": "Xác nhận mật khẩu",
     "Email": "Email",
-    "FirstName": "Tên",
-    "LastName": "Họ",
+    "FirstName": "Họ",
+    "LastName": "Tên",
     "Password": "Mật khẩu",
     "Nickname": "Biệt Danh",
     "Phone": "Số điện thoại",
@@ -308,7 +308,8 @@
   "ReplyComment": "Trả lời bình luận",
   "Comment": {
     "Success": "Bình luận thành công",
-    "Error": "Trả lời bình luận thất bại"
+    "Error": "Trả lời bình luận thất bại",
+    "Text": "Bình luận"
   },
   "Remove": {
     "Comment": "Xóa"
@@ -324,5 +325,21 @@
   },
   "ViewMore": {
     "Comments": "Xem thêm phản hồi bình luận"
-  }
+  },
+  "ViewCv": "Xem CV",
+  "Join": "Tham gia",
+  "Challenge": "Thử thách",
+  "NonSubmitted": "Chưa hoàn thành",
+  "Submitted": "Đã hoàn thành",
+  "Solutions": "Các giải pháp của tôi",
+  "Register": "Đăng kí tài khoản",
+  "EnterEmailRegister": "Nhập email mà bạn muốn đăng kí tài khoản",
+  "PreviousPage": "Quay lại trang trước",
+  "Login": "Đăng nhập",
+  "LoginDescription": "Nhập email và mật khẩu để đăng nhập",
+  "YouDontHaveAccount": "Bạn chưa có tài khoản ?",
+  "OR": "Hoặc",
+  "VV": "Vĩnh viễn",
+  "RegisterPracing": "Đăng kí gói",
+  "UploadCV": "Đăng tải CV"
 }
