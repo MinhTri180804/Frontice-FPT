@@ -1,8 +1,16 @@
+import { useParams } from 'react-router-dom';
 import { Button } from '../../../../components/common';
 import BoxContent from '../BoxContent';
+import useChallengeDetailsDownloadLogic from './challengeDetailsDownload.logic';
 import './challengeDetailsDownload.scss';
 
 const ChallengeDetailsDownload = () => {
+  const { challengeId } = useParams();
+  const { handleDownloadAssets, handleDownloadFigma } =
+    useChallengeDetailsDownloadLogic();
+
+  if (!challengeId) return;
+
   return (
     <div className="challenge__details-download-tab">
       <BoxContent
@@ -18,6 +26,7 @@ const ChallengeDetailsDownload = () => {
           label="Download starter"
           styleType="primary"
           buttonSize="normal"
+          onClick={() => handleDownloadAssets({ challengeId })}
         />
       </BoxContent>
       <BoxContent
@@ -33,6 +42,7 @@ const ChallengeDetailsDownload = () => {
           label="Download design"
           styleType="primary"
           buttonSize="normal"
+          onClick={() => handleDownloadFigma({ challengeId })}
         />
       </BoxContent>
     </div>

@@ -1,11 +1,25 @@
-import { Button } from '../../../../components/common';
 import {
   CodeBracketSquareIcon,
   ComputerDesktopIcon,
-  ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
+import { Button } from '../../../../components/common';
 import './Action.scss';
-const Action: React.FC = () => {
+
+interface IActionProps {
+  urlGithub?: string;
+  urlLiveGithub?: string;
+}
+
+const Action: React.FC<IActionProps> = ({
+  urlGithub = null,
+  urlLiveGithub = null,
+}) => {
+  const handleClickNewTab = (url: string) => {
+    const newTab = window.open(url, '_blank');
+    if (newTab) {
+      newTab.focus();
+    }
+  };
   return (
     <>
       <div className="container-action">
@@ -17,6 +31,8 @@ const Action: React.FC = () => {
               styleType="secondary"
               Icon={() => <CodeBracketSquareIcon />}
               iconPosition="left"
+              disabled={urlGithub === null}
+              onClick={() => handleClickNewTab(urlGithub as string)}
             />
           </div>
           <div className="view-preview-demo">
@@ -26,15 +42,9 @@ const Action: React.FC = () => {
               styleType="primary"
               Icon={() => <ComputerDesktopIcon />}
               iconPosition="left"
+              disabled={urlLiveGithub === null}
+              onClick={() => handleClickNewTab(urlLiveGithub as string)}
             />
-          </div>
-          <div className="button-report">
-            <button>
-              <div>
-                <ExclamationTriangleIcon />
-              </div>
-              Report
-            </button>
           </div>
         </div>
       </div>

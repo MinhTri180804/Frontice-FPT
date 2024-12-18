@@ -1,0 +1,10 @@
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
+
+.solution__list {
+  @include grid(12, none, 24px, start, stretch);
+  & > div {
+    grid-column: span 3;
+    width: 100%;
+  }
+}

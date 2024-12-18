@@ -12,5 +12,6 @@ export { default as OptionSelect } from './OptionSelect';
 export { default as OptionSelectMultiple } from './OptionSelectMultiple';
 export { default as InformationAuthor } from './InformationAuthor';
 export { default as Pagination } from './Pagination';
+export { default as Task } from './Task';
 
 export { default as Section } from './Section';

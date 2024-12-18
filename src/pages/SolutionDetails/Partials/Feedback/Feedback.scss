@@ -1,11 +1,17 @@
-@use '../../../../styles/scss/utils/mixin/typography' as *;
-@use '../../../../styles/scss/utils/variables/colors' as *;
+@use '../../../../styles/scss/utils' as *;
+@use '../../../../styles/scss/flex-grid' as *;
+
 .container-feedback {
   margin-top: 32px;
   & > .header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 24px;
+
+    & > h1 {
+      @include typography_BVNPro-desktop-h4();
+    }
+
     & > .action {
       display: flex;
       gap: 24px;
@@ -26,9 +32,15 @@
   & > .list-feedback {
     width: 100%;
 
+    & > .list {
+      width: 100%;
+      @include flex-column(32px, flex-start, stretch);
+    }
+
     & > .input-feedback {
-      margin-bottom: 32px;
+      margin-bottom: 0px;
       & > div {
+        @include typography_BVNPro-custom(18px, 400, 160%);
         margin-bottom: 8px;
       }
       & > textarea {

@@ -38,10 +38,15 @@
         }
 
         & > .button__view-more {
-          grid-column: span 3;
+          grid-column: span 12;
           height: 100%;
+          width: 100%;
         }
       }
+    }
+
+    .empty__authentication {
+      grid-column: span 12 !important;
     }
   }
 }

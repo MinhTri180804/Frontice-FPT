@@ -5,17 +5,21 @@ import {
   ChallengeTechnical,
 } from '../../../../components/common';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+import { paths } from '../../../../constant';
 
 interface IChallengeIncompleteProps extends HTMLProps<HTMLDivElement> {
+  challengeId: string;
   technicalList: string[];
   name: string;
   level: string;
-  difficulty: string;
+  difficulty: string | number;
   score: string | number;
   imageURL: string;
 }
 
 const ChallengeIncomplete: FC<IChallengeIncompleteProps> = ({
+  challengeId,
   technicalList,
   name,
   level,
@@ -28,8 +32,12 @@ const ChallengeIncomplete: FC<IChallengeIncompleteProps> = ({
     'challenge__incomplete-component',
     className,
   );
+  // TODO: Implement redirect challenge details based id challenge
   return (
-    <div className={challengeIncompleteClass}>
+    <Link
+      to={`${paths.challengeDetails}/${challengeId}`}
+      className={challengeIncompleteClass}
+    >
       <div className="image">
         <img src={imageURL} alt="" />
       </div>
@@ -47,7 +55,7 @@ const ChallengeIncomplete: FC<IChallengeIncompleteProps> = ({
           <div className="label">Score</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

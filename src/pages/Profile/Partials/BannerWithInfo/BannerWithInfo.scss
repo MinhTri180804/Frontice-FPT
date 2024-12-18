@@ -40,9 +40,19 @@
         align-items: center;
         gap: 16px;
         & > .user-name {
-          & > h1 {
-            @include typography_BVNPro-desktop-body-1;
-            text-transform: capitalize;
+          & > .about {
+            @include flex-row(12px, flex-start, center);
+            & > h1 {
+              @include typography_BVNPro-desktop-body-1;
+              text-transform: capitalize;
+            }
+
+            .premium {
+              @include typography_BVNPro-desktop-body-1;
+              text-transform: capitalize;
+              color: $sunsetGlow-main;
+              font-weight: bold;
+            }
           }
           & > h2 {
             @include typography_BVNPro-desktop-body-3;
@@ -78,13 +88,14 @@
       }
       & > .user-info-icon {
         display: flex;
-        gap: 10px;
+        gap: 24px;
         align-items: center;
         @include typography_BVNPro-desktop-body-2;
-        & > .icon {
-          & > svg {
-            width: 24px;
-            height: 24px;
+        & > .statistic {
+          @include flex-row(4px, flex-start, center);
+
+          & > .value {
+            color: $saturatedSky-main;
           }
         }
       }

@@ -41,11 +41,76 @@
         "Success": "Đăng xuất tài khoản thành công",
         "Error": "Đăng xuất tài khoản thất bại",
         "Pending": "Đang thực hiện đăng xuất tài khoản"
+      },
+      "ResendOtp": {
+        "Success": "Gửi lại mã xác nhận OTP thành công",
+        "Error": "Gửi lại mã xác nhận OTP thất bại",
+        "Pending": "Đang thực hiện gửi lại mã xác nhận OTP"
       }
     },
     "Challenger": {
       "profile": {
         "error": "Xác thực thông tin tài khoản không thành công"
+      },
+      "Join": {
+        "Success": "Tham gia thử thách thành công",
+        "Error": "Tham gia thử thách thất bại"
+      },
+      "Download": {
+        "Assest": {
+          "Success": "Tài tài liệu thành công",
+          "Error": "Tải tài liệu thất bại"
+        },
+        "Figma": {
+          "Success": "Tài tài liệu thiết kế Figma thành công",
+          "Error": "Tài tài liệu thiết kế Figma thất bại"
+        }
+      }
+    },
+    "Challenge": {
+      "Download": {
+        "Figma": {
+          "Pending": "Đang tiến hành tài tài liệu thiết kế Figma"
+        },
+        "Assets": {
+          "Pending": "Đang tiến hành tải tài liệu"
+        }
+      }
+    },
+    "Solution": {
+      "Submit": {
+        "Success": "Đăng tải giải pháp thành công",
+        "Error": "Đăng tải giải pháp thất bại",
+        "Pending": "Đang thực hiện đăng tải giải pháp"
+      },
+      "Like": {
+        "Success": "Yêu thích giải pháp thành công ",
+        "Error": "Yêu thích giải pháp thất bại"
+      },
+      "Dislike": {
+        "Success": "Không thích giải pháp thành công",
+        "Error": "Không thích giái pháp thất bại"
+      },
+      "UnInteraction": {
+        "Dislike": {
+          "Error": "Hủy bỏ không yêu thích thất bại"
+        },
+        "Like": {
+          "Error": "Hủy bỏ yêu thích không thành công"
+        }
+      }
+    },
+    "Task": {
+      "Join": {
+        "Success": "Tham gia nhiệm vụ thành công",
+        "Error": "Tham gia nhiệm vụ thất bại",
+        "Peding": "Đang thực hiện tham gia nhiệm vụ"
+      }
+    },
+    "Comment": {
+      "Remove": {
+        "Success": "Xóa bình luận thành công",
+        "Error": "Xóa bình luận thất bại"
       }
     }
   },
@@ -90,11 +155,14 @@
     "NewPassword": "Mật khẩu mới",
     "ConfirmPassword": "Xác nhận mật khẩu",
     "Email": "Email",
-    "FirstName": "Tên",
-    "LastName": "Họ",
+    "FirstName": "Họ",
+    "LastName": "Tên",
     "Password": "Mật khẩu",
     "Nickname": "Biệt Danh",
-    "Phone": "Số điện thoại"
+    "Phone": "Số điện thoại",
+    "PrideOf": "Bạn tự hào nhất về điều gì, và bạn sẽ làm gì khác nhau vào lần sau?",
+    "ChallengeOvercome": "Bạn đã gặp phải những thách thức nào, và bạn đã vượt qua chúng như thế nào?",
+    "HelpWith": "Những lĩnh vực cụ thể nào trong dự án của bạn mà bạn muốn giúp đỡ?"
   },
   "Button": {
     "ResetPassword": "Đổi mật khẩu",
@@ -104,7 +172,20 @@
     "VerifyOtp": "Xác thực mã OTP",
     "Authentication": {
       "BackPrevious": "Quay về"
-    }
+    },
+    "ViewMore": {
+      "Challenges": "Xem thử thách",
+      "Default": "Xem thêm"
+    },
+    "LoginNow": "Đăng nhập ngay",
+    "Submit": {
+      "Solution": "Đăng tải giải pháp của bạn"
+    },
+    "UnlockPremium": "Nâng cấp tài khoản Premium",
+    "Challenges": "Thử thách",
+    "Solutions": "Giải Pháp",
+    "BackToHomePage": "Trở về trang chủ",
+    "GoToTasks": "Xem các nhiệm vụ"
   },
   "Checkbox": {
     "RememberAccount": "Ghi nhớ tài khoản"
@@ -146,5 +227,119 @@
   "Setting": "Cài đặt",
   "Profile": "Trang cá nhân",
   "Logout": "Đăng xuất",
-  "Point": "Điểm "
+  "Point": "Điểm ",
+  "Empty": {
+    "DontJoinedChallenge": "Bạn chưa tham gia thử thách nào",
+    "DontSubmittedChallenge": "Bạn chưa có bài giải nào",
+    "IncompleteChallenge": "Bạn không có thử thách nào chưa hoàn thành",
+    "Solution": "Bạn phải thực hiện thử thách để thấy các giáp pháp của người khác",
+    "SolutionsOfChallenge": "Chưa có giải pháp nào cho thử thách này",
+    "ChallengeSystem": "Không có thử thách nào ",
+    "SolutionTask": {
+      "Title": "Bạn chưa có giải pháp nào cho nhiệm vụ",
+      "Text": "Tham gia nhiệm vụ và nộp solution"
+    },
+    "Comment": "Chưa có ai bình luận về giải pháp này"
+  },
+  "Authentication": {
+    "Login": "Bạn chưa đăng nhập tài khoản"
+  },
+  "Section": {
+    "Overview": "Tổng quan",
+    "IncompleteChallenge": "Thử thách chưa hoàn thành",
+    "MySolution": "Giải pháp của tôi",
+    "MissionOfTasker": "Thử thách của nhà tuyển dụng",
+    "MissionOfSystem": "Thử thách của hệ thống",
+    "MySolutionChallengesSystem": "Giải pháp cho thử thách hệ thống",
+    "MySolutionTask": "Giải pháp cho nhiệm vụ"
+  },
+  "ChallengeOverview": {
+    "Error": {
+      "EnoughPoint": "Bạn không đủ điểm yêu cầu để có thể tham gia challenge này",
+      "Authentication": "Phải đăng nhập thì mới có thể tham gia thử thách",
+      "ChallengeType": "Thử thách này chỉ dành riêng cho tài khoản premium"
+    }
+  },
+  "Placeholder": {
+    "Comment": "Hãy nhập nội dung bình luận của bạn",
+    "Email": "Nhập địa chỉ email của bạn",
+    "Password": "Nhập mật khẩu của bạn",
+    "PasswordConfirmation": "Nhập mật khẩu xác nhận của bạn"
+  },
+  "Page": {
+    "Tasks": {
+      "Title": "Danh sách thử thách của nhà tuyển dụng"
+    },
+    "Challenges": {
+      "Title": "Danh sách thử thách hệ thống"
+    },
+    "SubmitSolution": {
+      "Title": "Nộp giải pháp",
+      "Form": {
+        "Title": "Gửi Thông tin giải pháp"
+      }
+    },
+    "Home": {
+      "Title": "Trang chủ"
+    },
+    "Solutions": {
+      "Title": "Danh sách giải pháp"
+    },
+    "MySolution": {
+      "Title": "Danh sách giải pháp của tôi"
+    },
+    "Unauthorized": {
+      "ErrorText": "Bạn phải đang nhập để có thể truy cập",
+      "title": "Trang này không có sẵn công khai",
+      "Description": "Để có thể truy cập bạn phải thực hiện đăng nhập đầu tiên"
+    }
+  },
+  "Account": {
+    "Update": {
+      "Premium": {
+        "Success": "Tài khoản đã được nâng cấp Premium"
+      }
+    }
+  },
+  "ForgotPassword": "Quên mật khẩu",
+  "Label": {
+    "ExpiredTime": "Hết hạn vào"
+  },
+  "ReplyComment": "Trả lời bình luận",
+  "Comment": {
+    "Success": "Bình luận thành công",
+    "Error": "Trả lời bình luận thất bại",
+    "Text": "Bình luận"
+  },
+  "Remove": {
+    "Comment": "Xóa"
+  },
+  "Edit": {
+    "Comment": "Chỉnh sửa"
+  },
+  "CommentReply": {
+    "Success": "Trả lời bình luận thành công"
+  },
+  "RepliesComment": {
+    "Notfound": "Không tìm thấy các phản hồi bình luận"
+  },
+  "ViewMore": {
+    "Comments": "Xem thêm phản hồi bình luận"
+  },
+  "ViewCv": "Xem CV",
+  "Join": "Tham gia",
+  "Challenge": "Thử thách",
+  "NonSubmitted": "Chưa hoàn thành",
+  "Submitted": "Đã hoàn thành",
+  "Solutions": "Các giải pháp của tôi",
+  "Register": "Đăng kí tài khoản",
+  "EnterEmailRegister": "Nhập email mà bạn muốn đăng kí tài khoản",
+  "PreviousPage": "Quay lại trang trước",
+  "Login": "Đăng nhập",
+  "LoginDescription": "Nhập email và mật khẩu để đăng nhập",
+  "YouDontHaveAccount": "Bạn chưa có tài khoản ?",
+  "OR": "Hoặc",
+  "VV": "Vĩnh viễn",
+  "RegisterPracing": "Đăng kí gói",
+  "UploadCV": "Đăng tải CV"
 }

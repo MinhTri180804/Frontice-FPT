@@ -12,7 +12,12 @@
 
   &.premium {
     background-color: $sunsetGlow-tints-200;
-    color: $sunsetGlow-main;
+    color: $sunsetGlow-shades-500;
+  }
+
+  &.task {
+    background-color: $timesSquareScreens-tints-200;
+    color: $timesSquareScreens-main;
   }
 
   &.free,
@@ -21,7 +26,7 @@
     color: $saturatedSky-main;
   }
   & > .value {
-    @include typography_BVNPro-custom(600, 10px, 120%);
+    @include typography_BVNPro-custom(600, 14px, 120%);
     text-transform: capitalize;
   }
 }

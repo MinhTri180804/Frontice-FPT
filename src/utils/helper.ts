@@ -25,6 +25,19 @@ const checkAuthentication: () => boolean = () => {
   return true;
 };
 
+const formatCurrencyVND = (amount: number | string): string => {
+  if (isNaN(Number(amount))) return '0';
+
+  return amount
+    .toLocaleString('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+      minimumFractionDigits: 0,
+    })
+    .replace('₫', '')
+    .trim();
+};
+
 const checkRefreshTokenValidity: (refreshToken: string) => boolean = (
   refreshToken,
 ) => {
@@ -42,4 +55,34 @@ const checkRefreshTokenValidity: (refreshToken: string) => boolean = (
   return true;
 };
 
-export { checkAuthentication, checkRefreshTokenValidity, i18nHelper };
+const handleDownloadFile = (fileUrl: string) => {
+  const link = document.createElement('a');
+  link.href = fileUrl;
+  link.setAttribute('download', '');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+const logOnDev = (message: string) => {
+  if (import.meta.env.MODE === 'development') {
+    console.log(message);
+  }
+};
+
+const handleClickNewTab = (url: string) => {
+  const newTab = window.open(url, '_blank');
+  if (newTab) {
+    newTab.focus();
+  }
+};
+
+export {
+  checkAuthentication,
+  checkRefreshTokenValidity,
+  i18nHelper,
+  handleDownloadFile,
+  logOnDev,
+  handleClickNewTab,
+  formatCurrencyVND,
+};

@@ -1,16 +1,14 @@
-@use '../../../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../../../styles/scss/flex-grid' as *;
+@use '../../../../../styles/scss/utils' as *;
 .desc-title-solution {
-  & > div {
-    margin-bottom: 12px;
-  }
-  & > div {
-    margin-bottom: 12px;
-  }
+  @include flex-column(12px, start, stretch);
   & > .title-solution {
     @include typography_BVNPro-desktop-body-2;
+    font-weight: 500;
+    color: $benthicBlack-main;
   }
   & > .desc-solution {
-    @include typography_BVNPro-custom(300, 14px, 120%);
+    @include typography_BVNPro-custom(300, 16px, 120%);
     display: -webkit-box;
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;

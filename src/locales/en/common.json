@@ -49,11 +49,76 @@
         "Success": "Successfully logged out of account",
         "Error": "Logout of account failed",
         "Pending": "Logging out of account in progress"
+      },
+      "ResendOtp": {
+        "Success": "Resend OTP confirmation code successfully",
+        "Error": "Resend OTP confirmation code failed",
+        "Pending": "Resending OTP confirmation code is in progress"
       }
     },
     "Challenger": {
       "profile": {
         "error": "Account information authentication failed"
+      },
+      "Join": {
+        "Success": "Participate in the challenge successfully",
+        "Error": "Join the failure challenge"
+      },
+      "Download": {
+        "Assest": {
+          "Success": "Documented assets successfully",
+          "Error": "Document assets download failed"
+        },
+        "Figma": {
+          "Success": "Successfully documented Figma design",
+          "Error": "Figma design documentation failed"
+        }
+      }
+    },
+    "Challenge": {
+      "Download": {
+        "Figma": {
+          "Pending": "Figma design documentation in progress"
+        },
+        "Assets": {
+          "Pending": "Document assets download in progress"
+        }
+      }
+    },
+    "Solution": {
+      "Submit": {
+        "Success": "Post the successful solution",
+        "Error": "Post failed solutions",
+        "Pending": "Posting solution in progress"
+      },
+      "Like": {
+        "Success": "Love the successful solution",
+        "Error": "Love the failed solution"
+      },
+      "Dislike": {
+        "Success": "Doesn't like successful solutions",
+        "Error": "Don't like failed solutions"
+      },
+      "UnInteraction": {
+        "Dislike": {
+          "Error": "Cancel unfavorite failure"
+        },
+        "Like": {
+          "Error": "Cancel favorite failed"
+        }
+      }
+    },
+    "Task": {
+      "Join": {
+        "Success": "Join the mission successfully",
+        "Error": "Join failed mission",
+        "Peding": "Ongoing mission participation"
+      }
+    },
+    "Comment": {
+      "Remove": {
+        "Success": "Comment deleted successfully",
+        "Error": "Comment deletion failed"
       }
     }
   },
@@ -104,11 +169,14 @@
     "NewPassword": "New password",
     "ConfirmPassword": "Confirm password",
     "Email": "E-mail",
-    "FirstName": "First name",
+    "FirstName": "First Name",
     "LastName": "Last name",
     "Password": "Password",
     "Nickname": "",
-    "Phone": "Phone number"
+    "Phone": "Phone number",
+    "PrideOf": "What are you most proud of, and what will you do differently next time?",
+    "ChallengeOvercome": "What challenges have you encountered, and how have you overcome them?",
+    "HelpWith": "What specific areas of your project would you like to help with?"
   },
   "Button": {
     "ResetPassword": "Change password",
@@ -118,7 +186,20 @@
     "VerifyOtp": "Verify OTP code",
     "Authentication": {
       "BackPrevious": "Go back"
-    }
+    },
+    "ViewMore": {
+      "Challenges": "See challenge",
+      "Default": "See more"
+    },
+    "LoginNow": "Sign in now",
+    "Submit": {
+      "Solution": "Post your solution"
+    },
+    "UnlockPremium": "Unlock Premium",
+    "Challenges": "Challenges",
+    "Solutions": "Solutions",
+    "BackToHomePage": "Return to home page",
+    "GoToTasks": "View tasks"
   },
   "Checkbox": {
     "RememberAccount": "Remember account"
@@ -134,5 +215,111 @@
   "Setting": "Setting",
   "Profile": "Personal page",
   "Logout": "Sign out",
-  "Point": "Score"
+  "Point": "Score",
+  "Empty": {
+    "DontJoinedChallenge": "You haven't participated in any challenges yet",
+    "DontSubmittedChallenge": "You don't have any solutions yet",
+    "IncompleteChallenge": "You have no unfinished challenges",
+    "Solution": "You must take the challenge to see other people's armors",
+    "SolutionsOfChallenge": "There is no solution to this challenge yet",
+    "ChallengeSystem": "There are no challenges",
+    "SolutionTask": "You don't have a solution for the task yet",
+    "Comment": "No one has commented on this solution yet"
+  },
+  "Authentication": {
+    "Login": "You are not logged into your account yet"
+  },
+  "Section": {
+    "Overview": "Overview",
+    "IncompleteChallenge": "Challenge not completed",
+    "MySolution": "My solution",
+    "MissionOfTasker": "Recruiter's challenge",
+    "MissionOfSystem": "System challenge",
+    "MySolutionChallengesSystem": "Solutions to systemic challenges",
+    "MySolutionTask": "Solution to the task"
+  },
+  "ChallengeOverview": {
+    "Error": {
+      "EnoughPoint": "You do not have enough points to participate in this challenge",
+      "Authentication": "You must log in to participate in the challenge",
+      "ChallengeType": "This challenge is for premium accounts only"
+    }
+  },
+  "Placeholder": {
+    "Comment": "Please enter your comment text",
+    "Email": "Enter your email address",
+    "Password": "Enter your password",
+    "PasswordConfirmation": "Enter your confirmation password"
+  },
+  "Page": {
+    "Tasks": {
+      "Title": "List of employer challenges"
+    },
+    "Challenges": {
+      "Title": "List of system challenges"
+    },
+    "SubmitSolution": {
+      "Title": "Submit solution",
+      "Form": {
+        "Title": "Send challenge information"
+      }
+    },
+    "Home": {
+      "Title": "Home page"
+    },
+    "Solutions": {
+      "Title": "List of solutions"
+    },
+    "MySolution": {
+      "Title": "My solution list"
+    },
+    "Unauthorized": {
+      "ErrorText": "No authorization found",
+      "title": "This page is not publicly available",
+      "Description": "To be able to access you must log in first"
+    }
+  },
+  "Account": {
+    "Update": {
+      "Premium": {
+        "Success": "The account has been upgraded to Premium"
+      }
+    }
+  },
+  "ForgotPassword": "Forgot password",
+  "Label": {
+    "ExpiredTime": "Expires on"
+  },
+  "ReplyComment": "Reply to comments",
+  "Comment": {
+    "Success": "Comment successful",
+    "Error": "Reply to comment failed",
+    "Text": "Comment"
+  },
+  "Remove": {
+    "Comment": "Erase"
+  },
+  "Edit": {
+    "Comment": "Edit"
+  },
+  "CommentReply": {
+    "Success": "Reply to comment successfully"
+  },
+  "ViewMore": {
+    "Comments": "See more comment responses"
+  },
+  "ViewCv": "See CV",
+  "Join": "Join",
+  "Challenge": "Challenge",
+  "NonSubmitted": "Unfinished",
+  "Submitted": "Completed",
+  "Solutions": "My solutions",
+  "Register": "Register an account",
+  "EnterEmailRegister": "Enter the email you want to register for an account",
+  "PreviousPage": "Return to previous page",
+  "LoginDescription": "Enter email and password to log in",
+  "YouDontHaveAccount": "Don't have an account yet?",
+  "OR": "Or",
+  "RegisterPracing": "Buy",
+  "UploadCV": "Upload your CV"
 }

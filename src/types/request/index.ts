@@ -5,7 +5,9 @@ import { IRegisterRequest } from './register';
 import { IResetPasswordRequest } from './resetPassword';
 import { ISendOtpRequest } from './sendOtp';
 import { IVerifyEmailRequest } from './verifyEmail';
-import { IVerifyForgotPassword } from './verifyForgotPasswordOtp';
+import { IGetAllChallengeRequestParams } from './challenge';
+import { IResendOtpRequest } from './resendOtp';
+import { ISubmitSolutionRequest } from './solution';
 export type {
   IForgotPasswordRequest,
   ILoginRequest,
@@ -14,5 +16,7 @@ export type {
   IRegisterRequest,
   ISendOtpRequest,
   IVerifyEmailRequest,
-  IVerifyForgotPassword,
+  IGetAllChallengeRequestParams,
+  IResendOtpRequest,
+  ISubmitSolutionRequest,
 };

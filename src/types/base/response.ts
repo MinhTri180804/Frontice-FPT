@@ -7,5 +7,6 @@ export interface IBaseResponse<T> {
         };
       }
     | string;
+  isExpired?: boolean;
   data: T;
 }

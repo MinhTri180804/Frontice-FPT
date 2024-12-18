@@ -1,84 +1,115 @@
-import { ChallengeOverview, FAQ, Section } from '../../components/common';
-import './challengeDetails.scss';
 import { FC, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ChallengeOverview, FAQ, Section } from '../../components/common';
+import { paths } from '../../constant';
+import './challengeDetails.scss';
 import {
   ChallengeDetailsDownload,
   ChallengeDetailsInformation,
   ChallengeDetailsSolution,
 } from './Partials';
+import { ConditionWrapper } from '../../components/wrapper';
 
 const ChallengeDetailsPage: FC = () => {
   const [tabActive, setTabActive] = useState<number>(1);
-  const changeTabActive = (tabId: number) => {
-    setTabActive(tabId);
+  const { challengeId } = useParams();
+  const [isJoin, setIsJoin] = useState<boolean | null>(null);
+  const [enoughPoint, setEnoughPoint] = useState<boolean | null>(null);
+  const [isSubmit, setIsSubmit] = useState<boolean | null>(null);
+  const [solutionId, setSolutionId] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const changeTabActive = (tabId: number, disable: boolean) => {
+    if (!disable) {
+      setTabActive(tabId);
+    }
   };
+
+  if (!challengeId) {
+    navigate(`${paths.home}`);
+    return;
+  }
+
+  const handleChildrenData: (
+    submitValue: boolean,
+    joinValue: boolean,
+    enoughPointValue: boolean,
+    solutionSubmitId: string | null,
+  ) => void = (submitValue, joinValue, enoughPointValue, solutionSubmitId) => {
+    setEnoughPoint(enoughPointValue);
+    setIsSubmit(submitValue);
+    setIsJoin(joinValue);
+    setSolutionId(solutionSubmitId);
+  };
+
   return (
     <div className="challenge__details-page">
       <div className="title">Challenge details</div>
       <div className="content">
         <ChallengeOverview
-          name="Mortgage repayment calculator"
-          description="This mortgage calculator is an excellent project for practicing working with forms, client-side validation, and updating the DOM. Remember to focus on accessibility, too!"
-          score={125}
-          peopleParticipated={12}
-          peopleSubmit={22}
-          technicalList={['html', 'scss', 'javascript']}
-          level="Diamond"
-          difficulty="High"
-          optionsImagePreview={[
-            {
-              id: '1',
-              imageUrl:
-                'https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/wcxhsnz3foidwbzshiia.jpg',
-              label: 'desktop design',
-            },
-            {
-              id: '2',
-              imageUrl:
-                'https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/vfzss4cvrzrhmmu0odek.jpg',
-              label: 'question design',
-            },
-            {
-              id: '3',
-              imageUrl:
-                'https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/r2vq1awkyyg2o9dj0gpm.jpg',
-              label: 'tablet design',
-            },
-            {
-              id: '4',
-              imageUrl:
-                'https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/dlnm123cefx8pilktakc.jpg',
-              label: 'mobile design',
-            },
-          ]}
+          challengeId={challengeId}
+          handleDataTransmissionParent={handleChildrenData}
         />
 
         <section className="tab__content-wrapper">
           <ul className="tab__list">
             <li
-              onClick={() => changeTabActive(1)}
+              onClick={() => changeTabActive(1, false)}
               className={`item ${tabActive === 1 && 'active'} `}
             >
               Information
             </li>
-            <li
-              onClick={() => changeTabActive(2)}
-              className={`item ${tabActive === 2 && 'active'} `}
+
+            <ConditionWrapper
+              condition={
+                !(isJoin === null && isSubmit === null && enoughPoint === null)
+              }
+              fallback={() => {
+                return (
+                  <>
+                    <div className="tab__skeleton"></div>
+                    <div className="tab__skeleton"></div>
+                  </>
+                );
+              }}
             >
-              Download assets
-            </li>
-            <li
-              onClick={() => changeTabActive(3)}
-              className={`item ${tabActive === 3 && 'active'} `}
-            >
-              Solution
-            </li>
+              <>
+                <li
+                  onClick={() => changeTabActive(2, isJoin === false)}
+                  className={`item ${tabActive === 2 && 'active'} ${isJoin === false && 'disabled'} `}
+                >
+                  Download assets
+                </li>
+                <li
+                  onClick={() =>
+                    changeTabActive(
+                      3,
+                      isJoin === false ||
+                        isSubmit === false ||
+                        enoughPoint === false,
+                    )
+                  }
+                  className={`item ${tabActive === 3 && 'active'} ${
+                    (isJoin === false ||
+                      isSubmit === false ||
+                      enoughPoint === false) &&
+                    'disabled'
+                  } `}
+                >
+                  Solution
+                </li>
+              </>
+            </ConditionWrapper>
           </ul>
 
           <div className="content__of-tab">
             {tabActive === 1 && <ChallengeDetailsInformation />}
             {tabActive === 2 && <ChallengeDetailsDownload />}
-            {tabActive === 3 && <ChallengeDetailsSolution />}
+            {tabActive === 3 && solutionId && challengeId && (
+              <ChallengeDetailsSolution
+                challengeId={challengeId}
+                solutionId={solutionId}
+              />
+            )}
           </div>
         </section>
 
@@ -106,7 +137,6 @@ const ChallengeDetailsPage: FC = () => {
             />
           </div>
         </Section>
-        <section className="faq__challenge"></section>
       </div>
     </div>
   );

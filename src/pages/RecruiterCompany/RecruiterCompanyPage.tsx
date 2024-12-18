@@ -1,4 +1,3 @@
-import { Challenge } from '../../components/common';
 import './RecruiterCompanyPage.scss';
 import {
   RecruiterContact,
@@ -44,7 +43,7 @@ const RecruiterCompanyPage: React.FC = () => {
       </div>
       <SectionAbout className="challenge__list" title="Danh sách thử thách">
         <div className="challenge__list-content">
-          {Array.from({ length: 10 }).map(() => (
+          {/* {Array.from({ length: 10 }).map(() => (
             <Challenge
               name="Frontend Quiz app"
               bannerUrl="https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/wcxhsnz3foidwbzshiia.jpg"
@@ -60,7 +59,7 @@ const RecruiterCompanyPage: React.FC = () => {
                 { value: 'new' },
               ]}
             />
-          ))}
+          ))} */}
         </div>
       </SectionAbout>
     </div>

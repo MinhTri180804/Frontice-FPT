@@ -1,40 +1,60 @@
-import './BannerWithInfo.scss';
-import Banner from '../../../../asset/images/banner.png';
-import Avatar from '../../../../asset/images/avatar.png';
+import { EnvelopeIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { Button } from '../../../../components/common';
-import { PlusIcon, EnvelopeIcon, LinkIcon } from '@heroicons/react/24/outline';
+import { ConditionWrapper } from '../../../../components/wrapper';
+import { IProfileEntity } from '../../../../types/entity';
+import './BannerWithInfo.scss';
+import { handleClickNewTab } from '../../../../utils/helper';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const BannerWithInfo: React.FC = () => {
+interface BannerWithInfoProps {
+  profileData: IProfileEntity;
+}
+
+const BannerWithInfo: React.FC<BannerWithInfoProps> = ({ profileData }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div className="banner-with-info">
-      <figure className="banner">
-        <img src={Banner} alt="banner" />
-      </figure>
       <figure className="user">
         <div className="avatar">
-          <img src={Avatar} alt="avatar" />
+          <img
+            src={
+              profileData?.image ||
+              'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
+            }
+            alt="avatar"
+          />
         </div>
 
         <figcaption>
           <div className="user-header">
             <div className="user-name">
-              <h1>Ngo Thanh Y -Diamond rank </h1>
-              <h2>@ycute</h2>
+              <div className="about">
+                <h1>
+                  {profileData.firstname} {profileData.lastname}
+                </h1>
+                <ConditionWrapper condition={profileData.gold_account}>
+                  -<div className="premium">Premium</div>
+                </ConditionWrapper>
+              </div>
+              <h2>@{profileData.username}</h2>
             </div>
             <div className="action">
               <Button
                 styleType="secondary"
-                label="View CV"
+                label={`${t('ViewCv')}`}
                 iconPosition="left"
                 buttonSize="small"
+                disabled={!profileData.cv}
                 Icon={() => <PlusIcon />}
+                onClick={() => handleClickNewTab(profileData.cv as string)}
               />
               <Button
                 styleType="primary"
-                label="Follow"
-                iconPosition="right"
+                label={t('Setting')}
+                onClick={() => navigate('/setting')}
                 buttonSize="small"
-                Icon={() => <PlusIcon />}
               />
             </div>
           </div>
@@ -44,42 +64,31 @@ const BannerWithInfo: React.FC = () => {
                 <div className="icon">
                   <EnvelopeIcon />
                 </div>
-                <p className="mail">nguyenminhtri1808t@gmail.com</p>
-              </div>
-              <div className="contact">
-                <div className="icon">
-                  <EnvelopeIcon />
-                </div>
-                <p className="mail">nguyenminhtri1808t@gmail.com</p>
-              </div>
-              <div className="contact">
-                <div className="icon">
-                  <EnvelopeIcon />
-                </div>
-                <p className="mail">nguyenminhtri1808t@gmail.com</p>
+                <p className="mail">{profileData.email}</p>
               </div>
             </div>
           </div>
           <div className="user-info-icon">
-            <div className="icon">
-              <LinkIcon />
+            <div className="statistic">
+              <div className="title">{t('Join')}</div>
+              <div className="value">
+                {profileData.challengeJoined} {t('Challenge')}
+              </div>
             </div>
-            <div className="icon">
-              <LinkIcon />
+            <div className="statistic">
+              <div className="title">{t('NonSubmitted')}</div>
+              <div className="value">
+                {profileData.pendingChallenges} {t('Challenge')}
+              </div>
             </div>
-            <div className="icon">
-              <LinkIcon />
-            </div>
-            <div className="icon">
-              <LinkIcon />
+            <div className="statistic">
+              <div className="title">{t('Submitted')}</div>
+              <div className="value">
+                {profileData.submittedChallenges} challenge
+              </div>
             </div>
           </div>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-            odit, veniam quas sit blanditiis illo veritatis adipisci odio
-            recusandae perferendis modi dolor sint commodi in cupiditate at
-            nostrum error quae?
-          </p>
+          <p>{profileData.bio ? profileData.bio : 'Chưa có tiểu sử'}</p>
         </figcaption>
       </figure>
     </div>

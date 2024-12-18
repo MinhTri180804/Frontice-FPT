@@ -1,0 +1,39 @@
+@use '../../../../../../styles/scss/flex-grid' as *;
+@use '../../../../../../styles/scss/utils' as *;
+
+.upload-pdf-component {
+  @include flex-column(24px, start, stretch);
+  border: 1px solid $benthicBlack-tints-200;
+  border-radius: 4px;
+  padding: 20px;
+  & > .title {
+    @include typography_BVNPro-desktop-body-1;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  & > .upload-file-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > .button-group {
+      @include flex-row(24px, space-between, stretch);
+      & > button {
+        width: 100%;
+      }
+    }
+
+    .file-input {
+      margin-bottom: 16px;
+      padding: 10px;
+      border: 1px solid $satinDeepBlack-tints-300;
+      border-radius: 4px;
+      width: 100%;
+      cursor: pointer;
+
+      &:hover {
+        border-color: $FIELD-stroke-hover;
+      }
+    }
+  }
+}

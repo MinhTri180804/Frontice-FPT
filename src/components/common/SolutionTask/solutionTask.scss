@@ -1,0 +1,122 @@
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
+
+.container-solution {
+  & > .solution {
+    height: 100%;
+    box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: box-shadow $shadow_transition_time_duration ease;
+    text-decoration: none;
+
+    &:hover {
+      box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.12);
+    }
+
+    @include flex-column(0, flex-start, stretch);
+    & > .image {
+      width: 100%;
+      height: 176px;
+      overflow: hidden;
+      flex-shrink: 0;
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 8px 8px 0 0;
+      }
+    }
+
+    & > .about {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+      & > .desc-solution-item {
+        padding: 24px 12px;
+        & > .time-solution {
+          color: $satinDeepBlack-tints-300;
+          @include typography_BVNPro-custom(300, 12px, 120%);
+          padding-bottom: 4px;
+        }
+        & > .name-solution {
+          @include typography_BVNPro-desktop-body-2;
+        }
+        & > .tech-solution {
+          @include typography_BVNPro-desktop-body-3;
+          color: $saturatedSky-main;
+          text-transform: uppercase;
+          display: flex;
+          gap: 12px;
+        }
+        & > .name-solution,
+        .tech-solution {
+          padding-bottom: 8px;
+        }
+
+        & > .list__desc {
+          @include flex-column(12px, start, stretch);
+        }
+
+        & > .point-panel {
+          display: flex;
+          justify-content: space-between;
+          @include typography_BVNPro-desktop-body-3;
+          & > .score-solution {
+            text-transform: capitalize;
+          }
+        }
+        & > .desc-user {
+          display: flex;
+          border-top: 1px solid $FIELD-stroke;
+          border-bottom: 1px solid $FIELD-stroke;
+          align-items: center !important;
+          padding: 12px 0px;
+          margin-bottom: 12px;
+          gap: 12px;
+          & > .avatar-user {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            & > img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          & > .name-rank-id {
+            & > .name-rank {
+              display: flex;
+              gap: 12px;
+              & > .rank-user {
+                color: $sunsetGlow-main;
+              }
+            }
+          }
+        }
+        & > .interaction-panel {
+          margin-top: 24px;
+          display: flex;
+          flex-wrap: wrap;
+          @include typography_BVNPro-desktop-body-3;
+          justify-content: center;
+          gap: 24px;
+        }
+      }
+
+      & > .actions {
+        @include flex-row(12px, flex-start, center);
+        width: 100%;
+        flex-wrap: wrap;
+        overflow: hidden;
+        & > button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

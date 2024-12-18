@@ -1,13 +1,12 @@
-import { Outlet } from 'react-router-dom';
-import './authLayout.scss';
 import { FC } from 'react';
-import { AuthWelcome } from './Partials/AuthWelcome';
-import { AuthForm } from './Partials/AuthForm';
-import { OptionSelect } from '../../common';
-import { IOptionSelectItem } from '../../../types/entity/components';
 import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
 import { IOptionLanguage } from '../../../types/entity';
-import { PrivateRoute } from '../../wrapper';
+import { IOptionSelectItem } from '../../../types/entity/components';
+import { OptionSelect } from '../../common';
+import './authLayout.scss';
+import { AuthForm } from './Partials/AuthForm';
+import { AuthWelcome } from './Partials/AuthWelcome';
 
 const AuthLayout: FC = () => {
   const { i18n } = useTranslation();
@@ -51,9 +50,7 @@ const AuthLayout: FC = () => {
         </div>
         <div className="auth__form-section">
           <AuthForm>
-            <PrivateRoute>
-              <Outlet />
-            </PrivateRoute>
+            <Outlet />
           </AuthForm>
         </div>
       </div>

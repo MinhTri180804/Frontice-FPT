@@ -2,8 +2,8 @@ import './challengeLevelDifficulty.scss';
 import { FC } from 'react';
 
 interface IChallengeLevelDifficultyProps {
-  difficulty: string;
-  level: string;
+  difficulty: string | number;
+  level: string | number;
 }
 
 const ChallengeLevelDifficulty: FC<IChallengeLevelDifficultyProps> = ({

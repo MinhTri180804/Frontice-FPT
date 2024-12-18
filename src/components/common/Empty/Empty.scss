@@ -1,18 +1,22 @@
-@use '../../../styles/scss/utils/variables/colors' as *;
-@use '../../../styles/scss/utils/mixin/typography' as *;
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
 .empty-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
+  padding: 12px;
+  @include flex-column(24px, center, center);
   & > .empty-image {
-    width: 534px;
-    height: 398px;
+    min-width: 224px;
+    max-width: 424px;
+    overflow: hidden;
     & > img {
+      height: 100%;
       width: 100%;
+      object-fit: cover;
     }
   }
   & > .empty-text {
+    text-align: center;
     @include typography_BVNPro-desktop-h4;
     color: $satinDeepBlack-tints-400;
   }

@@ -8,7 +8,7 @@
   }
   & > .form-filter {
     @include grid(12, none, 24px, none, none);
-    & > form {
+    & > div {
       grid-column: span 9;
       & > .main-settings-profile-page {
         display: flex;

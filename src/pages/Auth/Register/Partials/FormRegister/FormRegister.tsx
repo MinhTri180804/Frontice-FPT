@@ -1,21 +1,14 @@
 import { FC } from 'react';
-import { Form, FormSubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { toast, ToastContentProps } from 'react-toastify';
+import { Navigate, useLocation } from 'react-router-dom';
 import { Button, Input } from '../../../../../components/common';
-import { paths } from '../../../../../constant';
-import authService from '../../../../../services/authServices';
-import { IBaseResponse } from '../../../../../types/base';
-import { IOptionLanguage } from '../../../../../types/entity';
 import { IRegisterRequest } from '../../../../../types/request/register';
 import useFormRegister from './formRegister.hook';
+import useRegisterFormLogic from './formRegister.logic';
 import './formRegister.scss';
 
 const FormRegister: FC = () => {
-  const navigate = useNavigate();
-  const { i18n } = useTranslation();
-  const i18nLanguage = i18n.language as IOptionLanguage;
   const {
     aboutOfConfirmPassword,
     aboutOfEmail,
@@ -28,80 +21,31 @@ const FormRegister: FC = () => {
 
   const {
     register,
-    control,
     formState: { errors },
     getValues,
+    handleSubmit,
     setError,
   } = useForm<IRegisterRequest>({
     defaultValues: {
       role: 'taskee',
     },
   });
-
+  const { handleRegisterForm } = useRegisterFormLogic();
   const { t } = useTranslation();
+  const location = useLocation();
 
-  const handleRegister: FormSubmitHandler<IRegisterRequest> = async (data) => {
-    const formData: IRegisterRequest = {
-      ...data.data,
-    };
+  const emailRegister = location.state?.emailRegister || null;
 
-    toast.promise(
-      authService
-        .signUp(formData)
-        .then((response) => {
-          const URL_REDIRECT = `${paths.auth}/${paths.otp}`;
-          navigate(URL_REDIRECT, {
-            state: {
-              emailSignUp: response.data.data.email,
-            },
-          });
+  if (!emailRegister) {
+    return <Navigate to={'/'} replace />;
+  }
 
-          const MESSAGE_SUCCESS = `${t('ToastMessage.Auth.Register.success')}`;
-          return MESSAGE_SUCCESS;
-        })
-        .catch((error: IBaseResponse<null>) => {
-          const MESSAGE_ERROR = `${t('ToastMessage.Auth.Register.error')}`;
-          if (
-            error.message &&
-            typeof error.message === 'object' &&
-            error.message.error
-          ) {
-            // Set errors for each field based on the response
-            Object.keys(error.message.error).forEach((key) => {
-              if (typeof error.message === 'object') {
-                setError(key as keyof IRegisterRequest, {
-                  type: 'manual',
-                  message: error.message.error[key][0], // Get the first error message
-                });
-              }
-            });
-          } else {
-            if (i18nLanguage === paths.LANGUAGE.vietnamese) throw MESSAGE_ERROR;
-            if (i18nLanguage === paths.LANGUAGE.english) throw MESSAGE_ERROR;
-          }
-        }),
-      {
-        pending: `${t('ToastMessage.Auth.Register.pending')}`,
-        success: {
-          render: (response) => {
-            return response.data as string;
-          },
-        },
-        error: {
-          render: (response: ToastContentProps<string>) => {
-            return response.data;
-          },
-        },
-      },
-    );
+  const handleRegister: SubmitHandler<IRegisterRequest> = async (data) => {
+    await handleRegisterForm(data, setError);
   };
 
   return (
-    <Form
-      className="form__register"
-      control={control}
-      onSubmit={handleRegister}
-    >
+    <form className="form__register" onSubmit={handleSubmit(handleRegister)}>
       <div className="input-group">
         <Input
           {...register('firstname', aboutOfFirstName.rule)}
@@ -110,7 +54,7 @@ const FormRegister: FC = () => {
           label={aboutOfFirstName.name}
           placeholder="Enter your first name..."
         />
-        {/* TODO: implement input password component in here */}
+
         <Input
           {...register('lastname', aboutOfLastName.rule)}
           status={errors.lastname && 'error'}
@@ -133,16 +77,22 @@ const FormRegister: FC = () => {
         message={errors.phone?.message}
         label={aboutOfPhone.name}
         placeholder="Enter your phone..."
-        type="number"
+        type="string"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const value = e.target.value;
+          if (!/^\d*$/.test(value)) {
+            e.target.value = value.replace(/\D/g, '');
+          }
+        }}
       />
 
       <Input
-        {...register('email', aboutOfEmail.rule)}
-        status={errors.email && 'error'}
-        message={errors.email?.message}
         label={aboutOfEmail.name}
-        placeholder="Enter your email..."
+        value={emailRegister}
+        defaultValue={emailRegister}
+        disabled
       />
+
       <Input
         {...register('password', aboutOfPassword.rule)}
         status={errors.password && 'error'}
@@ -170,11 +120,12 @@ const FormRegister: FC = () => {
       />
 
       <Button
+        type="submit"
         styleType="primary"
         label={`${t('Button.Register')}`}
         buttonSize="medium"
       />
-    </Form>
+    </form>
   );
 };
 

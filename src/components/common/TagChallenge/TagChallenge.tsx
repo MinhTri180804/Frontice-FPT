@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { FC } from 'react';
 
 interface ITagChallengeProps {
-  type: 'premium' | 'free' | 'free++' | 'new';
+  type: 'premium' | 'free' | 'free++' | 'new' | 'task';
 }
 const TagChallenge: FC<ITagChallengeProps> = ({ type }) => {
   const tagChallengeClass = classNames('tag__challenge', {
@@ -11,6 +11,7 @@ const TagChallenge: FC<ITagChallengeProps> = ({ type }) => {
     premium: type === 'premium',
     'free-plus': type === 'free++',
     free: type === 'free',
+    task: type === 'task',
   });
   return (
     <div className={tagChallengeClass}>

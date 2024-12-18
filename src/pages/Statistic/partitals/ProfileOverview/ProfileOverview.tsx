@@ -5,6 +5,7 @@ import './profileOverview.scss';
 import { FC } from 'react';
 import { paths } from '../../../../constant';
 import { IProfileEntity } from '../../../../types/entity';
+import { ConditionWrapper } from '../../../../components/wrapper';
 
 interface IProfileOverviewProps {
   profile: IProfileEntity;
@@ -15,7 +16,8 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
   const handleButtonViewDetails = () => {
     navigate(`${paths.profile}`);
   };
-
+  const avatarDefault =
+    'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg';
   const handleButtonChallenges = () => {
     navigate(`${paths.challenges}`);
   };
@@ -23,10 +25,7 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
     <div className="profile_overview-component">
       <AccountProfileOverview
         className="account__profile-overview"
-        avatarUrl={
-          profile.image ||
-          'https://www.shutterstock.com/image-vector/vector-illustration-watercolor-style-portrait-600nw-2294597499.jpg'
-        }
+        avatarUrl={profile.image || avatarDefault}
         name={`${profile.firstname} ${profile.lastname}`}
         email={profile.email}
       />
@@ -37,10 +36,16 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
           value={profile.gold_account ? 'Premium' : 'Normal'}
         />
         <AboutProfileOverview title="Score" value={profile.point} />
-        {/* <AboutProfileOverview
+        <AboutProfileOverview
           title="Challenge Submit"
-          value={`${profile.totalSubmittedChallenge} Solution`}
-        /> */}
+          value={`${profile.submittedChallenges} Solution`}
+        />
+        <ConditionWrapper condition={profile.gold_account}>
+          <AboutProfileOverview
+            title="Premium Expired"
+            value={`${profile.goldExpires} `}
+          />
+        </ConditionWrapper>
       </div>
 
       <div className="actions">

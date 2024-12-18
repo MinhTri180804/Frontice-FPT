@@ -2,12 +2,15 @@ import React from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 import { AppLayout } from '../components/layout/app';
 import { AuthLayout } from '../components/layout/auth';
+import GuestOnlyRoute from '../components/wrapper/GuestOnlyRoute';
+import PrivateRoute from '../components/wrapper/PrivateRoute';
 import { paths } from '../constant';
 import {
   ChallengeDetailsPage,
   HomePage,
-  NotFoundPage,
+  MySolutionPage,
   SubmitSolutionPage,
+  TasksPage,
 } from '../pages';
 import {
   ForgotPasswordPage,
@@ -15,7 +18,12 @@ import {
   RegisterPage,
   ResetPasswordPage,
 } from '../pages/Auth';
+import { EmailRegisterPage } from '../pages/Auth/EmailRegister';
 import OtpPage from '../pages/Auth/OTP/OtpPage';
+import { NotFoundPage } from '../pages/ErrorPage/NotFound';
+import { Pracing } from '../pages/Pracing';
+import SubmitSolutionTaskPage from '../pages/SubmitSolutionTask/SubmitSolutionTask';
+import { TaskDetailsPage } from '../pages/TaskDetails';
 
 const ProfilePage = React.lazy(() => import('../pages/Profile'));
 const SolutionDetailsPage = React.lazy(
@@ -31,35 +39,106 @@ const SettingsProfilePage = React.lazy(
   () => import('../pages/SettingsProfilePage'),
 );
 
-const extendedRoutes: RouteObject[] = [
+const extendRoutesPrivate: RouteObject[] = [
+  {
+    path: paths.profile,
+    element: (
+      <PrivateRoute>
+        <ProfilePage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.setting,
+    element: (
+      <PrivateRoute>
+        <SettingsProfilePage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${paths.solutionDetails}/:solutionId`,
+    element: (
+      <PrivateRoute>
+        <SolutionDetailsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.solutions,
+    element: (
+      <PrivateRoute>
+        <SolutionsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.statistic,
+    element: (
+      <PrivateRoute>
+        <StatisticPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.submitSolution,
+    element: (
+      <PrivateRoute>
+        <SubmitSolutionPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.mySolutions,
+    element: (
+      <PrivateRoute>
+        <MySolutionPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: paths.tasks,
+    element: (
+      <PrivateRoute>
+        <TasksPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${paths.taskDetails}/:taskId`,
+    element: (
+      <PrivateRoute>
+        <TaskDetailsPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${paths.submitSolutionTask}`,
+    element: (
+      <PrivateRoute>
+        <SubmitSolutionTaskPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: `${'/pracing'}`,
+    element: (
+      <PrivateRoute>
+        <Pracing />
+      </PrivateRoute>
+    ),
+  },
+];
+
+const extendedRoutesPublic: RouteObject[] = [
   {
     index: true,
     path: paths.home,
     element: <HomePage />,
   },
   {
-    path: paths.profile,
-    element: <ProfilePage />,
-  },
-  {
-    path: paths.setting,
-    element: <SettingsProfilePage />,
-  },
-  {
-    path: paths.solutionDetails,
-    element: <SolutionDetailsPage />,
-  },
-  {
     path: paths.challenges,
     element: <ChallengesPage />,
-  },
-  {
-    path: paths.solutions,
-    element: <SolutionsPage />,
-  },
-  {
-    path: paths.statistic,
-    element: <StatisticPage />,
   },
   {
     path: paths.recruiterCompany,
@@ -67,11 +146,9 @@ const extendedRoutes: RouteObject[] = [
   },
 
   {
-    path: paths.submitSolution,
-    element: <SubmitSolutionPage />,
+    path: `${paths.challengeDetails}/:challengeId`,
+    element: <ChallengeDetailsPage />,
   },
-
-  { path: paths.challengeDetails, element: <ChallengeDetailsPage /> },
 ];
 
 const extendedRoutesAuth: RouteObject[] = [
@@ -82,6 +159,7 @@ const extendedRoutesAuth: RouteObject[] = [
   },
   {
     path: paths.register,
+
     element: <RegisterPage />,
   },
   {
@@ -96,6 +174,10 @@ const extendedRoutesAuth: RouteObject[] = [
     path: paths.resetPassword,
     element: <ResetPasswordPage />,
   },
+  {
+    path: paths.emailRegister,
+    element: <EmailRegisterPage />,
+  },
 ];
 
 const routes: RouteObject[] = [
@@ -107,7 +189,8 @@ const routes: RouteObject[] = [
       </AppLayout>
     ),
     children: [
-      ...extendedRoutes,
+      ...extendedRoutesPublic,
+      ...extendRoutesPrivate,
       {
         path: '*',
         element: <NotFoundPage />,
@@ -116,7 +199,11 @@ const routes: RouteObject[] = [
   },
   {
     path: paths.auth,
-    element: <AuthLayout />,
+    element: (
+      <GuestOnlyRoute>
+        <AuthLayout />
+      </GuestOnlyRoute>
+    ),
     children: [
       ...extendedRoutesAuth,
       {

@@ -1,19 +1,16 @@
-import React from 'react';
-import './Dropdown.scss';
 import {
+  ArrowLeftEndOnRectangleIcon,
   Cog6ToothIcon,
   UserIcon,
-  ArrowLeftEndOnRectangleIcon,
 } from '@heroicons/react/24/outline';
-import { useAuthStore } from '../../../../../../../../../store/authStore';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { paths } from '../../../../../../../../../constant';
 import authService from '../../../../../../../../../services/authServices';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
-import { IOptionLanguage } from '../../../../../../../../../types/entity';
-import { IBaseResponse } from '../../../../../../../../../types/base';
-import { Link } from 'react-router-dom';
+import { useAuthStore } from '../../../../../../../../../store/authStore';
+import './Dropdown.scss';
 
 interface DropdownProps {
   isOpen: boolean;
@@ -22,33 +19,20 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ isOpen }) => {
   const { logout } = useAuthStore();
   const navigate = useNavigate();
-  const { i18n, t } = useTranslation();
-  const language = i18n.language as IOptionLanguage;
+  const { t } = useTranslation();
   const handleLogout: () => void = async () => {
     await toast.promise(
       authService
         .logout()
-        .then((response) => {
+        .then(() => {
           logout();
           navigate(`${paths.auth}/${paths.login}`);
           const MESSAGE_SUCCESS = t('ToastMessage.Auth.Logout.Success');
-          if (language === 'en') {
-            return response.data.messageEng || MESSAGE_SUCCESS;
-          }
-
-          if (language === 'vi') {
-            return response.data.messageVN || MESSAGE_SUCCESS;
-          }
+          return MESSAGE_SUCCESS;
         })
-        .catch((response: IBaseResponse<null>) => {
+        .catch(() => {
           const MESSAGE_ERROR = t('ToastMessage.Auth.Logout.Error');
-          if (language === 'en') {
-            throw response.messageEng || MESSAGE_ERROR;
-          }
-
-          if (language === 'vi') {
-            throw response.messageVN || MESSAGE_ERROR;
-          }
+          throw MESSAGE_ERROR;
         }),
       {
         pending: t('ToastMessage.Auth.Logout.Pending'),

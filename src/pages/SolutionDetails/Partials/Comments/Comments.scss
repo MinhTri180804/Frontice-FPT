@@ -1,8 +1,12 @@
-@use '../../../../styles/scss/utils/mixin/typography' as *;
-@use '../../../../styles/scss/utils/variables/colors' as *;
+@use '../../../../styles/scss/utils' as *;
+@use '../../../../styles/scss/flex-grid' as *;
 
 .container-comment {
-  margin-bottom: 24px;
+  &:hover {
+    & > .replies {
+      border-left-color: $saturatedSky-main;
+    }
+  }
 
   & > .info-author {
     display: flex;
@@ -15,6 +19,7 @@
       height: 48px;
       border-radius: 50%;
       overflow: hidden;
+      cursor: pointer;
 
       & > img {
         width: 100%;
@@ -24,20 +29,27 @@
     }
 
     & > .name-author {
-      font-weight: bold;
+      @include typography_BVNPro-desktop-body-1;
+      color: $satinDeepBlack-main;
+      cursor: pointer;
     }
 
     & > .date-comment {
-      @include typography_BVNPro-desktop-body-3;
+      @include typography_BVNPro-custom(300, 14px);
       color: $satinDeepBlack-tints-300;
     }
 
     & > .reply-to {
       display: flex;
       gap: 8px;
+      @include typography_BVNPro-custom(400, 14px);
+      color: $satinDeepBlack-tints-500;
+      line-height: normal;
 
       & > p {
         color: $saturatedSky-main;
+        @include typography_BVNPro-desktop-body-3;
+        line-height: normal;
       }
     }
   }
@@ -46,32 +58,99 @@
     border: 1px solid $satinDeepBlack-tints-300;
     border-radius: 4px;
     padding: 24px;
+    @include flex-column(16px, flex-start, stretch);
 
     & > p {
-      margin-bottom: 12px;
+      @include typography_BVNPro-desktop-body-2;
+      font-style: italic;
+      color: $satinDeepBlack-main;
     }
 
     & > .interaction-panel {
-      display: flex;
-      gap: 16px;
+      @include flex-row(16px, space-between, center);
 
-      & > .action-like,
-      & > .action-dislike,
-      & > .action-comment {
+      & > .action-reply {
         display: flex;
         align-items: center;
         gap: 8px;
-
+        color: #494a4d;
+        cursor: pointer;
+        @include typography_BVNPro-desktop-body-3;
         & > svg {
           width: 24px;
           height: 24px;
         }
       }
+      & > .action-options {
+        position: relative;
+
+        & > .icon {
+          cursor: pointer;
+        }
+
+        & > .options {
+          position: absolute;
+          @include flex-column(0, flex-start, stretch);
+          width: fit-content;
+          top: 100%;
+          right: 0;
+          background-color: $BG-white;
+          border-radius: 6px;
+          box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+          overflow: hidden;
+          visibility: hidden;
+          opacity: 0;
+          transition:
+            visibility 0.2s linear,
+            opacity 0.2s linear;
+
+          &.active {
+            visibility: visible;
+            opacity: 1;
+          }
+
+          & > .option {
+            width: 100%;
+            padding: 12px 24px;
+            text-wrap: nowrap;
+            color: $satinDeepBlack-main;
+            cursor: pointer;
+            @include flex-row(8px, flex-start, center);
+            @include typography_BVNPro-desktop-body-2;
+            transition:
+              background-color $background_transition_time_duration,
+              color $background_transition_time_duration;
+
+            &:hover {
+              color: $white;
+              background-color: $saturatedSky-main;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > .view__more-replies {
+    @include flex-row(8px, flex-start, center);
+    color: $benthicBlack-tints-400;
+    @include typography_BVNPro-desktop-body-3;
+    cursor: pointer;
+
+    &:hover {
+      color: $benthicBlack-main;
     }
   }
 
   & > .replies {
+    @include flex-column(24px, flex-start, stretch);
     margin-top: 16px;
     padding-left: 32px;
+    border-left: 1px solid $benthicBlack-tints-200;
+    transition: border-color 0.3s ease;
+  }
+
+  & > .container-comment {
+    margin-top: 12px;
   }
 }

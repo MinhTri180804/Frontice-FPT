@@ -10,6 +10,7 @@ const paths = {
   forgotPassword: 'forgot-password',
   otp: 'otp',
   resetPassword: 'reset-password',
+  emailRegister: 'email-register',
 
   // protected path
   challengesSystem: '/challenges-system',
@@ -25,6 +26,12 @@ const paths = {
   recruiterCompany: '/recruiter-company',
   submitSolution: '/submit-solution',
   challengeDetails: '/challenge-details',
+  tasks: '/tasks',
+  taskDetails: '/task-details',
+  submitSolutionTask: '/submit-solution-task',
+  notfound: '/notfound',
+  parcing: '/pracing',
+  //
 
   API: {
     root: 'api',
@@ -35,8 +42,8 @@ const paths = {
       logout: '/logout',
       forgot_password: '/forgotPassword/send',
       reset_password: '/forgotPassword/reset',
-      send_otp: '/otp-sending',
-      verify_email: '/verify',
+      send_otp: '/send-otp',
+      verify_email: '/verify-otp',
       verify_forgot_password_otp: '/forgotPassword/verify',
       refreshToken: '/refresh',
       resendOtp: 'otp-resend',
@@ -45,6 +52,27 @@ const paths = {
     CHALLENGER: {
       root: '/challenger',
       profile: '/profile',
+    },
+    CHALLENGE: {
+      root: '/challenges',
+    },
+    SOLUTION: {
+      getIncompleteChallenge: '/solutions',
+      submitted: '/solutions/submitted',
+      submitSolution: '/solutions/challenge/submit',
+      getAll: '/solutions/challenge',
+      getDetails: `/solutions/challenge/get`,
+      getSolutionsOfChallenge: `/solutions/challenges`,
+      interaction: '/interaction',
+      comment: '/comment',
+    },
+    taskee: {
+      getInformation: '/taskees',
+    },
+    task: {
+      root: '/task',
+      downloadFigma: '/download-figma',
+      downloadSource: '/download-source',
     },
   },
 
@@ -61,6 +89,27 @@ const paths = {
   LANGUAGE: {
     english: 'en',
     vietnamese: 'vi',
+  },
+
+  QUERY_KEY: {
+    challenges: 'challenges',
+    meInfo: 'info',
+    solutionIncompleteChallenge: 'solutionIncompleteChallenge',
+    solutionSubmitted: 'solutionSubmitted',
+    challengeDetails: 'challengeDetails',
+    solutionList: 'solutionList',
+    mySolution: 'mySolution',
+    solution: 'solution',
+    solutionOfChallenge: 'solutionOfChallenge',
+    tasks: 'tasks',
+    informationTaskee: 'informationTaskee',
+    getAllSolutionTaskOfMe: 'my-solution-task',
+    solutionDetails: 'solution-details',
+    commentsOfSolution: 'comment-of-solution',
+  },
+
+  MUTATION_KEY: {
+    remove_comment: 'remove-comment',
   },
 };
 

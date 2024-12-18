@@ -1,0 +1,29 @@
+@use '../../../../../styles/scss/flex-grid' as *;
+@use '../../../../../styles/scss/utils' as *;
+
+.expired__time-component {
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  @include typography_BVNPro-desktop-body-3;
+  @include flex-row(12px, flex-start, center);
+  background-color: $dayGlowOrange-main;
+  & > .label {
+    color: $white;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+    width: fit-content;
+    flex-shrink: 0;
+  }
+
+  & > .value {
+    flex-grow: 1;
+    color: $benthicBlack-main;
+    text-align: center;
+    width: 100%;
+    padding: 8px 0px;
+    background-color: $white;
+    border-radius: 4px;
+  }
+}

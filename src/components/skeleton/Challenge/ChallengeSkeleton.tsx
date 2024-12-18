@@ -1,10 +1,10 @@
+import { FC } from 'react';
 import {
   ButtonSkeleton,
   DescriptionSkeleton,
   ScoreLevelDifficultySkeleton,
 } from '../common';
 import './challengeSkeleton.scss';
-import { FC } from 'react';
 
 const ChallengeSkeleton: FC = () => {
   return (

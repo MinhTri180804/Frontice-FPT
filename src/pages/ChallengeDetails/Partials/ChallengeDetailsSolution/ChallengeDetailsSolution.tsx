@@ -1,43 +1,51 @@
-import './challengeDetailsSolution.scss';
-import { FC } from 'react';
-import { SolutionOverview } from './Partials';
-import { Button, Section } from '../../../../components/common';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { useQuery } from '@tanstack/react-query';
+import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Section } from '../../../../components/common';
 import Solution from '../../../../components/common/Solution';
+import { SolutionSkeleton } from '../../../../components/skeleton';
+import { paths } from '../../../../constant';
+import solutionService from '../../../../services/solutionService';
+import './challengeDetailsSolution.scss';
+import { SolutionOverview } from './Partials';
+import { ConditionWrapper } from '../../../../components/wrapper';
+import EmptyComponent from '../../../../components/common/Empty/Empty';
+import { emptySolution } from '../../../../assets/images';
+import { useTranslation } from 'react-i18next';
 
-const ChallengeDetailsSolution: FC = () => {
+interface IChallengeDetailsSolutionProps {
+  solutionId: string;
+  challengeId: string;
+}
+const ChallengeDetailsSolution: FC<IChallengeDetailsSolutionProps> = ({
+  solutionId,
+  challengeId,
+}) => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  console.log('[CHALLENGE ID]: ', challengeId);
+
+  const { data: solutionsOfChallengeData, isPending: pendingOfSolutions } =
+    useQuery({
+      queryKey: [paths.QUERY_KEY.solutionOfChallenge, challengeId, solutionId],
+      queryFn: async () => {
+        const response = await solutionService.getSolutionsOfChallenge({
+          challengeId,
+        });
+
+        const responseData = response?.data?.solutions;
+        return responseData || [];
+      },
+    });
+
   return (
     <div className="challenge__details-solution-tab">
       <Section className="overview__solution">
         <SolutionOverview
           className="solution__overview"
-          solutionData={{
-            timeSubmit: '1 hour ago',
-            technicalList: ['html', 'css', 'javascript'],
-            name: 'Bento grid',
-            score: 128,
-            level: 'diamond',
-            difficulty: 'Hight',
-            like: 12,
-            comment: '1k',
-            dislike: 5,
-            imageUrl:
-              'https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/tvfhkjoksej6aohdaaci.jpg',
-            contentDescription: [
-              {
-                title:
-                  'What are you most proud of, and what would you do differently next time?',
-                description:
-                  'Im excited to share my first independently developed project — a fully functional and responsive Contact Us form built with React.js for the frontend, styled with Tailwind CSS, and thoroughly tested using Vitest, React Testing Library, and Jest DOM.',
-              },
-              {
-                title:
-                  'What are you most proud of, and what would you do differently next time?',
-                description:
-                  'Im excited to share my first independently developed project — a fully functional and responsive Contact Us form built with React.js for the frontend, styled with Tailwind CSS, and thoroughly tested using Vitest, React Testing Library, and Jest DOM.',
-              },
-            ],
-          }}
+          solutionId={solutionId}
         />
 
         <div className="actions">
@@ -48,6 +56,13 @@ const ChallengeDetailsSolution: FC = () => {
             Icon={() => <ArrowRightIcon width={24} height={24} color="white" />}
             buttonSize="large"
             styleType="primary"
+            onClick={() =>
+              navigate(`${paths.solutionDetails}/${solutionId}`, {
+                state: {
+                  challengeId,
+                },
+              })
+            }
           />
 
           <Button
@@ -60,18 +75,44 @@ const ChallengeDetailsSolution: FC = () => {
           />
         </div>
       </Section>
+
       <Section title="Community solution" className="community__solution">
         <div className="solution__list">
-          {Array.from({
-            length: 8,
-          }).map(() => (
-            <Solution
-              image="https://res.cloudinary.com/dz209s6jk/image/upload/f_auto,q_auto,w_700/Challenges/dmfvghaamqjt9lrx43ql.jpg"
-              time="About 5 hours ago"
-              name="Contact form"
-              tech={['Html', 'css', 'javascript']}
-            />
-          ))}
+          {/* condition status request and response from frontend to backend */}
+          <ConditionWrapper
+            condition={Boolean(!pendingOfSolutions && solutionsOfChallengeData)}
+            // Shown for loading solutions case
+            fallback={() => {
+              return Array.from({ length: 8 }).map((_, index) => (
+                <SolutionSkeleton key={`${index}`} />
+              ));
+            }}
+          >
+            {/* Condition for solutions data */}
+            <ConditionWrapper
+              condition={Boolean(
+                solutionsOfChallengeData &&
+                  solutionsOfChallengeData.length !== 0,
+              )}
+              // Shown for the empty solutions case
+              fallback={() => {
+                return (
+                  <EmptyComponent
+                    pathImg={emptySolution}
+                    title={t('Empty.SolutionsOfChallenge')}
+                  />
+                );
+              }}
+            >
+              {solutionsOfChallengeData?.map((solution, index) => (
+                <Solution
+                  solution={solution}
+                  key={`${index}`}
+                  isShowDescription
+                />
+              ))}
+            </ConditionWrapper>
+          </ConditionWrapper>
         </div>
       </Section>
     </div>

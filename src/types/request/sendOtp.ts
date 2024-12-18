@@ -1,3 +1,3 @@
 export interface ISendOtpRequest {
-  gmail: string;
+  email: string;
 }

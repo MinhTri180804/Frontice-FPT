@@ -1,0 +1,5 @@
+@use '../../../styles/scss/utils' as *;
+
+.challenge__overview-skeleton {
+  @include skeleton(100%, 452px, 12px);
+}

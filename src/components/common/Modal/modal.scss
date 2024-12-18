@@ -1,0 +1,60 @@
+@use '../../../styles/scss/flex-grid' as *;
+@use '../../../styles/scss/utils' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease; // Transition for fade effect
+  pointer-events: none; // Prevent interaction when not visible
+}
+
+.modal-overlay.fade-in {
+  opacity: 1;
+  pointer-events: auto; // Allow interaction when visible
+}
+
+.modal-overlay.fade-out {
+  opacity: 0;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+  width: 400px;
+  transform: translateY(-20px); // Initial position for animation
+  transition: transform 0.3s ease; // Transition for slide effect
+}
+
+.modal-overlay.fade-in .modal-content {
+  transform: translateY(0); // Final position when opened
+}
+
+.modal-title {
+  @include typography_field_title();
+  font-weight: 600;
+  margin: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-top: 20px;
+}

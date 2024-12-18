@@ -1,82 +1,94 @@
 import {
-  HandThumbUpIcon,
-  HandThumbDownIcon,
   ChatBubbleLeftEllipsisIcon,
+  HandThumbDownIcon,
+  HandThumbUpIcon,
 } from '@heroicons/react/24/outline';
-import './Solution.scss';
-import DescUser from './Partials/User';
-import DescSolution from './Partials/Solutions';
+import { useNavigate } from 'react-router-dom';
+import { DefaultAvatar } from '../../../assets/images';
+import { paths } from '../../../constant';
+import { ISolutionResponse } from '../../../types/response/solution';
 import SolutionLevelDifficulty from '../SolutionLevelDifficulty';
-interface Solution {
-  image: string;
-  time: string;
-  name: string;
-  tech: string[];
-  userAvatar?: string;
-  titleSolution?: string;
-  descriptionSolution?: string;
-  isShowDesc?: boolean;
-}
+import DescSolution from './Partials/Solutions';
+import DescUser from './Partials/User';
+import './Solution.scss';
+import { useTranslation } from 'react-i18next';
 
-const Solution: React.FC<Solution> = ({ ...props }) => {
-  const {
-    image,
-    time,
-    name,
-    tech,
-    userAvatar = '',
-    titleSolution = 'Title of the solution',
-    descriptionSolution = ' Lorem ipsum dolor sit amet consectetur adipisicing elit. In alias cum optio aspernatur! Omnis inventore ipsum impedit corporis dolorum, debitis pariatur reprehenderit, praesentium unde placeat deleniti distinctio. Obcaecati, recusandae vitae.',
-    isShowDesc = false,
-  } = props;
+interface ISolutionProps {
+  solution: ISolutionResponse;
+  isShowDescription?: boolean;
+}
+const Solution: React.FC<ISolutionProps> = ({
+  solution,
+  isShowDescription = false,
+}) => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
   return (
     <>
-      <div className="container-solution">
+      <div
+        className="container-solution"
+        onClick={() =>
+          navigate(`${paths.solutionDetails}/${solution.id}`, {
+            state: {
+              challengeId: solution.challenge.id,
+            },
+          })
+        }
+      >
         <div className="solution">
           <div className="image">
-            <img src={image} alt="" />
+            <img src={solution.challenge.image} alt="" />
           </div>
           <div className="desc-solution-item">
-            <div className="time-solution">{time}</div>
-            <div className="name-solution">{name}</div>
+            <div className="time-solution">{solution.submitedAt}</div>
+            <div className="name-solution">{solution.challenge.title}</div>
             <div className="tech-solution">
-              {tech.map((item) => (
+              {solution.challenge.technical.map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>
             <div className="point-panel">
-              <div className="score-solution">123 score</div>
+              <div className="score-solution">
+                {solution.challenge.point} {t('Point')}
+              </div>
               <div className="rank-level">
-                <SolutionLevelDifficulty level="Diamon" difficulty="High" />
+                <SolutionLevelDifficulty
+                  level={solution.challenge.level}
+                  difficulty={solution.challenge.requiredPoint}
+                />
               </div>
             </div>
-            {isShowDesc && (
+            {isShowDescription && (
               <DescUser
-                userAvatar={userAvatar}
-                userId="#123"
-                userName="user name"
-                userRank="Gold"
+                userAvatar={solution.taskee.image || DefaultAvatar}
+                userId={solution.taskee.username}
+                userName={`${solution.taskee.firstname} ${solution.taskee.lastname}`}
               />
             )}
 
-            {isShowDesc && (
-              <DescSolution
-                titleSolutioon={titleSolution}
-                descriptionSolution={descriptionSolution}
-              />
-            )}
+            <div className="list__desc">
+              {isShowDescription &&
+                solution.description.map((description, index) => (
+                  <DescSolution
+                    key={`${index}`}
+                    titleSolution={description.title}
+                    descriptionSolution={description.answer}
+                  />
+                ))}
+            </div>
             <div className="interaction-panel">
               <div className="action-like">
                 <HandThumbUpIcon />
-                <p>12k</p>
+                <p>{solution.liked}</p>
               </div>
               <div className="action-dislike">
                 <HandThumbDownIcon />
-                <p>12k</p>
+                <p>{solution.disliked}</p>
               </div>
               <div className="action-comment">
                 <ChatBubbleLeftEllipsisIcon />
-                <p>12k</p>
+                <p>{solution.comment}</p>
               </div>
             </div>
           </div>

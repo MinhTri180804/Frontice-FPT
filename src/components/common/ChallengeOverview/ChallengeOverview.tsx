@@ -1,54 +1,94 @@
-import './challengeOverview.scss';
+import { useQuery } from '@tanstack/react-query';
 import { FC } from 'react';
-import Button from '../Button';
+import { paths } from '../../../constant';
+import challengeService from '../../../services/challengeService';
+import { ChallengeOverviewSkeleton } from '../../skeleton';
 import ChallengeLevelDifficulty from '../ChallengeLevelDifficulty';
 import ChallengeTechnical from '../ChallengeTechnical';
 import TagChallenge from '../TagChallenge';
+import './challengeOverview.scss';
+import { ButtonConditionChallengeOverview, ConditionMessage } from './Partials';
 import ImagePreview from './Partials/ImagePreview/ImagePreview';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
 interface IChallengeOverviewProps {
-  name: string;
-  technicalList: string[];
-  level: string;
-  difficulty: string;
-  description: string;
-  score: string | number;
-  peopleParticipated: string | number;
-  peopleSubmit: string | number;
-  optionsImagePreview: {
-    id: string;
-    label: string;
-    imageUrl: string;
-  }[];
-  error?: {
-    message: string;
-    isError: boolean;
-  };
+  challengeId: string;
+  handleDataTransmissionParent?: (
+    submitValue: boolean,
+    joinValue: boolean,
+    enoughPointValue: boolean,
+    solutionSubmitId: string | null,
+  ) => void;
 }
 
 const ChallengeOverview: FC<IChallengeOverviewProps> = ({
-  name,
-  technicalList,
-  level,
-  difficulty,
-  description,
-  score,
-  peopleParticipated,
-  peopleSubmit,
-  optionsImagePreview,
-  error,
+  challengeId,
+  handleDataTransmissionParent,
 }) => {
+  const {
+    data: challengeOverviewData,
+    isFetched,
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: [challengeId, paths.QUERY_KEY.challengeDetails],
+    queryFn: async () => {
+      const response = await challengeService.getDetails({ challengeId });
+      const { isSubmit, isJoin, enoughPoint } = response.data;
+      if (handleDataTransmissionParent) {
+        handleDataTransmissionParent(
+          isSubmit,
+          isJoin,
+          enoughPoint,
+          challengeOverviewData?.solutionSubmitId || null,
+        );
+      }
+      return response.data;
+    },
+  });
+
+  if (isFetching && isFetched === false) {
+    return <ChallengeOverviewSkeleton />;
+  }
+
+  if (!challengeOverviewData) {
+    return;
+  }
+
+  if (isFetching && handleDataTransmissionParent) {
+    handleDataTransmissionParent(
+      challengeOverviewData.isSubmit,
+      challengeOverviewData.isJoin,
+      challengeOverviewData.enoughPoint,
+      challengeOverviewData.solutionSubmitId || null,
+    );
+  }
+
+  // refetch()
+  const handleEventClickButton: () => void = () => {
+    refetch().then((response) => {
+      if (handleDataTransmissionParent && response.data) {
+        handleDataTransmissionParent(
+          response.data?.isSubmit,
+          response.data?.isJoin,
+          response.data?.enoughPoint,
+          challengeOverviewData.solutionSubmitId || null,
+        );
+      }
+    });
+  };
+
   return (
     <div className="challenge__overview-component">
       <div className="challenge__about">
         <div className="heading">
           <div className="challenge__tag-list">
-            <TagChallenge type="free" />
+            {challengeOverviewData.premium && <TagChallenge type="premium" />}
+            {!challengeOverviewData.premium && <TagChallenge type="premium" />}
+            <TagChallenge type="new" />
           </div>
           <div className="challenge__technical-properties">
             <div className="challenge__technical-list">
-              {technicalList.map((technical, index) => (
+              {challengeOverviewData?.technical?.map((technical, index) => (
                 <ChallengeTechnical
                   key={`${technical}-${index}`}
                   technicalValue={technical}
@@ -56,49 +96,68 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
               ))}
             </div>
             <div className="challenge__properties">
-              <ChallengeLevelDifficulty level={level} difficulty={difficulty} />
+              <ChallengeLevelDifficulty
+                level={challengeOverviewData.level}
+                difficulty={challengeOverviewData.requiredPoint}
+              />
             </div>
           </div>
         </div>
 
         <div className="content">
-          <div className="challenge__name">{name}</div>
-          <div className="challenge__description">{description}</div>
+          <div className="challenge__name">{challengeOverviewData.title}</div>
+          <div className="challenge__description">
+            {challengeOverviewData.shortDes}
+          </div>
           <div className="challenge__statistic">
             <div className="score">
               <div className="label">Score</div>
-              <div className="value">{score}</div>
+              <div className="value">{challengeOverviewData.point}</div>
             </div>
-            <div className="people__participated">
-              <div className="label">People Participated</div>
-              <div className="value">{peopleParticipated}</div>
-            </div>
-            <div className="people__submit">
-              <div className="label">People submit</div>
-              <div className="value">{peopleSubmit}</div>
-            </div>
+            {isFetching ? (
+              <>
+                <div className="statistic__skeleton"></div>
+                <div className="statistic__skeleton"></div>
+              </>
+            ) : (
+              <>
+                <div className="people__participated">
+                  <div className="label">People Participated</div>
+                  <div className="value">{challengeOverviewData.joinTotal}</div>
+                </div>
+                <div className="people__submit">
+                  <div className="label">People submit</div>
+                  <div className="value">
+                    {challengeOverviewData.submittedTotal}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
-        {Boolean(error) && error?.isError && (
-          <div className="error">
-            <div className="icon">
-              <ExclamationTriangleIcon width={24} height={24} color="white" />
-            </div>
-
-            <div className="message">{error?.message}</div>
-          </div>
-        )}
+        {/*  */}
+        <ConditionMessage
+          enoughPoint={challengeOverviewData.enoughPoint}
+          challengePremium={challengeOverviewData.premium}
+        />
         <div className="action">
-          <Button
-            styleType="primary"
-            label="Join Challenge"
-            buttonSize="normal"
-            disabled={Boolean(error) && error?.isError}
-          />
+          {isFetching ? (
+            <div className="button-skeleton"></div>
+          ) : (
+            <ButtonConditionChallengeOverview
+              challengePremium={challengeOverviewData.premium}
+              eventClick={handleEventClickButton}
+              isJoin={challengeOverviewData.isJoin}
+              isSubmit={challengeOverviewData.isSubmit}
+              enoughPoint={challengeOverviewData.enoughPoint}
+              solutionSubmitId={challengeOverviewData.solutionSubmitId}
+              id={challengeId}
+            />
+          )}
         </div>
       </div>
       <div className="challenge__preview">
-        <ImagePreview optionsImagePreview={optionsImagePreview} />
+        <ImagePreview imageURL={challengeOverviewData.image} />
       </div>
     </div>
   );

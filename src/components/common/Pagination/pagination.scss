@@ -1,16 +1,16 @@
 @use '../../../styles/scss/flex-grid' as *;
 @use '../../../styles/scss/utils' as *;
 
-.pagination {
+.pagination__component {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 
-  &__item {
+  &-item {
     width: 40px;
     height: 40px;
-    border: 1px solid #ccc;
+    border: 1px solid $benthicBlack-tints-200;
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -19,10 +19,10 @@
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
-
     &.active {
-      background-color: #3b82f6;
-      color: #fff;
+      background-color: $saturatedSky-main;
+      color: $white;
+      border-color: $saturatedSky-main;
     }
 
     &.disabled {
@@ -32,7 +32,8 @@
     }
 
     &:hover:not(.disabled, .active) {
-      background-color: #f3f3f3;
+      border-color: $saturatedSky-main;
+      color: $saturatedSky-main;
     }
   }
 }

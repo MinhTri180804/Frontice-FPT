@@ -14,6 +14,7 @@
     // width: 100%;
     & > .title {
       @include flex-row(12px, flex-start, center);
+      text-transform: capitalize;
 
       & > .value {
         @include typography_BVNPro-desktop-h4();

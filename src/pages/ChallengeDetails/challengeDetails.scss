@@ -2,6 +2,7 @@
 @use '../../styles/scss/utils' as *;
 
 .challenge__details-page {
+  width: 100%;
   @include flex-column(32px, flex-start, start);
 
   & > .title {
@@ -11,13 +12,18 @@
 
   & > .content {
     @include flex-column(64px, flex-start, start);
-
+    width: 100%;
     margin-bottom: 32px;
 
     & > .tab__content-wrapper {
+      width: 100%;
       & > ul.tab__list {
         margin-bottom: 64px;
         @include flex-row(0, flex-start, start);
+
+        .tab__skeleton {
+          @include skeleton(120px, 38.8px, 0px);
+        }
         & > li {
           padding-left: 20px;
           padding-right: 20px;
@@ -30,12 +36,18 @@
           @include typography_field_title();
           cursor: pointer;
 
+          &.disabled {
+            border-bottom: 2px solid $satinDeepBlack-tints-300;
+            color: $satinDeepBlack-tints-200;
+            cursor: not-allowed;
+          }
+
           &.active {
             color: $saturatedSky-main;
             border-color: $saturatedSky-main;
           }
 
-          &:not(.active):hover {
+          &:not(.active, .disabled):hover {
             color: $saturatedSky-tints-400;
             border-color: $saturatedSky-tints-400;
           }

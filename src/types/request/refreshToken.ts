@@ -1,3 +1,3 @@
-import { IBaseJWTToken } from '../base';
-
-export type IRefreshTokenRequest = Pick<IBaseJWTToken, 'refreshToken'>;
+export type IRefreshTokenRequest = {
+  refreshToken: string;
+};

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { HTMLProps } from 'react';
 import './Pagination.scss';
+import classNames from 'classnames';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
-interface PaginationProps {
+interface PaginationProps extends HTMLProps<HTMLDivElement> {
   totalPages: number;
   currentPage: number;
   onPageChange: (page: number) => void;
@@ -11,6 +13,8 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   currentPage,
   onPageChange,
+  className,
+  ...props
 }) => {
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -37,25 +41,28 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const handlePageClick = (page: number | string) => {
+
     if (typeof page === 'number' && page !== currentPage) {
       onPageChange(page);
     }
   };
 
+  const paginationClass = classNames('pagination__component', className);
+
   return (
-    <div className="pagination">
+    <div className={paginationClass} {...props}>
       <button
-        className={`pagination__item ${currentPage === 1 ? 'disabled' : ''}`}
+        className={`pagination__component-item ${currentPage === 1 ? 'disabled' : ''}`}
         onClick={() => handlePageClick(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        &lt;
+        <ChevronLeftIcon width={16} height={16} />
       </button>
 
       {getPageNumbers().map((page, index) => (
         <button
           key={index}
-          className={`pagination__item ${currentPage === page ? 'active' : ''}`}
+          className={`pagination__component-item ${currentPage === page ? 'active' : ''}`}
           onClick={() => handlePageClick(page)}
         >
           {page}
@@ -63,11 +70,11 @@ const Pagination: React.FC<PaginationProps> = ({
       ))}
 
       <button
-        className={`pagination__item ${currentPage === totalPages ? 'disabled' : ''}`}
+        className={`pagination__component-item ${currentPage === totalPages ? 'disabled' : ''}`}
         onClick={() => handlePageClick(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        &gt;
+        <ChevronRightIcon width={16} height={16} />
       </button>
     </div>
   );
