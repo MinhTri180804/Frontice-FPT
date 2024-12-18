@@ -1,5 +1,5 @@
 import React, { HTMLProps } from 'react';
-import './Pagination.scss';
+import './pagination.scss';
 import classNames from 'classnames';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
@@ -41,7 +41,6 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const handlePageClick = (page: number | string) => {
-
     if (typeof page === 'number' && page !== currentPage) {
       onPageChange(page);
     }
