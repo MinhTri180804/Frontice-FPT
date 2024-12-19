@@ -11,7 +11,6 @@
     }
   }
   & > .my__solution-list {
-    flex: 1;
     &:not(.empty-my-solution) {
       @include grid(12, none, 24px);
       & > div:not(.pagination__my-solutions) {

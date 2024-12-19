@@ -85,7 +85,7 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
         <div className="heading">
           <div className="challenge__tag-list">
             {challengeOverviewData.premium && <TagChallenge type="premium" />}
-            {!challengeOverviewData.premium && <TagChallenge type="premium" />}
+            {!challengeOverviewData.premium && <TagChallenge type="free" />}
             <TagChallenge type="new" />
           </div>
           <div className="challenge__technical-properties">

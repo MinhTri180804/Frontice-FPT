@@ -1,18 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Line } from '../../../components/common/Line';
 import { paths } from '../../../constant';
-import authService from '../../../services/authServices';
-import { SocialAuthButton } from '../Partials/SocialAuthButton';
 import './login.scss';
 import { FormLogin } from './Partials/FormLogin';
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
-
-  const handleLoginGithub = async () => {
-    return await authService.loginGithub();
-  };
 
   return (
     <div className="login__page-container">
@@ -23,16 +16,6 @@ const Login: React.FC = () => {
       </div>
 
       <div className="content">
-        <div className="method__social">
-          <SocialAuthButton social="github" eventClick={handleLoginGithub} />
-        </div>
-
-        <div className="or">
-          <Line />
-          <div className="or-text">{t('OR')}</div>
-          <Line />
-        </div>
-
         <div className="main__content">
           <FormLogin />
 
