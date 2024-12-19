@@ -41,14 +41,6 @@ const Challenges: React.FC = () => {
       <div className="container-challenges-page">
         <div className="header">
           <div className="title">{t('Page.Challenges.Title')}</div>
-          <Button
-            style={{ width: 'fit-content' }}
-            label="Filter"
-            buttonSize="small"
-            iconPosition="left"
-            styleType="secondary"
-            Icon={() => <PlusIcon />}
-          />
         </div>
         <div className="challenges-list">
           <ConditionWrapper
