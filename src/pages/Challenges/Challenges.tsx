@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Button, Challenge, Pagination } from '../../components/common';
-import './Challenges.scss';
-import { PlusIcon } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Challenge, Pagination } from '../../components/common';
+import { ChallengeSkeleton } from '../../components/skeleton';
+import { ConditionWrapper } from '../../components/wrapper';
 import { paths } from '../../constant';
 import challengeService from '../../services/challengeService';
-import { ChallengeSkeleton } from '../../components/skeleton';
-import { useTranslation } from 'react-i18next';
-import { ConditionWrapper } from '../../components/wrapper';
+import './Challenges.scss';
 const QUERY_KEY = paths.QUERY_KEY.challenges;
 const Challenges: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
