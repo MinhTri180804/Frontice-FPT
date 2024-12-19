@@ -2,7 +2,6 @@
 @use '../../styles/scss/utils' as *;
 
 .container-solution-list-page {
-  height: 100%;
   @include flex-column(32px, flex-start, stretch);
   & > .header {
     margin-bottom: 32px;
