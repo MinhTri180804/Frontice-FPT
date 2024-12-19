@@ -12,6 +12,7 @@ import DescSolution from './Partials/Solutions';
 import DescUser from './Partials/User';
 import './Solution.scss';
 import { useTranslation } from 'react-i18next';
+import { convertTimestampToVietnamTime } from '../../../utils/convertTime';
 
 interface ISolutionProps {
   solution: ISolutionResponse;
@@ -41,7 +42,9 @@ const Solution: React.FC<ISolutionProps> = ({
             <img src={solution.challenge.image} alt="" />
           </div>
           <div className="desc-solution-item">
-            <div className="time-solution">{solution.submitedAt}</div>
+            <div className="time-solution">
+              {convertTimestampToVietnamTime(solution.submitedAt)}
+            </div>
             <div className="name-solution">{solution.challenge.title}</div>
             <div className="tech-solution">
               {solution.challenge.technical.map((item) => (

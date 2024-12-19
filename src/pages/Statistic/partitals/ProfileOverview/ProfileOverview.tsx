@@ -6,6 +6,7 @@ import { FC } from 'react';
 import { paths } from '../../../../constant';
 import { IProfileEntity } from '../../../../types/entity';
 import { ConditionWrapper } from '../../../../components/wrapper';
+import { useTranslation } from 'react-i18next';
 
 interface IProfileOverviewProps {
   profile: IProfileEntity;
@@ -13,6 +14,7 @@ interface IProfileOverviewProps {
 
 const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const handleButtonViewDetails = () => {
     navigate(`${paths.profile}`);
   };
@@ -32,17 +34,17 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
 
       <div className="about__list">
         <AboutProfileOverview
-          title="Account"
+          title={t('AccountText')}
           value={profile.gold_account ? 'Premium' : 'Normal'}
         />
         <AboutProfileOverview title="Score" value={profile.point} />
         <AboutProfileOverview
-          title="Challenge Submit"
-          value={`${profile.submittedChallenges} Solution`}
+          title={t('ChallengeSubmitted')}
+          value={`${profile.submittedChallenges} ${t('Solution')}`}
         />
         <ConditionWrapper condition={profile.gold_account}>
           <AboutProfileOverview
-            title="Premium Expired"
+            title={t('PremiumExpired')}
             value={`${profile.goldExpires} `}
           />
         </ConditionWrapper>
@@ -53,7 +55,7 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
           className="button__view-details"
           styleType="secondary"
           buttonSize="medium"
-          label="View Details"
+          label={t('ViewDetails.Text')}
           onClick={handleButtonViewDetails}
         />
 
@@ -61,7 +63,7 @@ const ProfileOverview: FC<IProfileOverviewProps> = ({ profile }) => {
           className="button__challenges"
           styleType="primary"
           buttonSize="medium"
-          label="Challenges"
+          label={t('Challenge')}
           onClick={handleButtonChallenges}
         />
       </div>

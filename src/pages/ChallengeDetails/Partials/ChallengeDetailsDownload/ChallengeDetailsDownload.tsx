@@ -3,8 +3,10 @@ import { Button } from '../../../../components/common';
 import BoxContent from '../BoxContent';
 import useChallengeDetailsDownloadLogic from './challengeDetailsDownload.logic';
 import './challengeDetailsDownload.scss';
+import { useTranslation } from 'react-i18next';
 
 const ChallengeDetailsDownload = () => {
+  const { t } = useTranslation();
   const { challengeId } = useParams();
   const { handleDownloadAssets, handleDownloadFigma } =
     useChallengeDetailsDownloadLogic();
@@ -17,13 +19,10 @@ const ChallengeDetailsDownload = () => {
         title="🗂️ Download based files"
         className="download__based-files"
       >
-        <p>
-          Includes assets, JPG images of the design files, and a basic style
-          guide. There’s also a README to help you get started.
-        </p>
+        <p>{t('DownloadBasedFilesDescription')}</p>
 
         <Button
-          label="Download starter"
+          label={t('DownloadStarter')}
           styleType="primary"
           buttonSize="normal"
           onClick={() => handleDownloadAssets({ challengeId })}
@@ -33,13 +32,10 @@ const ChallengeDetailsDownload = () => {
         title="📑 Download design file"
         className="download__design-file"
       >
-        <p>
-          All of our designs are available as Figma files. Using the design file
-          will help you build more accurate solutions.
-        </p>
+        <p>{t('DownloadDesignFileDescription')}</p>
 
         <Button
-          label="Download design"
+          label={t('DownloadDesign')}
           styleType="primary"
           buttonSize="normal"
           onClick={() => handleDownloadFigma({ challengeId })}

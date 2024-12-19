@@ -24,10 +24,7 @@ const ChallengeDetailsInformation: FC = () => {
       <div className="right">
         <BoxContent title="🗃️ Assets provided">
           <div className="list__assets-provided">
-            <AssetsItem
-              value="Figma design file access - Unlock with Pro"
-              isHave={false}
-            />
+            <AssetsItem value="Figma design file access" isHave={true} />
             <AssetsItem
               value="JPEG design files for mobile & desktop layouts"
               isHave

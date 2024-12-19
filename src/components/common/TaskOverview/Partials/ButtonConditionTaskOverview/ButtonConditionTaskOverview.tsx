@@ -23,7 +23,6 @@ const ButtonConditionTaskOverview: FC<
   isJoin,
   isSubmit,
   enoughPoint,
-  solutionSubmitId,
   id: taskId,
   eventClick,
   challengePremium,
@@ -77,14 +76,6 @@ const ButtonConditionTaskOverview: FC<
     }
   };
 
-  const handleGoToSolution = () => {
-    navigate(`${paths.solutionDetails}/${solutionSubmitId}`, {
-      state: {
-        challengeId: taskId,
-      },
-    });
-  };
-
   const handleGotoChallengeDetails = () => {
     navigate(`${paths.challengeDetails}/${taskId}`);
   };
@@ -94,7 +85,7 @@ const ButtonConditionTaskOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Go to task details"
+        label={t('ViewDetailsTask')}
         buttonSize="normal"
         onClick={handleGotoChallengeDetails}
       />
@@ -110,7 +101,7 @@ const ButtonConditionTaskOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Join Task"
+        label={t('JoinTask')}
         buttonSize="normal"
         disabled
       />
@@ -121,7 +112,7 @@ const ButtonConditionTaskOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Join Task"
+        label={t('JoinTask')}
         buttonSize="normal"
         disabled
       />
@@ -132,7 +123,7 @@ const ButtonConditionTaskOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Join Task"
+        label={t('JoinTask')}
         buttonSize="normal"
         onClick={handleJoinTask}
       />
@@ -143,7 +134,7 @@ const ButtonConditionTaskOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Submit Task"
+        label={t('SubmitTask')}
         buttonSize="normal"
         onClick={handleSubmitTask}
       />
@@ -154,9 +145,8 @@ const ButtonConditionTaskOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Go to my solution"
+        label={t('YouCompletedTask')}
         buttonSize="normal"
-        onClick={handleGoToSolution}
       />
     );
   }

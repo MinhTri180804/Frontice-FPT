@@ -9,8 +9,10 @@ import {
   ChallengeDetailsSolution,
 } from './Partials';
 import { ConditionWrapper } from '../../components/wrapper';
+import { useTranslation } from 'react-i18next';
 
 const ChallengeDetailsPage: FC = () => {
+  const { t } = useTranslation();
   const [tabActive, setTabActive] = useState<number>(1);
   const { challengeId } = useParams();
   const [isJoin, setIsJoin] = useState<boolean | null>(null);
@@ -43,7 +45,7 @@ const ChallengeDetailsPage: FC = () => {
 
   return (
     <div className="challenge__details-page">
-      <div className="title">Challenge details</div>
+      <div className="title">{t('ChallengeDetailsPage')}</div>
       <div className="content">
         <ChallengeOverview
           challengeId={challengeId}
@@ -56,7 +58,7 @@ const ChallengeDetailsPage: FC = () => {
               onClick={() => changeTabActive(1, false)}
               className={`item ${tabActive === 1 && 'active'} `}
             >
-              Information
+              {t('Information')}
             </li>
 
             <ConditionWrapper
@@ -77,25 +79,7 @@ const ChallengeDetailsPage: FC = () => {
                   onClick={() => changeTabActive(2, isJoin === false)}
                   className={`item ${tabActive === 2 && 'active'} ${isJoin === false && 'disabled'} `}
                 >
-                  Download assets
-                </li>
-                <li
-                  onClick={() =>
-                    changeTabActive(
-                      3,
-                      isJoin === false ||
-                        isSubmit === false ||
-                        enoughPoint === false,
-                    )
-                  }
-                  className={`item ${tabActive === 3 && 'active'} ${
-                    (isJoin === false ||
-                      isSubmit === false ||
-                      enoughPoint === false) &&
-                    'disabled'
-                  } `}
-                >
-                  Solution
+                  {t('DownloadFilesChallenges')}
                 </li>
               </>
             </ConditionWrapper>

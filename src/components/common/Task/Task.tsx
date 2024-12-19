@@ -10,6 +10,7 @@ import { CompanyInformation } from './Partials';
 import { ExpiredTime } from './Partials/ExpiredTime';
 import { paths } from '../../../constant';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface IChallengeProps {
   taskData: Omit<
@@ -20,6 +21,7 @@ interface IChallengeProps {
 
 const Task: FC<IChallengeProps> = ({ taskData }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClickViewDetails = () => {
     navigate(`${paths.taskDetails}/${taskData.id}`);
@@ -63,7 +65,7 @@ const Task: FC<IChallengeProps> = ({ taskData }) => {
       <ExpiredTime expiredTime={taskData.expiredAt} />
       <Button
         onClick={handleClickViewDetails}
-        label="View Details"
+        label={t('ViewDetails.Text')}
         buttonSize="small"
         styleType="secondary"
       />

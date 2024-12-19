@@ -1,11 +1,10 @@
-import { useTranslation } from 'react-i18next';
-import { BrandWhiteLogo } from '../../../../../assets/logos/locals';
-import { StepProcess } from '../../../../../pages/Auth/Partials/StepProcess';
-import { Button } from '../../../../common';
 import { ArrowLeftEndOnRectangleIcon } from '@heroicons/react/24/outline';
-import './authWelcome.scss';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { BrandWhiteLogo } from '../../../../../assets/logos/locals';
+import { Button } from '../../../../common';
+import './authWelcome.scss';
 
 const AuthWelcome: FC = () => {
   // TODO: add feature render title, message, and step based on route url
@@ -31,7 +30,7 @@ const AuthWelcome: FC = () => {
             </div>
           </div>
         </div>
-        <div className="steps">
+        {/* <div className="steps">
           <StepProcess
             stepNumber={1}
             stepContent="Enter your account email"
@@ -42,7 +41,7 @@ const AuthWelcome: FC = () => {
             stepContent="Go to application"
             isActive={false}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className="actions">

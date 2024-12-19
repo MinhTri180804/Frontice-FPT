@@ -75,7 +75,7 @@ const StatisticPage: React.FC = () => {
 
   return (
     <div className="statistic__page-container">
-      <h1 className="title-page">Statistic Page</h1>
+      <h1 className="title-page">{t('StatisticPage')}</h1>
 
       <div className="content">
         {/* Condition of state of section overview */}

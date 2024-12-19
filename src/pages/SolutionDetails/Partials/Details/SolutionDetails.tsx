@@ -6,6 +6,7 @@ import './SolutionDetails.scss';
 import ActionsOfSolution from './Partials/ActionsOfSolution/ActionsOfSolution';
 import { ISolutionDetailsResponse } from '../../../../types/response/solution';
 import { convertTimestampToVietnamTime } from '../../../../utils/convertTime';
+import { useTranslation } from 'react-i18next';
 
 interface ISolutionDetailsProps {
   solutionDetailsData: ISolutionDetailsResponse;
@@ -13,6 +14,7 @@ interface ISolutionDetailsProps {
 const SolutionDetails: React.FC<ISolutionDetailsProps> = ({
   solutionDetailsData,
 }) => {
+  const { t } = useTranslation();
   const timeSubmitFormat = convertTimestampToVietnamTime(
     solutionDetailsData?.submitedAt,
   );
@@ -26,7 +28,9 @@ const SolutionDetails: React.FC<ISolutionDetailsProps> = ({
       <div className="container-solution-details">
         <div className="summary-component">
           <div className="header">
-            <p>Submitted about {timeSubmitFormat}</p>
+            <p>
+              {t('SubmittedAbout')} {timeSubmitFormat}
+            </p>
             <h1>{solutionDetailsData?.title}</h1>
             <div className="tech">
               {solutionDetailsData?.challenge.technical.map(

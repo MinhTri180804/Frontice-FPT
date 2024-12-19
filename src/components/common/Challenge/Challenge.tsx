@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../constant';
 import { IChallengeEntity } from '../../../types/entity';
 import TagChallenge from '../TagChallenge';
+import { useTranslation } from 'react-i18next';
 
 interface IChallengeProps {
   challengeData: IChallengeEntity;
@@ -15,11 +16,11 @@ interface IChallengeProps {
 
 const Challenge: FC<IChallengeProps> = ({ challengeData }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClickViewDetails = () => {
     navigate(`${paths.challengeDetails}/${challengeData.id}`);
   };
-
 
   return (
     <div className="challenge__component-container">
@@ -48,7 +49,7 @@ const Challenge: FC<IChallengeProps> = ({ challengeData }) => {
         <div className="overview">
           <div className="score">
             <span className="value">{challengeData.point}</span>
-            <span className="label">Score</span>
+            <span className="label">{t('Score')}</span>
           </div>
           <ChallengeLevelDifficulty
             level={challengeData.level}
@@ -63,7 +64,7 @@ const Challenge: FC<IChallengeProps> = ({ challengeData }) => {
 
       <Button
         onClick={handleClickViewDetails}
-        label="View Details"
+        label={t('ViewDetails.Text')}
         buttonSize="small"
         styleType="secondary"
       />

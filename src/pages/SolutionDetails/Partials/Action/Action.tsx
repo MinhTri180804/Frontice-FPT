@@ -4,6 +4,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Button } from '../../../../components/common';
 import './Action.scss';
+import { useTranslation } from 'react-i18next';
 
 interface IActionProps {
   urlGithub?: string;
@@ -14,6 +15,7 @@ const Action: React.FC<IActionProps> = ({
   urlGithub = null,
   urlLiveGithub = null,
 }) => {
+  const { t } = useTranslation();
   const handleClickNewTab = (url: string) => {
     const newTab = window.open(url, '_blank');
     if (newTab) {
@@ -26,7 +28,7 @@ const Action: React.FC<IActionProps> = ({
         <div className="list-action">
           <div className="view-source-code">
             <Button
-              label="View Source Code"
+              label={t('ViewSourceCode')}
               buttonSize="large"
               styleType="secondary"
               Icon={() => <CodeBracketSquareIcon />}
@@ -37,7 +39,7 @@ const Action: React.FC<IActionProps> = ({
           </div>
           <div className="view-preview-demo">
             <Button
-              label="View Preview Demo"
+              label={t('ViewPreviewDemo')}
               buttonSize="large"
               styleType="primary"
               Icon={() => <ComputerDesktopIcon />}

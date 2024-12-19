@@ -14,6 +14,7 @@
   opacity: 0;
   transition: opacity 0.3s ease; // Transition for fade effect
   pointer-events: none; // Prevent interaction when not visible
+  z-index: 999;
 }
 
 .modal-overlay.fade-in {
@@ -41,6 +42,7 @@
 
 .modal-title {
   @include typography_field_title();
+  font-size: 22px;
   font-weight: 600;
   margin: 0;
 }

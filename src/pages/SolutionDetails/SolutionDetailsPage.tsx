@@ -10,12 +10,14 @@ import { SolutionDetailsSection } from './Partials';
 import Feedback from './Partials/Feedback/Feedback';
 import './SolutionDetailsPage.scss';
 import { useAuthStore } from '../../store/authStore';
+import { useTranslation } from 'react-i18next';
 
 type IUseNavigate = {
   solutionId: string;
 };
 
 const SolutionDetails: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const profile = useAuthStore((state) => state.profile);
   const { solutionId } = useParams<IUseNavigate>();
@@ -44,7 +46,7 @@ const SolutionDetails: React.FC = () => {
     <>
       <div className="container-solution-details-page">
         <div className="title">
-          <h1>Solution Details</h1>
+          <h1>{t('SolutionDetailsPage')}</h1>
         </div>
         {solutionDetailsData?.challenge.id && (
           <ChallengeOverview challengeId={solutionDetailsData?.challenge.id} />
@@ -69,7 +71,7 @@ const SolutionDetails: React.FC = () => {
           }
         >
           <section className="section__feedback-mentor">
-            <div className="title">Góp ý của mentor</div>
+            <div className="title">{t('FeedbackOfMentor')}</div>
             <div className="feedback_component">
               <div className="author">
                 <div className="image">

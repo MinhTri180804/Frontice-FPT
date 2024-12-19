@@ -9,6 +9,7 @@ import useActionsOfSolutionLogic from './actionsOfSolution.logic';
 import './actionsOfSolution.scss';
 import { ConditionWrapper } from '../../../../../../components/wrapper';
 import { Loading } from '../../../../../../components/skeleton/Loading';
+import { useTranslation } from 'react-i18next';
 
 interface IActionsOfSolutionProps {
   numberOfLike: number | string;
@@ -27,6 +28,7 @@ const ActionsOfSolution: FC<IActionsOfSolutionProps> = ({
   const [isDislike, setIsDislike] = useState<boolean>(false);
   const [isPendingLike, setIsPendingLike] = useState<boolean>(false);
   const [isPendingDislike, setIsPendingDislike] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const { handleClickComments, handleDislikeAction, handleLikeAction } =
     useActionsOfSolutionLogic({
@@ -64,7 +66,7 @@ const ActionsOfSolution: FC<IActionsOfSolutionProps> = ({
             }}
           >
             <HandThumbUpIcon />
-            like
+            {t('Link')}
           </ConditionWrapper>
         </div>
         <div className="quantity">{numberOfLike}</div>
@@ -78,7 +80,8 @@ const ActionsOfSolution: FC<IActionsOfSolutionProps> = ({
             }}
           >
             <HandThumbDownIcon />
-            dislike
+
+            {t('dislike')}
           </ConditionWrapper>
         </div>
         <div className="quantity">{numberOfDislike}</div>
@@ -86,7 +89,7 @@ const ActionsOfSolution: FC<IActionsOfSolutionProps> = ({
       <div className="action-comment" onClick={handleClickComments}>
         <div className="comment">
           <ChatBubbleLeftEllipsisIcon />
-          comment
+          {t('comment')}
         </div>
         <div className="quantity">{numberOfComment}</div>
       </div>

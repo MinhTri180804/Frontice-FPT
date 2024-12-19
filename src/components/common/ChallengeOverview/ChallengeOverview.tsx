@@ -9,6 +9,7 @@ import TagChallenge from '../TagChallenge';
 import './challengeOverview.scss';
 import { ButtonConditionChallengeOverview, ConditionMessage } from './Partials';
 import ImagePreview from './Partials/ImagePreview/ImagePreview';
+import { useTranslation } from 'react-i18next';
 
 interface IChallengeOverviewProps {
   challengeId: string;
@@ -24,6 +25,7 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
   challengeId,
   handleDataTransmissionParent,
 }) => {
+  const { t } = useTranslation();
   const {
     data: challengeOverviewData,
     isFetched,
@@ -111,7 +113,7 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
           </div>
           <div className="challenge__statistic">
             <div className="score">
-              <div className="label">Score</div>
+              <div className="label">{t('ScoreText')}</div>
               <div className="value">{challengeOverviewData.point}</div>
             </div>
             {isFetching ? (
@@ -122,11 +124,11 @@ const ChallengeOverview: FC<IChallengeOverviewProps> = ({
             ) : (
               <>
                 <div className="people__participated">
-                  <div className="label">People Participated</div>
+                  <div className="label">{t('PeopleParticipated')}</div>
                   <div className="value">{challengeOverviewData.joinTotal}</div>
                 </div>
                 <div className="people__submit">
-                  <div className="label">People submit</div>
+                  <div className="label">{t('PeopleSubmit')}</div>
                   <div className="value">
                     {challengeOverviewData.submittedTotal}
                   </div>

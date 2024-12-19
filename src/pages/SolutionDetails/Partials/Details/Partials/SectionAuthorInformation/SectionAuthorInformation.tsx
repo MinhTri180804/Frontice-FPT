@@ -1,12 +1,12 @@
-import { FC, HTMLProps } from 'react';
-import './sectionAuthorInformation.scss';
 import { useQuery } from '@tanstack/react-query';
-import taskeeService from '../../../../../../services/taskeeService';
-import { InformationAuthor } from '../../../../../../components/common';
 import classNames from 'classnames';
-import { paths } from '../../../../../../constant';
+import { FC, HTMLProps } from 'react';
+import { InformationAuthor } from '../../../../../../components/common';
 import { ConditionWrapper } from '../../../../../../components/wrapper';
+import { paths } from '../../../../../../constant';
+import taskeeService from '../../../../../../services/taskeeService';
 import { IProfileEntity } from '../../../../../../types/entity';
+import './sectionAuthorInformation.scss';
 
 interface ISectionAuthorInformationProps extends HTMLProps<HTMLDivElement> {
   username: string;

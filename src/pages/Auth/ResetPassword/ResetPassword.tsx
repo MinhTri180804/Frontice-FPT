@@ -5,12 +5,14 @@ import './resetPassword.scss';
 import { ResetPasswordForm } from './Partials/ResetPasswordForm';
 import { Navigate, useLocation } from 'react-router-dom';
 import { paths } from '../../../constant';
+import { useTranslation } from 'react-i18next';
 
 const ResetPasswordPage: FC = () => {
   const previousPage = usePreviousPage();
   const location = useLocation();
   const resetToken = location.state?.resetToken ?? null;
   const emailResetPassword = location.state?.emailResetPassword ?? null;
+  const { t } = useTranslation();
 
   if (!resetToken) {
     return <Navigate to={`${paths.auth}/${paths.login}`} />;
@@ -23,10 +25,10 @@ const ResetPasswordPage: FC = () => {
   return (
     <div className="reset__password__page-container">
       <div className="heading">
-        <div className="title">reset password</div>
+        <div className="title">{t('ResetPassword')}</div>
 
         <div className="sub-title">
-          Enter your new password to reset password to account
+          {t('EnterYourNewPasswordToResetPasswordToAccount')}
         </div>
       </div>
 
@@ -43,7 +45,7 @@ const ResetPasswordPage: FC = () => {
               <div className="icon">
                 <ChevronLeftIcon />
               </div>
-              <span>Return to previous page</span>
+              <span>{t('ReturnToPreviousPage')}</span>
             </div>
           </div>
         </div>

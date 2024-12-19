@@ -5,12 +5,14 @@ import { handleClickNewTab } from '../../../utils/helper';
 import Button from '../Button';
 import SolutionLevelDifficulty from '../SolutionLevelDifficulty';
 import './solutionTask.scss';
+import { useTranslation } from 'react-i18next';
 
 interface ISolutionTask {
   solutionTaskData: ISolutionTaskResponse;
 }
 
 const SolutionTask: FC<ISolutionTask> = ({ solutionTaskData }) => {
+  const { t } = useTranslation();
   const timeSubmited = convertTimestampToVietnamTime(
     Number(solutionTaskData?.submitedAt),
   );
@@ -43,7 +45,7 @@ const SolutionTask: FC<ISolutionTask> = ({ solutionTaskData }) => {
               <Button
                 buttonSize="small"
                 styleType="secondary"
-                label="View source"
+                label={t('ViewSource')}
                 onClick={() =>
                   handleClickNewTab(solutionTaskData.github as string)
                 }
@@ -52,7 +54,7 @@ const SolutionTask: FC<ISolutionTask> = ({ solutionTaskData }) => {
               <Button
                 buttonSize="small"
                 styleType="secondary"
-                label="Live preview"
+                label={t('LivePreview')}
                 onClick={() =>
                   handleClickNewTab(solutionTaskData.liveGithub as string)
                 }

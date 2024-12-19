@@ -84,11 +84,11 @@ const BannerWithInfo: React.FC<BannerWithInfoProps> = ({ profileData }) => {
             <div className="statistic">
               <div className="title">{t('Submitted')}</div>
               <div className="value">
-                {profileData.submittedChallenges} challenge
+                {profileData.submittedChallenges} {t('Challenge')}
               </div>
             </div>
           </div>
-          <p>{profileData.bio ? profileData.bio : 'Chưa có tiểu sử'}</p>
+          <p>{profileData.bio ? profileData.bio : t('NonBio')}</p>
         </figcaption>
       </figure>
     </div>

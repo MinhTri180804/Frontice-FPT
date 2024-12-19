@@ -56,6 +56,10 @@ const taskService: ITaskService = {
   getAllSolutionTaskOfMe: () => {
     return axiosClient.get(`${URL_API_3}/submitted`);
   },
+
+  sendReportTask: (data) => {
+    return axiosClient.post('/api/task/report', data);
+  },
 };
 
 export default taskService;

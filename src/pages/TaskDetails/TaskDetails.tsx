@@ -9,8 +9,10 @@ import taskService from '../../services/taskService';
 import './taskDetails.scss';
 import TaskDetailsDownload from './Partials/TaskDetailsDownload';
 import TaskDetailsInformation from './Partials/TaskDetailsInformation';
+import { useTranslation } from 'react-i18next';
 
 const TaskDetailsPage: FC = () => {
+  const { t } = useTranslation();
   const [tabActive, setTabActive] = useState<number>(1);
   const { taskId } = useParams();
   const [isJoin, setIsJoin] = useState<boolean | null>(null);
@@ -23,8 +25,6 @@ const TaskDetailsPage: FC = () => {
       setTabActive(tabId);
     }
   };
-
-  console.log('TASK DETAILS ID: ', taskId);
   console.log(solutionId);
 
   const {
@@ -64,7 +64,7 @@ const TaskDetailsPage: FC = () => {
 
   return (
     <div className="challenge__details-page">
-      <div className="title">Task Details</div>
+      <div className="title">{t('TaskDetailsPage')}</div>
       <div className="content">
         <ConditionWrapper
           condition={!isPending}
@@ -86,7 +86,7 @@ const TaskDetailsPage: FC = () => {
               onClick={() => changeTabActive(1, false)}
               className={`item ${tabActive === 1 && 'active'} `}
             >
-              Information
+              {t('Information')}
             </li>
 
             <ConditionWrapper
@@ -106,7 +106,7 @@ const TaskDetailsPage: FC = () => {
                   onClick={() => changeTabActive(2, isJoin === false)}
                   className={`item ${tabActive === 2 && 'active'} ${isJoin === false && 'disabled'} `}
                 >
-                  Download assets
+                  {t('DownloadFilesChallenges')}
                 </li>
               </>
             </ConditionWrapper>

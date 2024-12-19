@@ -94,7 +94,7 @@ const ButtonConditionChallengeOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Go to challenge details"
+        label={t('GoToChallengeDetails')}
         buttonSize="normal"
         onClick={handleGotoChallengeDetails}
       />
@@ -110,7 +110,7 @@ const ButtonConditionChallengeOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Join Challenge"
+        label={t('JoinChallenge')}
         buttonSize="normal"
         disabled
       />
@@ -121,7 +121,7 @@ const ButtonConditionChallengeOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Join Challenge"
+        label={t('JoinChallenge')}
         buttonSize="normal"
         disabled
       />
@@ -132,7 +132,7 @@ const ButtonConditionChallengeOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Join challenge"
+        label={t('JoinChallenge')}
         buttonSize="normal"
         onClick={handleJoinChallenge}
       />
@@ -143,7 +143,7 @@ const ButtonConditionChallengeOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Submit Challenge"
+        label={t('SubmitChallenge')}
         buttonSize="normal"
         onClick={handleSubmitChallenge}
       />
@@ -154,7 +154,7 @@ const ButtonConditionChallengeOverview: FC<
     return (
       <Button
         styleType="primary"
-        label="Go to my solution"
+        label={t('GoToMySolution')}
         buttonSize="normal"
         onClick={handleGoToSolution}
       />

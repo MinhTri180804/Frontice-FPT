@@ -6,6 +6,7 @@ import {
   IGetAllTaskParams,
   IGetTaskDetailsParams,
   IJoinTaskParams,
+  IReportTaskRequest,
   ISubmitSolutionTaskParams,
   ISubmitSolutionTaskRequest,
 } from '../request/task';
@@ -40,4 +41,6 @@ export interface ITaskService {
   ) => Promise<IBaseResponse<string>>;
 
   getAllSolutionTaskOfMe: () => Promise<IBaseResponse<IGetAllSolutionTaskOfMe>>;
+
+  sendReportTask: (data: IReportTaskRequest) => Promise<IBaseResponse<null>>;
 }

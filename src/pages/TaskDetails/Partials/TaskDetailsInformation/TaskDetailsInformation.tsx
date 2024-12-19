@@ -26,7 +26,7 @@ const TaskDetailsInformation: FC = () => {
           <div className="list__assets-provided">
             <AssetsItem
               value="Figma design file access - Unlock with Pro"
-              isHave={false}
+              isHave={true}
             />
             <AssetsItem
               value="JPEG design files for mobile & desktop layouts"

@@ -4,8 +4,10 @@ import { paths } from '../../../constant';
 import { SocialAuthButton } from '../Partials/SocialAuthButton';
 import { FormRegister } from './Partials/FormRegister';
 import './registerPage.scss';
+import { useTranslation } from 'react-i18next';
 
 const Register: React.FC = () => {
+  const { t } = useTranslation();
   const handleRegisterGithub = () => {
     console.log('Register github');
   };
@@ -13,10 +15,10 @@ const Register: React.FC = () => {
   return (
     <div className="register__page-container">
       <div className="heading">
-        <div className="title">Sign Up Account</div>
+        <div className="title">{t('SignUpAccount')}</div>
 
         <div className="sub-title">
-          Enter your personal data to create your account
+          {t('EnterYourPersonalDataToCreateYourAccount')}
         </div>
       </div>
 
@@ -27,7 +29,7 @@ const Register: React.FC = () => {
 
         <div className="or">
           <Line />
-          <div className="or-text">or</div>
+          <div className="or-text">{t('OR')}</div>
           <Line />
         </div>
 
@@ -37,8 +39,8 @@ const Register: React.FC = () => {
 
           <div className="other">
             <span>
-              Already have an account?
-              <Link to={`${paths.auth}/${paths.login}`}>Login</Link>
+              {t('AlreadyHaveAnAccount')}
+              <Link to={`${paths.auth}/${paths.login}`}>{t('LoginText')}</Link>
             </span>
           </div>
         </div>

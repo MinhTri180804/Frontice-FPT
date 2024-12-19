@@ -3,8 +3,10 @@ import { FC } from 'react';
 import { usePreviousPage } from '../../../hooks';
 import './forgotPassword.scss';
 import { ForgotPasswordForm } from './Partials/ForgotPasswordForm';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPasswordPage: FC = () => {
+  const { t } = useTranslation();
   const previousPage = usePreviousPage();
   const handlePrevPage = () => {
     previousPage();
@@ -12,9 +14,9 @@ const ForgotPasswordPage: FC = () => {
   return (
     <div className="forgot__password__page-container">
       <div className="heading">
-        <div className="title">forgot password</div>
+        <div className="title">{t('ForgotPasswordText')}</div>
 
-        <div className="sub-title">Enter your email to find account</div>
+        <div className="sub-title">{t('EnterYourEmailToFindAccount')}</div>
       </div>
 
       <div className="content">
@@ -26,7 +28,7 @@ const ForgotPasswordPage: FC = () => {
               <div className="icon">
                 <ChevronLeftIcon />
               </div>
-              <span>Return to previous page</span>
+              <span>{t('ReturnToPreviousPage')}</span>
             </div>
           </div>
         </div>
